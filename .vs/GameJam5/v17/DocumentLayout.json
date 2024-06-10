@@ -1,0 +1,171 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\UnityProject\\GameJam5\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|d:\\unityproject\\gamejam5\\assets\\scripts\\game\\btn\\startscenebtnhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\btn\\startscenebtnhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|d:\\unityproject\\gamejam5\\assets\\scripts\\game\\startscene\\changelocale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\startscene\\changelocale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|d:\\unityproject\\gamejam5\\assets\\scripts\\game\\messagedisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\messagedisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|D:\\UnityProject\\GameJam5\\assets\\scripts\\game\\state.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\state.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|D:\\UnityProject\\GameJam5\\assets\\scripts\\utils\\excelexportereditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\utils\\excelexportereditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|D:\\UnityProject\\GameJam5\\assets\\scripts\\game\\gamescene\\gamescenebtnmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\gamescene\\gamescenebtnmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|D:\\UnityProject\\GameJam5\\assets\\scripts\\game\\gamescene\\battlesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\gamescene\\battlesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|D:\\UnityProject\\GameJam5\\assets\\scripts\\game\\gamescene\\unit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\gamescene\\unit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|D:\\UnityProject\\GameJam5\\assets\\scripts\\game\\gamescene\\battlehud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D650DA-1E1C-99B2-01C8-7B6538156B63}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\gamescene\\battlehud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StartSceneBtnHandler.cs",
+              "DocumentMoniker": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\Btn\\StartSceneBtnHandler.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\Btn\\StartSceneBtnHandler.cs",
+              "ToolTip": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\Btn\\StartSceneBtnHandler.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Game\\Btn\\StartSceneBtnHandler.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAIwC0AAABjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T16:39:15.257Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ChangeLocale.cs",
+              "DocumentMoniker": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\StartScene\\ChangeLocale.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\StartScene\\ChangeLocale.cs",
+              "ToolTip": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\StartScene\\ChangeLocale.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Game\\StartScene\\ChangeLocale.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T16:19:19.624Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MessageDisplay.cs",
+              "DocumentMoniker": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\MessageDisplay.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\MessageDisplay.cs",
+              "ToolTip": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\MessageDisplay.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Game\\MessageDisplay.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T16:17:11.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "State.cs",
+              "DocumentMoniker": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\State.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\State.cs",
+              "ToolTip": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\State.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Game\\State.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwwAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T13:15:11.428Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ExcelExporterEditor.cs",
+              "DocumentMoniker": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Utils\\ExcelExporterEditor.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Utils\\ExcelExporterEditor.cs",
+              "ToolTip": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Utils\\ExcelExporterEditor.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Utils\\ExcelExporterEditor.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T13:15:09.308Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BattleHUD.cs",
+              "DocumentMoniker": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\GameScene\\BattleHUD.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\GameScene\\BattleHUD.cs",
+              "ToolTip": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\GameScene\\BattleHUD.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Game\\GameScene\\BattleHUD.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T13:01:45.448Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BattleSystem.cs",
+              "DocumentMoniker": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\GameScene\\BattleSystem.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\GameScene\\BattleSystem.cs",
+              "ToolTip": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\GameScene\\BattleSystem.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Game\\GameScene\\BattleSystem.cs",
+              "ViewState": "AQIAAGEAAAAAAAAAAAAUwHIAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T13:01:43.95Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Unit.cs",
+              "DocumentMoniker": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\GameScene\\Unit.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\GameScene\\Unit.cs",
+              "ToolTip": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\GameScene\\Unit.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Game\\GameScene\\Unit.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T13:01:39.864Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GameSceneBtnManager.cs",
+              "DocumentMoniker": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\GameScene\\GameSceneBtnManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\GameScene\\GameSceneBtnManager.cs",
+              "ToolTip": "D:\\UnityProject\\GameJam5\\Assets\\Scripts\\Game\\GameScene\\GameSceneBtnManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Game\\GameScene\\GameSceneBtnManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAQwAgAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T13:00:16.658Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
