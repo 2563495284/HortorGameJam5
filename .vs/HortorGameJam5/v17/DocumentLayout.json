@@ -3,6 +3,34 @@
   "WorkspaceRootPath": "D:\\HortorGameJam5\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|D:\\HortorGameJam5\\assets\\scripts\\game\\initializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\initializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|d:\\hortorgamejam5\\assets\\scripts\\utils\\scenemanager\\sceneswitcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\utils\\scenemanager\\sceneswitcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|D:\\HortorGameJam5\\assets\\scripts\\game\\state.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\state.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\HortorGameJam5\\Assets\\Scripts\\Utils\\ExcelExporterEditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Utils\\ExcelExporterEditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|D:\\HortorGameJam5\\assets\\scripts\\card\\cardbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\card\\cardbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|D:\\HortorGameJam5\\assets\\scripts\\game\\messagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\messagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|D:\\HortorGameJam5\\assets\\scripts\\card\\cardattrbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\card\\cardattrbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|D:\\HortorGameJam5\\assets\\scripts\\game\\mainscene\\mainscenebtnmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\mainscene\\mainscenebtnmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,24 +39,8 @@
       "RelativeMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\startscene\\startscenebtnmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|D:\\HortorGameJam5\\assets\\scripts\\utils\\scenemanager\\sceneswitcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\utils\\scenemanager\\sceneswitcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|d:\\hortorgamejam5\\assets\\scripts\\utils\\singletonbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|D:\\HortorGameJam5\\assets\\scripts\\utils\\singletonbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\utils\\singletonbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|D:\\HortorGameJam5\\assets\\scripts\\game\\initializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\initializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|d:\\hortorgamejam5\\assets\\scripts\\game\\messagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\messagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|d:\\hortorgamejam5\\assets\\scripts\\game\\state.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\state.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C7BDF36F-51E1-BC78-C67C-60DEE4E45C79}|Assembly-CSharp.csproj|D:\\HortorGameJam5\\assets\\scripts\\game\\gamescene\\gamescenebtnmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,11 +54,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CardAttrBase.cs",
+              "DocumentMoniker": "D:\\HortorGameJam5\\Assets\\Scripts\\Card\\CardAttrBase.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Card\\CardAttrBase.cs",
+              "ToolTip": "D:\\HortorGameJam5\\Assets\\Scripts\\Card\\CardAttrBase.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Card\\CardAttrBase.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwQAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T15:36:42.021Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "CardBase.cs",
+              "DocumentMoniker": "D:\\HortorGameJam5\\Assets\\Scripts\\Card\\CardBase.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Card\\CardBase.cs",
+              "ToolTip": "D:\\HortorGameJam5\\Assets\\Scripts\\Card\\CardBase.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Card\\CardBase.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwcAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T15:36:32.52Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ExcelExporterEditor.cs",
+              "DocumentMoniker": "D:\\HortorGameJam5\\Assets\\Scripts\\Utils\\ExcelExporterEditor.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Utils\\ExcelExporterEditor.cs",
+              "ToolTip": "D:\\HortorGameJam5\\Assets\\Scripts\\Utils\\ExcelExporterEditor.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Utils\\ExcelExporterEditor.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T15:27:29.673Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Initializer.cs",
               "DocumentMoniker": "D:\\HortorGameJam5\\Assets\\Scripts\\Game\\Initializer.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\Initializer.cs",
@@ -58,25 +109,20 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "State.cs",
               "DocumentMoniker": "D:\\HortorGameJam5\\Assets\\Scripts\\Game\\State.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\State.cs",
               "ToolTip": "D:\\HortorGameJam5\\Assets\\Scripts\\Game\\State.cs",
               "RelativeToolTip": "Assets\\Scripts\\Game\\State.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAADAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T10:24:11.444Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T10:24:11.444Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "SingletonBase.cs",
               "DocumentMoniker": "D:\\HortorGameJam5\\Assets\\Scripts\\Utils\\SingletonBase.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Utils\\SingletonBase.cs",
@@ -84,18 +130,17 @@
               "RelativeToolTip": "Assets\\Scripts\\Utils\\SingletonBase.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T10:18:58.638Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T10:18:58.638Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "SceneSwitcher.cs",
               "DocumentMoniker": "D:\\HortorGameJam5\\Assets\\Scripts\\Utils\\SceneManager\\SceneSwitcher.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Utils\\SceneManager\\SceneSwitcher.cs",
               "ToolTip": "D:\\HortorGameJam5\\Assets\\Scripts\\Utils\\SceneManager\\SceneSwitcher.cs",
               "RelativeToolTip": "Assets\\Scripts\\Utils\\SceneManager\\SceneSwitcher.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAIwBsAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-10T10:12:42.468Z",
               "EditorCaption": ""
@@ -110,12 +155,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Game\\MessageManager.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T10:01:19.745Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T10:01:19.745Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
               "Title": "StartSceneBtnManager.cs",
               "DocumentMoniker": "D:\\HortorGameJam5\\Assets\\Scripts\\Game\\StartScene\\StartSceneBtnManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\StartScene\\StartSceneBtnManager.cs",
@@ -123,12 +167,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Game\\StartScene\\StartSceneBtnManager.cs",
               "ViewState": "AQIAABEAAAAAAAAAAAAQwCEAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T09:53:25.076Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T09:53:25.076Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "MainSceneBtnManager.cs",
               "DocumentMoniker": "D:\\HortorGameJam5\\Assets\\Scripts\\Game\\MainScene\\MainSceneBtnManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\MainScene\\MainSceneBtnManager.cs",
@@ -136,12 +179,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Game\\MainScene\\MainSceneBtnManager.cs",
               "ViewState": "AQIAAAgAAAAAAAAAAAAQwBgAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T09:42:43.724Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T09:42:43.724Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "GameSceneBtnManager.cs",
               "DocumentMoniker": "D:\\HortorGameJam5\\Assets\\Scripts\\Game\\GameScene\\GameSceneBtnManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\GameScene\\GameSceneBtnManager.cs",
@@ -149,8 +191,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Game\\GameScene\\GameSceneBtnManager.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAADwvxMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T09:42:33.948Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T09:42:33.948Z"
             }
           ]
         }

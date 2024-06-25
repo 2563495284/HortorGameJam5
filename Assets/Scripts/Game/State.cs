@@ -2,12 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BattleState
+public enum EBattleState
 {
     START, PLAYERTURN, ENEMYTURN, WON, LOST
 }
-public enum TipsType
+public enum ETipsType
 {
     LANGUAGE,
 
 }
+
+#region
+public enum ECardType
+{
+
+}
+public enum ETalentSkillType
+{
+
+}
+public enum ESpecialSkillType
+{
+
+}
+#endregion

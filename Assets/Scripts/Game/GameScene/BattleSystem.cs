@@ -18,11 +18,11 @@ public class BattleSystem : MonoBehaviour
     public BattleHUD playerHUD;
     public BattleHUD enemyHUD;
 
-    private BattleState state;
+    private EBattleState state;
 
     void Start()
     {
-        state = BattleState.START;
+        state = EBattleState.START;
         StartCoroutine(SetupBattle());
     }
 
@@ -41,7 +41,7 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        state = BattleState.PLAYERTURN;
+        state = EBattleState.PLAYERTURN;
         PlayerTurn();
     }
 
@@ -61,12 +61,12 @@ public class BattleSystem : MonoBehaviour
 
         if (isDead)
         {
-            state = BattleState.WON;
+            state = EBattleState.WON;
             EndBattle();
         }
         else
         {
-            state = BattleState.ENEMYTURN;
+            state = EBattleState.ENEMYTURN;
             StartCoroutine(EnemyTurn());
         }
     }
@@ -85,23 +85,23 @@ public class BattleSystem : MonoBehaviour
 
         if (isDead)
         {
-            state = BattleState.LOST;
+            state = EBattleState.LOST;
             EndBattle();
         }
         else
         {
-            state = BattleState.PLAYERTURN;
+            state = EBattleState.PLAYERTURN;
             PlayerTurn();
         }
     }
 
     void EndBattle()
     {
-        if (state == BattleState.WON)
+        if (state == EBattleState.WON)
         {
             dialogueText.text = "You won the battle!";
         }
-        else if (state == BattleState.LOST)
+        else if (state == EBattleState.LOST)
         {
             dialogueText.text = "You were defeated.";
         }
@@ -109,7 +109,7 @@ public class BattleSystem : MonoBehaviour
 
     public void OnAttackButton()
     {
-        if (state != BattleState.PLAYERTURN)
+        if (state != EBattleState.PLAYERTURN)
             return;
 
         StartCoroutine(PlayerAttack());
