@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.hortor.o4e": "1.4.1",
     "com.unity.collab-proxy": "2.3.1",
     "com.unity.feature.2d": "2.0.0",
     "com.unity.feature.mobile": "1.0.0",
@@ -12,6 +13,7 @@
     "com.unity.timeline": "1.7.6",
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.9.4",
+    "com.wizard": "git@git.hortorgames.com:engine/u3d-hortor-wizard.git",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -43,5 +45,15 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "hortor",
+      "url": "https://packages.aliyun.com/61024aef9187b7df39057859/npm/npm-registry",
+      "scopes": [
+        "com.hortor",
+        "com.hortorgames"
+      ]
+    }
+  ]
 }

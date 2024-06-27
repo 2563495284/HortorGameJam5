@@ -1,5 +1,22 @@
 {
   "dependencies": {
+    "com.hortor.o4e": {
+      "version": "1.4.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.hortor.unitywebsocket": "2.7.0",
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
+      },
+      "url": "https://packages.aliyun.com/61024aef9187b7df39057859/npm/npm-registry"
+    },
+    "com.hortor.unitywebsocket": {
+      "version": "2.7.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.aliyun.com/61024aef9187b7df39057859/npm/npm-registry"
+    },
     "com.unity.2d.animation": {
       "version": "9.1.0",
       "depth": 1,
@@ -315,6 +332,13 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.cn"
+    },
+    "com.wizard": {
+      "version": "git@git.hortorgames.com:engine/u3d-hortor-wizard.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c596fa3f002b5fb476ea6a55299b0d9055115672"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
