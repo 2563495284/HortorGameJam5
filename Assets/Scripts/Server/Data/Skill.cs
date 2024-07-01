@@ -7,9 +7,9 @@ using UnityEngine.Scripting;
 /// <summary>
 /// 技能
 /// <summary>
-public partial class Skill: DataBase {
+public partial class CardSkill: DataBase {
     [Preserve]
-    public Skill() {
+    public CardSkill() {
     }
     
     /// <summary>

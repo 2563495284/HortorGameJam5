@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Card;
 public class BattleHUD : MonoBehaviour
 {
     public Text hpText;
     public Slider hpSlider;
 
-    public void SetHUD(Unit unit)
+    public void SetHUD(RoleCard card)
     {
-        hpSlider.maxValue = unit.maxHP;
-        hpSlider.value = unit.currentHP;
-        hpText.text = unit.currentHP.ToString() + "/" + unit.maxHP.ToString();
+        hpSlider.maxValue = card.maxHp;
+        hpSlider.value = card.hp;
+        hpText.text = card.hp.ToString() + "/" + card.maxHp.ToString();
     }
 
     public void SetHP(int hp)

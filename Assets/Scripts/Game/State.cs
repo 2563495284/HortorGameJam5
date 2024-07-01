@@ -11,18 +11,3 @@ public enum ETipsType
     LANGUAGE,
 
 }
-
-#region
-public enum ECardType
-{
-
-}
-public enum ETalentSkillType
-{
-
-}
-public enum ESpecialSkillType
-{
-
-}
-#endregion

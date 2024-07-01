@@ -7,17 +7,18 @@ public enum ESceneType
 {
     STARTSCENE,
     MAINSCENE,
-    GAMESCENE
+    GAMESCENE,
+    CARDBAGSCENE
 }
 public class SceneSwitcher : Singleton<SceneSwitcher>
 {
-    // ¼ÓÔØÖ¸¶¨Ãû³ÆµÄ³¡¾°
+    // ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ÆµÄ³ï¿½ï¿½ï¿½
     public static void LoadSceneByName(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
 
-    // ¼ÓÔØÖ¸¶¨Ë÷ÒýµÄ³¡¾°
+    // ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
     public static void LoadSceneByIndex(ESceneType sceneType)
     {
         SceneManager.LoadScene((int)sceneType);

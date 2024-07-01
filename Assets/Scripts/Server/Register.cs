@@ -23,7 +23,7 @@ public static partial class Register {
 	[Preserve]
 	static readonly List<RoundState> t8;
 	[Preserve]
-	static readonly List<Skill> t9;
+	static readonly List<CardSkill> t9;
 	[Preserve]
 	static readonly List<SkillMechanic> t10;
 	[Preserve]

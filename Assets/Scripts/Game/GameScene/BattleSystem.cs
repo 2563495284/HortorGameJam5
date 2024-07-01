@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Card;
 public class BattleSystem : MonoBehaviour
 {
-    public GameObject playerPrefab;
-    public GameObject enemyPrefab;
 
     public Transform playerBattleStation;
     public Transform enemyBattleStation;
 
-    Unit playerUnit;
-    Unit enemyUnit;
+    public RoleCard playerCard;
+    public RoleCard enemyCard;
 
     public Text dialogueText;
 
@@ -28,16 +27,11 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
-        GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
-        playerUnit = playerGO.GetComponent<Unit>();
 
-        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
-        enemyUnit = enemyGO.GetComponent<Unit>();
+        dialogueText.text = "A wild " + enemyCard.cardName+ " approaches...";
 
-        dialogueText.text = "A wild " + enemyUnit.unitName + " approaches...";
-
-        playerHUD.SetHUD(playerUnit);
-        enemyHUD.SetHUD(enemyUnit);
+        playerHUD.SetHUD(playerCard);
+        enemyHUD.SetHUD(enemyCard);
 
         yield return new WaitForSeconds(2f);
 
@@ -50,50 +44,50 @@ public class BattleSystem : MonoBehaviour
         dialogueText.text = "Choose an action:";
     }
 
-    IEnumerator PlayerAttack()
-    {
-        bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
+    //IEnumerator PlayerAttack()
+    //{
+    //    bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
 
-        enemyHUD.SetHP(enemyUnit.currentHP);
-        dialogueText.text = "The attack is successful!";
+    //    enemyHUD.SetHP(enemyUnit.currentHP);
+    //    dialogueText.text = "The attack is successful!";
 
-        yield return new WaitForSeconds(2f);
+    //    yield return new WaitForSeconds(2f);
 
-        if (isDead)
-        {
-            state = EBattleState.WON;
-            EndBattle();
-        }
-        else
-        {
-            state = EBattleState.ENEMYTURN;
-            StartCoroutine(EnemyTurn());
-        }
-    }
+    //    if (isDead)
+    //    {
+    //        state = EBattleState.WON;
+    //        EndBattle();
+    //    }
+    //    else
+    //    {
+    //        state = EBattleState.ENEMYTURN;
+    //        StartCoroutine(EnemyTurn());
+    //    }
+    //}
 
-    IEnumerator EnemyTurn()
-    {
-        dialogueText.text = enemyUnit.unitName + " attacks!";
+    //IEnumerator EnemyTurn()
+    //{
+    //    dialogueText.text = enemyUnit.unitName + " attacks!";
 
-        yield return new WaitForSeconds(1f);
+    //    yield return new WaitForSeconds(1f);
 
-        bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
+    //    bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
 
-        playerHUD.SetHP(playerUnit.currentHP);
+    //    playerHUD.SetHP(playerUnit.currentHP);
 
-        yield return new WaitForSeconds(1f);
+    //    yield return new WaitForSeconds(1f);
 
-        if (isDead)
-        {
-            state = EBattleState.LOST;
-            EndBattle();
-        }
-        else
-        {
-            state = EBattleState.PLAYERTURN;
-            PlayerTurn();
-        }
-    }
+    //    if (isDead)
+    //    {
+    //        state = EBattleState.LOST;
+    //        EndBattle();
+    //    }
+    //    else
+    //    {
+    //        state = EBattleState.PLAYERTURN;
+    //        PlayerTurn();
+    //    }
+    //}
 
     void EndBattle()
     {
@@ -112,6 +106,6 @@ public class BattleSystem : MonoBehaviour
         if (state != EBattleState.PLAYERTURN)
             return;
 
-        StartCoroutine(PlayerAttack());
+        //StartCoroutine(PlayerAttack());
     }
 }

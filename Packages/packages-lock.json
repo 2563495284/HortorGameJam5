@@ -121,6 +121,15 @@
       },
       "url": "https://packages.unity.cn"
     },
+    "com.unity.adaptiveperformance.samsung.android": {
+      "version": "4.0.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.adaptiveperformance": "4.0.1"
+      },
+      "url": "https://packages.unity.cn"
+    },
     "com.unity.addressables": {
       "version": "1.21.19",
       "depth": 1,

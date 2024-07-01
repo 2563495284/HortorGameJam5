@@ -39,9 +39,9 @@ public partial class Hero: DataBase {
     /// <summary>
     /// 技能列表
     /// <summary>
-    public List<Skill> skills = new List<Skill>();
+    public List<CardSkill> skills = new List<CardSkill>();
     /// <summary>
     /// 战斗技能卡组
     /// <summary>
-    public List<Skill> battleSkills = new List<Skill>();
+    public List<CardSkill> battleSkills = new List<CardSkill>();
 }

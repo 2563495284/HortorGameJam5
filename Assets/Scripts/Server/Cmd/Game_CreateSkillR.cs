@@ -6,5 +6,5 @@ public partial class Game_CreateSkillR: RespBase {
     public Game_CreateSkillR() {
     }
     
-    public Skill data;
+    public CardSkill data;
 }

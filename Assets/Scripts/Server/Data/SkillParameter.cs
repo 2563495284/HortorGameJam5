@@ -31,7 +31,7 @@ public partial class SkillParameter: DataBase {
     /// <summary>
     /// 运算符
     /// <summary>
-    public string operator = string.Empty;
+    public string op = string.Empty;
     /// <summary>
     /// 变化数值
     /// <summary>
