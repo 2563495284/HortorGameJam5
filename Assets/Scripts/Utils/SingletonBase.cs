@@ -3,13 +3,13 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance;
     private static readonly object _lock = new object();
-    private static bool _isApplicationQuitting = false;
+    private static bool _isDestroyed = false;
 
     public static T Instance
     {
         get
         {
-            if (_isApplicationQuitting)
+            if (_isDestroyed)
             {
                 Debug.LogWarning("[Singleton] Instance '" + typeof(T) +
                     "' already destroyed on application quit." +
@@ -33,14 +33,20 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
                     if (_instance == null)
                     {
-                        GameObject singletonObject = new GameObject();
-                        _instance = singletonObject.AddComponent<T>();
-                        singletonObject.name = typeof(T).ToString() + " (Singleton)";
-                        DontDestroyOnLoad(singletonObject);
+                        GameObject singleton = new GameObject();
+                        _instance = singleton.AddComponent<T>();
+                        singleton.name = "(singleton) " + typeof(T).ToString();
+
+                        DontDestroyOnLoad(singleton);
 
                         Debug.Log("[Singleton] An instance of " + typeof(T) +
-                            " is needed in the scene, so '" + singletonObject +
+                            " is needed in the scene, so '" + singleton +
                             "' was created with DontDestroyOnLoad.");
+                    }
+                    else
+                    {
+                        Debug.Log("[Singleton] Using instance already created: " +
+                            _instance.gameObject.name);
                     }
                 }
 
@@ -49,8 +55,8 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
-        _isApplicationQuitting = true;
+        _isDestroyed = true;
     }
 }

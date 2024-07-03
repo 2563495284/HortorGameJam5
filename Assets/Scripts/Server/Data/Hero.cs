@@ -7,11 +7,13 @@ using UnityEngine.Scripting;
 /// <summary>
 /// 英雄
 /// <summary>
-public partial class Hero: DataBase {
+public partial class Hero : DataBase
+{
     [Preserve]
-    public Hero() {
+    public Hero()
+    {
     }
-    
+
     /// <summary>
     /// 角色id
     /// <summary>

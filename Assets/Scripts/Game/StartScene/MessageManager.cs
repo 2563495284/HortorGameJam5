@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-public class MessageManager : MonoBehaviour
+public class MessageManager : Singleton<MessageManager>
 {
-    public static MessageManager Instance { get; private set; }
     public Text messageText;
     public GameObject messagePanel;
     public float displayDuration = 2f;
@@ -12,15 +11,7 @@ public class MessageManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // 保证在切换场景时对象不会被销毁
-        }
-        else
-        {
-            Destroy(gameObject); // 已经存在一个实例，销毁新创建的实例
-        }
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start()
@@ -53,5 +44,9 @@ public class MessageManager : MonoBehaviour
                 messagePanel.SetActive(false);
             });
         }
+    }
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }

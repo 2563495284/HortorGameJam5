@@ -12,15 +12,18 @@ public enum ESceneType
 }
 public class SceneSwitcher : Singleton<SceneSwitcher>
 {
-    // ����ָ�����Ƶĳ���
+
     public static void LoadSceneByName(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
 
-    // ����ָ�������ĳ���
     public static void LoadSceneByIndex(ESceneType sceneType)
     {
         SceneManager.LoadScene((int)sceneType);
+    }
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }

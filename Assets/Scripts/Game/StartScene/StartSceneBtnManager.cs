@@ -4,10 +4,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Localization.Settings;
+using System.Threading.Tasks;
 
 public class StartSceneBtnManager : MonoBehaviour
 {
     public Button startBtn;
+
     public Button languageBtn;
     public Dropdown languageDropdown;
 
@@ -15,7 +17,9 @@ public class StartSceneBtnManager : MonoBehaviour
     void Start()
     {
         startBtn.onClick.AddListener(OnClickStartBtn);
+
         languageBtn.onClick.AddListener(OnClickLanguagetBtn);
+
         languageDropdown.onValueChanged.AddListener(SelectLanguage);
     }
 
@@ -38,11 +42,10 @@ public class StartSceneBtnManager : MonoBehaviour
     private void OnClickLanguagetBtn()
     {
         MessageManager.Instance.ShowMessage("ShowMessage : OnClickLanguagetBtn");
-        //LocalizationSettings.
+
     }
     public void SelectLanguage(int value)
     {
-        //将下拉框当前选中选项的下标作为参数设置到LocalizationSettings的SelectedLocale达到实现语言切换的效果
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[value];
     }
     #endregion
