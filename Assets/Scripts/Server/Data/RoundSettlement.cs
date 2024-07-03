@@ -12,9 +12,28 @@ public partial class RoundSettlement: DataBase {
     public RoundSettlement() {
     }
     
+    /// <summary>
+    /// 所属回合
+    /// <summary>
     public long round = 0;
+    /// <summary>
+    /// 当前回合的攻击者
+    /// <summary>
     public BattleHero attacker = new BattleHero();
+    /// <summary>
+    /// 当前回合的防御者
+    /// <summary>
     public BattleHero defender = new BattleHero();
-    public long damage = 0;
-    public List<string> effects = new List<string>();
+    /// <summary>
+    /// 当前回合的技能
+    /// <summary>
+    public Skill skill = new Skill();
+    /// <summary>
+    /// 攻击者的状态变化
+    /// <summary>
+    public RoundState attackerRoundStates = new RoundState();
+    /// <summary>
+    /// 防御者的状态变化
+    /// <summary>
+    public RoundState defenderRoundStates = new RoundState();
 }

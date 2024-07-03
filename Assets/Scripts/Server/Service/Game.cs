@@ -10,13 +10,6 @@ public partial class IsolateGameService : ServiceBase
     {
     }
     /// <summary>
-    /// 增加道具示例
-    /// <summary>
-    public Task<ReceiveMsg<RespSync>> AddItem(Game_AddItem data, CmdOption opt = default)
-	{
-        return SendAsync<RespSync>(ToSendMsg("game_additem", data, opt));
-    }
-    /// <summary>
     /// 创建英雄
     /// <summary>
     public Task<ReceiveMsg<Game_CreateHeroR>> CreateHero(Game_CreateHero data, CmdOption opt = default)
@@ -88,25 +81,10 @@ public partial class IsolateGameService : ServiceBase
 	{
         return SendAsync<Game_StartBattleR>(ToSendMsg("game_startbattle", data, opt));
     }
-    public void StartPush(Game_StartPush data, CmdOption opt = default)
-	{
-        Send(ToSendMsg("game_startpush", data, opt));
-    }
-    public Task<ReceiveMsg<Game_TestR>> Test(Game_Test data, CmdOption opt = default)
-	{
-        return SendAsync<Game_TestR>(ToSendMsg("game_test", data, opt));
-    }
 }
 
 public partial class GameService
 {
-    /// <summary>
-    /// 增加道具示例
-    /// <summary>
-    public static Task<ReceiveMsg<RespSync>> AddItem(Game_AddItem data, CmdOption opt = default)
-	{
-        return Isolate.Default.GameService.AddItem(data, opt);
-    }
     /// <summary>
     /// 创建英雄
     /// <summary>
@@ -178,14 +156,6 @@ public partial class GameService
     public static Task<ReceiveMsg<Game_StartBattleR>> StartBattle(Game_StartBattle data, CmdOption opt = default)
 	{
         return Isolate.Default.GameService.StartBattle(data, opt);
-    }
-    public static void StartPush(Game_StartPush data, CmdOption opt = default)
-	{
-        Isolate.Default.GameService.StartPush(data, opt);
-    }
-    public static Task<ReceiveMsg<Game_TestR>> Test(Game_Test data, CmdOption opt = default)
-	{
-        return Isolate.Default.GameService.Test(data, opt);
     }
 }
 
