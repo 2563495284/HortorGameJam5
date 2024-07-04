@@ -10,6 +10,13 @@ public partial class IsolateGameService : ServiceBase
     {
     }
     /// <summary>
+    /// 加入技能库
+    /// <summary>
+    public Task<ReceiveMsg<Game_ConfirmSkillR>> ConfirmSkill(Game_ConfirmSkill data, CmdOption opt = default)
+	{
+        return SendAsync<Game_ConfirmSkillR>(ToSendMsg("game_confirmskill", data, opt));
+    }
+    /// <summary>
     /// 创建英雄
     /// <summary>
     public Task<ReceiveMsg<Game_CreateHeroR>> CreateHero(Game_CreateHero data, CmdOption opt = default)
@@ -75,6 +82,13 @@ public partial class IsolateGameService : ServiceBase
         return SendAsync<RespSync>(ToSendMsg("game_saveavatar", data, opt));
     }
     /// <summary>
+    /// 调整上阵技能
+    /// <summary>
+    public Task<ReceiveMsg<Game_SetBattleSkillsR>> SetBattleSkills(Game_SetBattleSkills data, CmdOption opt = default)
+	{
+        return SendAsync<Game_SetBattleSkillsR>(ToSendMsg("game_setbattleskills", data, opt));
+    }
+    /// <summary>
     /// 战斗开始
     /// <summary>
     public Task<ReceiveMsg<Game_StartBattleR>> StartBattle(Game_StartBattle data, CmdOption opt = default)
@@ -85,6 +99,13 @@ public partial class IsolateGameService : ServiceBase
 
 public partial class GameService
 {
+    /// <summary>
+    /// 加入技能库
+    /// <summary>
+    public static Task<ReceiveMsg<Game_ConfirmSkillR>> ConfirmSkill(Game_ConfirmSkill data, CmdOption opt = default)
+	{
+        return Isolate.Default.GameService.ConfirmSkill(data, opt);
+    }
     /// <summary>
     /// 创建英雄
     /// <summary>
@@ -149,6 +170,13 @@ public partial class GameService
     public static Task<ReceiveMsg<RespSync>> SaveAvatar(Game_SaveAvatar data, CmdOption opt = default)
 	{
         return Isolate.Default.GameService.SaveAvatar(data, opt);
+    }
+    /// <summary>
+    /// 调整上阵技能
+    /// <summary>
+    public static Task<ReceiveMsg<Game_SetBattleSkillsR>> SetBattleSkills(Game_SetBattleSkills data, CmdOption opt = default)
+	{
+        return Isolate.Default.GameService.SetBattleSkills(data, opt);
     }
     /// <summary>
     /// 战斗开始

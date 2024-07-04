@@ -44,4 +44,8 @@ public partial class Hero: DataBase {
     /// 战斗技能卡组
     /// <summary>
     public List<Skill> battleSkills = new List<Skill>();
+    /// <summary>
+    /// 未确认的技能
+    /// <summary>
+    public Skill tmpSkill = new Skill();
 }
