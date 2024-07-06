@@ -82,6 +82,13 @@ public partial class IsolateGameService : ServiceBase
         return SendAsync<RespSync>(ToSendMsg("game_saveavatar", data, opt));
     }
     /// <summary>
+    /// 设置启用英雄
+    /// <summary>
+    public Task<ReceiveMsg<Game_SetActiveHeroR>> SetActiveHero(Game_SetActiveHero data, CmdOption opt = default)
+	{
+        return SendAsync<Game_SetActiveHeroR>(ToSendMsg("game_setactivehero", data, opt));
+    }
+    /// <summary>
     /// 调整上阵技能
     /// <summary>
     public Task<ReceiveMsg<Game_SetBattleSkillsR>> SetBattleSkills(Game_SetBattleSkills data, CmdOption opt = default)
@@ -170,6 +177,13 @@ public partial class GameService
     public static Task<ReceiveMsg<RespSync>> SaveAvatar(Game_SaveAvatar data, CmdOption opt = default)
 	{
         return Isolate.Default.GameService.SaveAvatar(data, opt);
+    }
+    /// <summary>
+    /// 设置启用英雄
+    /// <summary>
+    public static Task<ReceiveMsg<Game_SetActiveHeroR>> SetActiveHero(Game_SetActiveHero data, CmdOption opt = default)
+	{
+        return Isolate.Default.GameService.SetActiveHero(data, opt);
     }
     /// <summary>
     /// 调整上阵技能

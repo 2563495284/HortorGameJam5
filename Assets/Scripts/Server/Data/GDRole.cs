@@ -52,4 +52,8 @@ public partial class GDRole: DataBase {
     /// 英雄列表
     /// <summary>
     public List<Hero> heros = new List<Hero>();
+    /// <summary>
+    /// 当前英雄
+    /// <summary>
+    public long activeHero = 0;
 }
