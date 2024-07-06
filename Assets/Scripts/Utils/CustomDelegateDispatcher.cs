@@ -33,7 +33,6 @@ public class CustomDelegateDispatcher
             eventSubscribers = new Dictionary<string, HashSet<object>>();
         }
     }
-
     public void StartListening<T>(string eventName, Action<T> listener)
     {
         if (listener.Target == null) return;

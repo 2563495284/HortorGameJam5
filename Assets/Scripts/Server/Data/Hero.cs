@@ -7,13 +7,11 @@ using UnityEngine.Scripting;
 /// <summary>
 /// 英雄
 /// <summary>
-public partial class Hero : DataBase
-{
+public partial class Hero: DataBase {
     [Preserve]
-    public Hero()
-    {
+    public Hero() {
     }
-
+    
     /// <summary>
     /// 角色id
     /// <summary>
@@ -41,9 +39,9 @@ public partial class Hero : DataBase
     /// <summary>
     /// 技能列表
     /// <summary>
-    public List<CardSkill> skills = new List<CardSkill>();
+    public List<Skill> skills = new List<Skill>();
     /// <summary>
     /// 战斗技能卡组
     /// <summary>
-    public List<CardSkill> battleSkills = new List<CardSkill>();
+    public List<Skill> battleSkills = new List<Skill>();
 }

@@ -5,25 +5,25 @@ using UnityEngine.Scripting;
 [Preserve]
 public static partial class Register {
 	[Preserve]
-	static readonly List<GDRole> t0;
+	static readonly List<GDRoom> t0;
 	[Preserve]
-	static readonly List<GDRoom> t1;
+	static readonly List<Hero> t1;
 	[Preserve]
-	static readonly List<Hero> t2;
+	static readonly List<OIMConversation> t2;
 	[Preserve]
-	static readonly List<OIMConversation> t3;
+	static readonly List<OIMMsg> t3;
 	[Preserve]
-	static readonly List<OIMMsg> t4;
+	static readonly List<OMailAttachment> t4;
 	[Preserve]
-	static readonly List<OMailAttachment> t5;
+	static readonly List<Room_FrameMsgOne> t5;
 	[Preserve]
-	static readonly List<Room_FrameMsgOne> t6;
+	static readonly List<RoundMechanic> t6;
 	[Preserve]
 	static readonly List<RoundSettlement> t7;
 	[Preserve]
 	static readonly List<RoundState> t8;
 	[Preserve]
-	static readonly List<CardSkill> t9;
+	static readonly List<Skill> t9;
 	[Preserve]
 	static readonly List<SkillMechanic> t10;
 	[Preserve]
@@ -39,7 +39,5 @@ public static partial class Register {
 	[Preserve]
 	static readonly Dictionary<long, GDServerRole> t16;
 	[Preserve]
-	static readonly Dictionary<string, GDRole> t17;
-	[Preserve]
-	static readonly Dictionary<string, object> t18;
+	static readonly Dictionary<string, object> t17;
 }

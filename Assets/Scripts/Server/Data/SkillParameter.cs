@@ -13,13 +13,21 @@ public partial class SkillParameter: DataBase {
     }
     
     /// <summary>
-    /// 时机
+    /// 静态时机
     /// <summary>
-    public string condition = string.Empty;
+    public string staticCondition = string.Empty;
+    /// <summary>
+    /// 动态时机
+    /// <summary>
+    public MechanicDynamicCondition dynamicCondition = new MechanicDynamicCondition();
     /// <summary>
     /// 触发概率
     /// <summary>
     public float prob = 0;
+    /// <summary>
+    /// 原属性来源
+    /// <summary>
+    public string sourceFrom = string.Empty;
     /// <summary>
     /// 源属性
     /// <summary>

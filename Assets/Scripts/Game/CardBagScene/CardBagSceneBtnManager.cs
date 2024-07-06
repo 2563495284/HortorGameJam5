@@ -1,8 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 public class CardBagSceneBtnManager : MonoBehaviour
 {
@@ -11,34 +15,44 @@ public class CardBagSceneBtnManager : MonoBehaviour
 
     public Button btnShowCreateRole;
     public Button btnShowCreateSkill;
+    public Button btnSkillScrollView;
 
-
+    #region 角色创建界面
     public Button btnCreateRoleClose;
     public Button btnCreateRole;
     public InputField inputFieldCreateRole;
     public GameObject createRolePanel;
+    #endregion
 
+    #region 技能创建界面
     public Button btnCreateSkillClose;
     public Button btnCreateSkill;
     public InputField inputFieldCreateSkill;
     public GameObject createSkillPanel;
+    #endregion
 
+    public GameObject skillScrollView;
+    public GameObject roleScrollView;
     // Start is called before the first frame update
     void Start()
     {
         btnCardBagBack.onClick.AddListener(OnClickCardBagBackBtn);
 
         btnShowCreateRole.onClick.AddListener(OnClickBtnCreateRole);
-        btnCreateRoleClose.onClick.AddListener(onClickbtnCreateRoleClose);
-        btnCreateRole.onClick.AddListener(onClickbtnCreateRole);
+        btnCreateRoleClose.onClick.AddListener(OnClickbtnCreateRoleClose);
+        btnCreateRole.onClick.AddListener(OnClickbtnCreateRole);
 
         btnShowCreateSkill.onClick.AddListener(OnClickBtnCreateSkill);
-        btnCreateSkillClose.onClick.AddListener(onClickbtnCreateSkillClose);
-        btnCreateSkill.onClick.AddListener(onClickbtnCreateSkill);
+        btnCreateSkillClose.onClick.AddListener(OnClickbtnCreateSkillClose);
+        btnCreateSkill.onClick.AddListener(OnClickbtnCreateSkill);
 
-        btnCreateSkill.onClick.AddListener(OnClickBtnCreateSkill);
+        btnSkillScrollView.onClick.AddListener(OnClickSkillScrollView);
+
 
         createRolePanel.SetActive(false);
+        createSkillPanel.SetActive(false);
+        InitSkillScrollView();
+
     }
 
     // Update is called once per frame
@@ -46,7 +60,7 @@ public class CardBagSceneBtnManager : MonoBehaviour
     {
 
     }
-    #region CardBag
+    #region 卡牌库
     private void OnClickCardBagBackBtn()
     {
         MessageManager.Instance.ShowMessage("ShowMessage : OnClickStartBtn");
@@ -55,58 +69,104 @@ public class CardBagSceneBtnManager : MonoBehaviour
     }
     #endregion
 
-    #region CreateRole
+    #region 创建角色
     private void OnClickBtnCreateRole()
     {
         createRolePanel.SetActive(true);
     }
-    private void onClickbtnCreateRoleClose()
+    private void OnClickbtnCreateRoleClose()
     {
         createRolePanel.SetActive(false);
     }
-    private async void onClickbtnCreateRole()
+    private async void OnClickbtnCreateRole()
     {
-        var resp = await GameService.CreateHero(new Game_CreateHero { });
-        if (resp.code != 0)
-        {
-            Game_CreateHeroR roleData = resp.GetData();
-            Hero role = roleData.data;
-            PlayerModel.Instance.addRole(role);
-            MessageManager.Instance.ShowMessage("创建卡牌成功");
-            createRolePanel.SetActive(false);
-        }
-        else
-        {
-            createRolePanel.SetActive(false);
-            MessageManager.Instance.ShowMessage("创建卡牌失败，请稍后重试!");
-        }
+        await PlayerModel.Instance.createRole();
+        createSkillPanel.SetActive(false);
     }
-    #endregion  
-    #region CreateSkill
+    #endregion
+
+    #region 创建技能
     private void OnClickBtnCreateSkill()
     {
-        createRolePanel.SetActive(true);
+        createSkillPanel.SetActive(true);
     }
-    private void onClickbtnCreateSkillClose()
+    private void OnClickbtnCreateSkillClose()
     {
-        createRolePanel.SetActive(false);
+        createSkillPanel.SetActive(false);
     }
-    private async void onClickbtnCreateSkill()
+    private async void OnClickbtnCreateSkill()
     {
-        var resp = await GameService.CreateSkill(new Game_CreateSkill { });
-        if (resp.code != 0)
-        {
-            Game_CreateSkillR roleData = resp.GetData();
-            CardSkill role = roleData.data;
+        await PlayerModel.Instance.createSkill();
+        createSkillPanel.SetActive(false);
+    }
+    #endregion
 
-            MessageManager.Instance.ShowMessage("创建技能成功");
-            createRolePanel.SetActive(false);
+    #region 技能列表
+    private RectTransform _skillScrollViewRectTransform;
+    private float _skillScrollViewHeight;
+    private RectTransform _btnShowSkillRectTransform;
+    private float _btnSkillScrollViewHeight;
+    private RectTransform _roleScrollViewRectTransform;
+    private bool _btnSkillScrollViewIsShow;
+    void InitSkillScrollView()
+    {
+        _skillScrollViewRectTransform = skillScrollView.GetComponent<RectTransform>();
+        _skillScrollViewHeight = _skillScrollViewRectTransform.rect.height;
+        _btnShowSkillRectTransform = btnSkillScrollView.GetComponent<RectTransform>();
+        _btnSkillScrollViewHeight = _btnShowSkillRectTransform.rect.height;
+
+        _roleScrollViewRectTransform = roleScrollView.GetComponent<RectTransform>();
+        _btnSkillScrollViewIsShow = true;
+
+        _skillScrollViewRectTransform.offsetMin = new Vector2(0.0f, _skillScrollViewHeight - _btnSkillScrollViewHeight);
+        _roleScrollViewRectTransform.offsetMax = new Vector2(0.0f, _btnSkillScrollViewHeight);
+
+        roleScrollView.SetActive(true);
+        skillScrollView.SetActive(false);
+
+    }
+    void OnClickSkillScrollView()
+    {
+        if (_btnSkillScrollViewIsShow)
+        {
+            ShowSkillScrollView();
+            _btnSkillScrollViewIsShow = false;
         }
         else
         {
-            createRolePanel.SetActive(false);
-            MessageManager.Instance.ShowMessage("创建技能失败，请稍后重试!");
+            HideSkillScrollView();
+            _btnSkillScrollViewIsShow = true;
         }
+    }
+    private void ShowSkillScrollView()
+    {
+        _btnShowSkillRectTransform.DOAnchorPosY(_btnSkillScrollViewHeight - _skillScrollViewHeight, 0.3f, false);
+        DOTween.To(
+            () => _skillScrollViewRectTransform.offsetMin,
+            vec2 => _skillScrollViewRectTransform.offsetMin = vec2,
+            new Vector2(0.0f, _btnSkillScrollViewHeight),
+            0.3f
+            ).OnComplete(() =>
+    {
+        roleScrollView.SetActive(false);
+    });
+        skillScrollView.SetActive(true);
+
+    }
+    private void HideSkillScrollView()
+    {
+        _btnShowSkillRectTransform.DOAnchorPosY(0.0f, 0.3f, false);
+
+        DOTween.To(
+            () => _skillScrollViewRectTransform.offsetMin,
+            vec2 => _skillScrollViewRectTransform.offsetMin = vec2,
+            new Vector2(0.0f, _skillScrollViewHeight - _btnSkillScrollViewHeight),
+            0.3f
+            ).OnComplete(() =>
+        {
+            skillScrollView.SetActive(false);
+        });
+        roleScrollView.SetActive(true);
     }
     #endregion
 }
