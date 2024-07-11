@@ -6,6 +6,7 @@ using Hortor.O4e;
 using System.Threading.Tasks;
 using Hortor.O4e.Rpc;
 using Cysharp.Threading.Tasks;
+using System;
 
 public class PlayerModel : Singleton<PlayerModel>
 {
@@ -136,6 +137,11 @@ public class PlayerModel : Singleton<PlayerModel>
             return false;
         }
     }
+    public void initSkillList()
+    {
+        _skills.Clear();
+        _skills = curtHero.battleSkills;
+    }
     public async UniTask<bool> createSkill(string skillName)
     {
         if (curtHero.skills == null)
@@ -166,6 +172,9 @@ public class PlayerModel : Singleton<PlayerModel>
     {
         _skills.Remove(skill);
     }
-
+    // public UniTask<bool> setRoleBattleSkills(List<Skill> skills)
+    // {
+    //     return GameService.SetRoleBattleSkills(new Game_SetRoleBattleSkills { heroId = curtHero.id, skills = skills });
+    // }
 }
 

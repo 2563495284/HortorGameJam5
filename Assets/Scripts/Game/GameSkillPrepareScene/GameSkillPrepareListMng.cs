@@ -16,11 +16,12 @@ public class GameSkillPrepareListMng : MonoBehaviour
 
     void Start()
     {
-        PopulateRoleList();
-        PopulateSelectedRoleList();
+        PlayerModel.Instance.initSkillList();
+        PopulateSkillList();
+        PopulateSelectedSkillList();
     }
 
-    public void PopulateRoleList()
+    public void PopulateSkillList()
     {
         // Clear existing items (optional)
         foreach (Transform child in skillScrollContent)
@@ -47,7 +48,7 @@ public class GameSkillPrepareListMng : MonoBehaviour
 
         }
     }
-    public void PopulateSelectedRoleList()
+    public void PopulateSelectedSkillList()
     {
         // Clear existing items (optional)
         foreach (Transform child in selectedSkillScrollContent)
@@ -78,12 +79,12 @@ public class GameSkillPrepareListMng : MonoBehaviour
     public void onClickSkill(Skill skill)
     {
         PlayerModel.Instance.addSkill2List(skill);
-        PopulateSelectedRoleList();
+        PopulateSelectedSkillList();
     }
     public void onClickSelectedSkill(Skill skill)
     {
         PlayerModel.Instance.removeSkill2List(skill);
-        PopulateSelectedRoleList();
+        PopulateSelectedSkillList();
     }
 
 }

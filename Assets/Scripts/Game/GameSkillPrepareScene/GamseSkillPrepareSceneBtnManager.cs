@@ -16,12 +16,12 @@ public class GamseSkillPrepareSceneBtnManager : MonoBehaviour
 
     private void OnClickBtnComfirm()
     {
-
         SceneSwitcher.LoadSceneByIndex(ESceneType.GAMESCENE);
     }
     private void OnClickBtnCancel()
     {
 
+        // PlayerModel.Instance.
         SceneSwitcher.LoadSceneByIndex(ESceneType.GAMEROLEPREPARESCENE);
     }
 }
