@@ -21,7 +21,7 @@ public class MainSceneBtnManager : MonoBehaviour
     {
         MessageManager.Instance.ShowMessage("ShowMessage : OnClickStartBtn");
         Debug.Log("OnClickStartBtn");
-        SceneSwitcher.LoadSceneByIndex(ESceneType.GAMESCENE);
+        SceneSwitcher.LoadSceneByIndex(ESceneType.GAMEROLEPREPARESCENE);
     }
     private void OnClickCardBagBtn()
     {

@@ -34,6 +34,7 @@ public class CardBagSceneBtnManager : MonoBehaviour
     public GameObject skillScrollView;
     public GameObject roleScrollView;
     // Start is called before the first frame update
+    public CardBagListMng cardBagListMng;
     void Start()
     {
         btnCardBagBack.onClick.AddListener(OnClickCardBagBackBtn);
@@ -46,7 +47,7 @@ public class CardBagSceneBtnManager : MonoBehaviour
         btnCreateSkillClose.onClick.AddListener(OnClickbtnCreateSkillClose);
         btnCreateSkill.onClick.AddListener(OnClickbtnCreateSkill);
 
-        btnSkillScrollView.onClick.AddListener(OnClickSkillScrollView);
+        btnSkillScrollView.onClick.AddListener(OnClickShowSkillScrollView);
 
 
         createRolePanel.SetActive(false);
@@ -76,12 +77,21 @@ public class CardBagSceneBtnManager : MonoBehaviour
     }
     private void OnClickbtnCreateRoleClose()
     {
+        if (isCreateRoleing) return;
         createRolePanel.SetActive(false);
     }
+    private bool isCreateRoleing = false;
     private async void OnClickbtnCreateRole()
     {
-        await PlayerModel.Instance.createRole();
-        createSkillPanel.SetActive(false);
+        if (isCreateRoleing) return;
+        isCreateRoleing = true;
+        bool success = await PlayerModel.Instance.createRole(inputFieldCreateRole.text);
+        if (success)
+        {
+            cardBagListMng.PopulateRoleList();
+        }
+        createRolePanel.SetActive(false);
+        isCreateRoleing = false;
     }
     #endregion
 
@@ -92,12 +102,21 @@ public class CardBagSceneBtnManager : MonoBehaviour
     }
     private void OnClickbtnCreateSkillClose()
     {
+        if (isCreateSkilling) return;
         createSkillPanel.SetActive(false);
     }
+    private bool isCreateSkilling = false;
     private async void OnClickbtnCreateSkill()
     {
-        await PlayerModel.Instance.createSkill();
+        if (isCreateSkilling) return;
+        isCreateSkilling = true;
+        bool success = await PlayerModel.Instance.createSkill(inputFieldCreateSkill.text);
+        if (success)
+        {
+            cardBagListMng.PopulateSkillList();
+        }
         createSkillPanel.SetActive(false);
+        isCreateSkilling = false;
     }
     #endregion
 
@@ -119,13 +138,13 @@ public class CardBagSceneBtnManager : MonoBehaviour
         _btnSkillScrollViewIsShow = true;
 
         _skillScrollViewRectTransform.offsetMin = new Vector2(0.0f, _skillScrollViewHeight - _btnSkillScrollViewHeight);
-        _roleScrollViewRectTransform.offsetMax = new Vector2(0.0f, _btnSkillScrollViewHeight);
+        _roleScrollViewRectTransform.offsetMax = new Vector2(0.0f, -_btnSkillScrollViewHeight);
 
         roleScrollView.SetActive(true);
         skillScrollView.SetActive(false);
 
     }
-    void OnClickSkillScrollView()
+    void OnClickShowSkillScrollView()
     {
         if (_btnSkillScrollViewIsShow)
         {

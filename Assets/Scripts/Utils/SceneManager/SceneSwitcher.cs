@@ -8,7 +8,9 @@ public enum ESceneType
     STARTSCENE,
     MAINSCENE,
     GAMESCENE,
-    CARDBAGSCENE
+    CARDBAGSCENE,
+    GAMEROLEPREPARESCENE,
+    GAMESKILLPREPARESCENE,
 }
 public class SceneSwitcher : Singleton<SceneSwitcher>
 {

@@ -17,6 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CardBagScene.unity
     guid: a9fb933c7a13f4cb08760c361792dd23
+  - enabled: 1
+    path: Assets/Scenes/GameRolePrepareScene.unity
+    guid: 9519a2a63f0d94a96aa3844871a5762d
+  - enabled: 1
+    path: Assets/Scenes/GameSkillPrepareScene.unity
+    guid: 6aa194bcf358c49e4b10c723e9736451
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: b164cc7e4e7984e2d9afb4e4d24076a5, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: dd3ce8e8ee21149b9a7fc607f258d0c6, type: 2}

@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Card;
 public class BattleSystem : MonoBehaviour
 {
 
     public Transform playerBattleStation;
     public Transform enemyBattleStation;
 
-    public RoleCard playerCard;
-    public RoleCard enemyCard;
+    // public RoleCard playerCard;
+    // public RoleCard enemyCard;
 
     public Text dialogueText;
 
@@ -28,10 +27,10 @@ public class BattleSystem : MonoBehaviour
     IEnumerator SetupBattle()
     {
 
-        dialogueText.text = "A wild " + enemyCard.cardName+ " approaches...";
+        // dialogueText.text = "A wild " + enemyCard.cardName+ " approaches...";
 
-        playerHUD.SetHUD(playerCard);
-        enemyHUD.SetHUD(enemyCard);
+        // playerHUD.SetHUD(playerCard);
+        // enemyHUD.SetHUD(enemyCard);
 
         yield return new WaitForSeconds(2f);
 

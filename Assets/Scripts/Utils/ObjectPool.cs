@@ -23,7 +23,7 @@ public class ObjectPool : MonoBehaviour
     {
         foreach (GameObject obj in pool)
         {
-            if (!obj.activeInHierarchy)
+            if (!obj.activeSelf)
             {
                 return obj;
             }

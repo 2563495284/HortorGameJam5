@@ -33,6 +33,17 @@ public class PlayerModel : Singleton<PlayerModel>
             _role = value;
         }
     }
+    Hero _curtSelectedHero;
+    public Hero curtHero
+    {
+        get { return _curtSelectedHero; }
+        set { _curtSelectedHero = value; }
+    }
+    public List<Skill> _skills;
+    public List<Skill> skillList
+    {
+        get { return _skills; }
+    }
     CustomDelegateDispatcher _dispatcher = new CustomDelegateDispatcher();
     public CustomDelegateDispatcher dispatcher
     {
@@ -66,6 +77,12 @@ public class PlayerModel : Singleton<PlayerModel>
         // dispatcher.des
         base.OnDestroy();
     }
+    public void setCurtHero(Hero hero)
+    {
+        curtHero = hero;
+        _skills.Clear();
+    }
+
     public async Task login()
     {
         SyncData.Default.root = user;
@@ -92,14 +109,22 @@ public class PlayerModel : Singleton<PlayerModel>
             return;
         }
         Debug.Log("登录成功");
+
         role = resp2.GetData().role;
+        this.init();
     }
-    public async UniTask<bool> createRole()
+    public void init()
     {
-        var resp = await GameService.CreateHero(new Game_CreateHero { });
-        if (resp.code != 0)
+        _skills = new List<Skill>();
+        curtHero = role.heros[0];
+
+    }
+    public async UniTask<bool> createRole(string roleName)
+    {
+        var resp = await GameService.CreateHero(new Game_CreateHero { name = roleName });
+        Game_CreateHeroR roleData = resp.GetData();
+        if (roleData != null)
         {
-            Game_CreateHeroR roleData = resp.GetData();
             Hero role = roleData.data;
             this.role.heros.Add(role);
             MessageManager.Instance.ShowMessage("创建卡牌成功");
@@ -111,14 +136,19 @@ public class PlayerModel : Singleton<PlayerModel>
             return false;
         }
     }
-    public async UniTask<bool> createSkill()
+    public async UniTask<bool> createSkill(string skillName)
     {
-        var resp = await GameService.CreateSkill(new Game_CreateSkill { });
-        if (resp.code != 0)
+        if (curtHero.skills == null)
         {
-            Game_CreateSkillR roleData = resp.GetData();
+            MessageManager.Instance.ShowMessage("没有角色，请先创建角色");
+            return false;
+        }
+        var resp = await GameService.CreateSkill(new Game_CreateSkill { heroId = curtHero.id, desc = skillName });
+        Game_CreateSkillR roleData = resp.GetData();
+        if (roleData != null)
+        {
             Skill skill = roleData.data;
-            // this.role.heros.Add(role);
+            curtHero.skills.Add(skill);
             MessageManager.Instance.ShowMessage("创建技能成功");
             return true;
         }
@@ -127,6 +157,14 @@ public class PlayerModel : Singleton<PlayerModel>
             MessageManager.Instance.ShowMessage("创建技能失败，请稍后重试!");
             return false;
         }
+    }
+    public void addSkill2List(Skill skill)
+    {
+        _skills.Add(skill);
+    }
+    public void removeSkill2List(Skill skill)
+    {
+        _skills.Remove(skill);
     }
 
 }
