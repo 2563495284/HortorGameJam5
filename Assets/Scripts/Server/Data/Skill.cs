@@ -13,6 +13,10 @@ public partial class Skill: DataBase {
     }
     
     /// <summary>
+    /// id
+    /// <summary>
+    public long id = 0;
+    /// <summary>
     /// 名称
     /// <summary>
     public string name = string.Empty;
