@@ -13,7 +13,15 @@ public partial class RoundMechanic: DataBase {
     }
     
     /// <summary>
-    /// 生效的最后一回合
+    /// 下一个触发回合
+    /// <summary>
+    public long nextRound = 0;
+    /// <summary>
+    /// 生效的第一个回合
+    /// <summary>
+    public long firstRound = 0;
+    /// <summary>
+    /// 作用回合数
     /// <summary>
     public long round = 0;
     /// <summary>
