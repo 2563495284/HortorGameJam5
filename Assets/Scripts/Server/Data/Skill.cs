@@ -32,4 +32,8 @@ public partial class Skill: DataBase {
     /// 机制列表
     /// <summary>
     public List<SkillMechanic> mechanics = new List<SkillMechanic>();
+    /// <summary>
+    /// 技能属性摘要
+    /// <summary>
+    public List<string> attrSummary = new List<string>();
 }
