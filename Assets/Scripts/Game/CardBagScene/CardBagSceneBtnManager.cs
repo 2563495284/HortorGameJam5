@@ -35,6 +35,8 @@ public class CardBagSceneBtnManager : MonoBehaviour
     public GameObject roleScrollView;
     // Start is called before the first frame update
     public CardBagListMng cardBagListMng;
+
+    public GameObject mask;
     void Start()
     {
         btnCardBagBack.onClick.AddListener(OnClickCardBagBackBtn);
@@ -59,7 +61,11 @@ public class CardBagSceneBtnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        bool maskActive = createRolePanel.activeSelf || createSkillPanel.activeSelf;
+        if (mask.activeSelf != maskActive)
+        {
+            mask.SetActive(maskActive);
+        }
     }
     #region 卡牌库
     private void OnClickCardBagBackBtn()

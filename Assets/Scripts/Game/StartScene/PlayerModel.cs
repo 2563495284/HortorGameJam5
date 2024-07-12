@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Hortor.O4e.Rpc;
 using Cysharp.Threading.Tasks;
 using System;
+using Unity.VisualScripting;
 
 public class PlayerModel : Singleton<PlayerModel>
 {
@@ -172,9 +173,43 @@ public class PlayerModel : Singleton<PlayerModel>
     {
         _skills.Remove(skill);
     }
-    // public UniTask<bool> setRoleBattleSkills(List<Skill> skills)
-    // {
-    //     return GameService.SetRoleBattleSkills(new Game_SetRoleBattleSkills { heroId = curtHero.id, skills = skills });
-    // }
+    public async UniTask<bool> setRoleBattleSkills(long heroId, List<long> skillIds)
+    {
+        var resp = await GameService.SetBattleSkills(new Game_SetBattleSkills { heroId = heroId, skillIds = skillIds });
+        Game_SetBattleSkillsR battleSkillsR = resp.GetData();
+        if (battleSkillsR != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public async UniTask<Battle> startBattle(long heroId)
+    {
+
+        var respStartBattle = await GameService.StartBattle(new Game_StartBattle
+        {
+            roleId1 = heroId,
+            player1 = role.id,
+            roleId2 = role.heros[0].id,
+            player2 = role.id
+        });
+        Game_StartBattleR battleSkillsR = respStartBattle.GetData();
+        if (battleSkillsR == null)
+        {
+            return null;
+        }
+
+        var respFinishBattle = await GameService.FinishBattle(new Game_FinishBattle { battleId = battleSkillsR.data });
+        Game_FinishBattleR finishBattleR = respFinishBattle.GetData();
+        if (finishBattleR == null)
+        {
+            return null;
+        }
+        BattleManager.Instance.SetBattleManager(finishBattleR.data);
+        return finishBattleR.data;
+    }
 }
 
