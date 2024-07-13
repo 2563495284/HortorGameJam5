@@ -4,7 +4,11 @@ using UnityEngine;
 
 public enum EBattleState
 {
-    START, PLAYERTURN, ENEMYTURN, WON, LOST
+    START,
+    PLAYERTURN,
+    ENEMYTURN,
+    WON,
+    LOST
 }
 public enum ETipsType
 {

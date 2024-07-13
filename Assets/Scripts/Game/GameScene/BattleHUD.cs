@@ -4,19 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 public class BattleHUD : MonoBehaviour
 {
-    public Text hpText;
     public Slider hpSlider;
 
+    public Slider mpSlider;
+
+    public GameObject Skill;
+    public GameObject Role;
     public void SetHUD(Hero hero)
     {
         hpSlider.maxValue = hero.hp;
         hpSlider.value = hero.hp;
-        hpText.text = hero.hp.ToString() + "/" + hero.hp.ToString();
+        mpSlider.maxValue = hero.mp;
+        mpSlider.value = hero.mp;
     }
 
-    public void SetHP(int hp)
+    public void SetHP(float hp)
     {
         hpSlider.value = hp;
-        hpText.text = hp.ToString() + "/" + hpSlider.maxValue.ToString();
+    }
+    public void SetMP(float mp)
+    {
+        mpSlider.value = mp;
     }
 }
