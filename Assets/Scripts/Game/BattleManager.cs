@@ -16,4 +16,8 @@ public class BattleManager : Singleton<BattleManager>
     {
         _battleData = data;
     }
+    protected void OnDestroy()
+    {
+        base.OnDestroy();
+    }
 }
