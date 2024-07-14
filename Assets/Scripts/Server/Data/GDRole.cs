@@ -56,4 +56,12 @@ public partial class GDRole: DataBase {
     /// 当前英雄
     /// <summary>
     public long activeHero = 0;
+    /// <summary>
+    /// 下一关id
+    /// <summary>
+    public long nextLevelId = 0;
+    /// <summary>
+    /// 下一关卡编号:1/2/3/4/...
+    /// <summary>
+    public long nextLevel = 0;
 }

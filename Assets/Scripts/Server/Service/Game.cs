@@ -55,6 +55,13 @@ public partial class IsolateGameService : ServiceBase
 	{
         return SendAsync<Game_FinishBattleR>(ToSendMsg("game_finishbattle", data, opt));
     }
+    /// <summary>
+    /// 下一关对战
+    /// <summary>
+    public Task<ReceiveMsg<Game_FinishNextLevelBattleR>> FinishNextLevelBattle(Game_FinishNextLevelBattle data, CmdOption opt = default)
+	{
+        return SendAsync<Game_FinishNextLevelBattleR>(ToSendMsg("game_finishnextlevelbattle", data, opt));
+    }
     public Task<ReceiveMsg<Game_GetAllHerosR>> GetAllHeros(Game_GetAllHeros data, CmdOption opt = default)
 	{
         return SendAsync<Game_GetAllHerosR>(ToSendMsg("game_getallheros", data, opt));
@@ -62,6 +69,13 @@ public partial class IsolateGameService : ServiceBase
     public Task<ReceiveMsg<Game_GetHeroR>> GetHero(Game_GetHero data, CmdOption opt = default)
 	{
         return SendAsync<Game_GetHeroR>(ToSendMsg("game_gethero", data, opt));
+    }
+    /// <summary>
+    /// 下一关敌人
+    /// <summary>
+    public Task<ReceiveMsg<Game_GetNextLevelR>> GetNextLevel(Game_GetNextLevel data, CmdOption opt = default)
+	{
+        return SendAsync<Game_GetNextLevelR>(ToSendMsg("game_getnextlevel", data, opt));
     }
     /// <summary>
     /// 战斗结算
@@ -152,6 +166,13 @@ public partial class GameService
 	{
         return Isolate.Default.GameService.FinishBattle(data, opt);
     }
+    /// <summary>
+    /// 下一关对战
+    /// <summary>
+    public static Task<ReceiveMsg<Game_FinishNextLevelBattleR>> FinishNextLevelBattle(Game_FinishNextLevelBattle data, CmdOption opt = default)
+	{
+        return Isolate.Default.GameService.FinishNextLevelBattle(data, opt);
+    }
     public static Task<ReceiveMsg<Game_GetAllHerosR>> GetAllHeros(Game_GetAllHeros data, CmdOption opt = default)
 	{
         return Isolate.Default.GameService.GetAllHeros(data, opt);
@@ -159,6 +180,13 @@ public partial class GameService
     public static Task<ReceiveMsg<Game_GetHeroR>> GetHero(Game_GetHero data, CmdOption opt = default)
 	{
         return Isolate.Default.GameService.GetHero(data, opt);
+    }
+    /// <summary>
+    /// 下一关敌人
+    /// <summary>
+    public static Task<ReceiveMsg<Game_GetNextLevelR>> GetNextLevel(Game_GetNextLevel data, CmdOption opt = default)
+	{
+        return Isolate.Default.GameService.GetNextLevel(data, opt);
     }
     /// <summary>
     /// 战斗结算
