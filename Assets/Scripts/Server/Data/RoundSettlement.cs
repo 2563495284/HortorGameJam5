@@ -27,7 +27,7 @@ public partial class RoundSettlement: DataBase {
     /// <summary>
     /// 当前回合的技能
     /// <summary>
-    public Skill skill = new Skill();
+    public long skill = 0;
     /// <summary>
     /// 攻击者的状态变化
     /// <summary>

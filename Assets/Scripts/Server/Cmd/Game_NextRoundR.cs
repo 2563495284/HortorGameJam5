@@ -6,5 +6,5 @@ public partial class Game_NextRoundR: RespBase {
     public Game_NextRoundR() {
     }
     
-    public Battle data;
+    public RoundSettlement data;
 }
