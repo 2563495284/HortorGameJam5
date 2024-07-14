@@ -12,12 +12,28 @@ public class BattleManager : Singleton<BattleManager>
             return battleData;
         }
     }
+    public List<RoundSettlement> roundSettlements;
+    public RoundSettlement currentRoundSettlement;
+    public int round;
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+    }
     public void SetBattleManager(Battle data)
     {
         _battleData = data;
     }
-    protected override void OnDestroy()
+    public void InitGame()
     {
-        base.OnDestroy();
+        round = 0;
+        roundSettlements = battleData.roundSettlements;
+    }
+    public void StartRound()
+    {
+        currentRoundSettlement = roundSettlements[round];
+    }
+    public void nextRound()
+    {
+
     }
 }
