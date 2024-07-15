@@ -45,4 +45,8 @@ public partial class Battle: DataBase {
     /// 胜者
     /// <summary>
     public string winner = string.Empty;
+    /// <summary>
+    /// 胜利的英雄 id
+    /// <summary>
+    public long winnerHero = 0;
 }

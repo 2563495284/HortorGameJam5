@@ -17,6 +17,10 @@ public partial class Hero: DataBase {
     /// <summary>
     public long id = 0;
     /// <summary>
+    /// 头像 base64
+    /// <summary>
+    public string avatar = string.Empty;
+    /// <summary>
     /// 英雄名称
     /// <summary>
     public string name = string.Empty;
