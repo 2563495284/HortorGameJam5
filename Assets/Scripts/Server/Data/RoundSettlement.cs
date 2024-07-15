@@ -36,4 +36,5 @@ public partial class RoundSettlement: DataBase {
     /// 防御者的状态变化
     /// <summary>
     public RoundState defenderRoundStates = new RoundState();
+    
 }

@@ -23,24 +23,44 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         state = EBattleState.START;
-        StartCoroutine(SetupBattle());
+        StartBattle();
     }
-
-    IEnumerator SetupBattle()
+    private SBattleData battleData;
+    async void StartBattle()
     {
-        // playerHUD.SetHUD(playerCard);
-        // enemyHUD.SetHUD(enemyCard);
-
-        yield return new WaitForSeconds(2f);
-
-        state = EBattleState.PLAYERTURN;
-        PlayerTurn();
+        BattleManager.Instance.InitGame();
+        this.refreshHeroState();
+        await UniTask.Delay(2000);
+        dialogueText.text = "回合开始！";
+        nextRound();
+    }
+    void nextRound()
+    {
+        battleData = BattleManager.Instance.getNextRoundState();
+        switch (battleData.battleState)
+        {
+            case EBattleState.PLAYERTURN:
+                PlayerTurn();
+                break;
+            case EBattleState.ENEMYTURN:
+                EnemyTurn();
+                break;
+            case EBattleState.WON:
+                WonTurn();
+                break;
+            case EBattleState.LOST:
+                LostTurn();
+                break;
+        }
     }
 
     async void PlayerTurn()
     {
-        dialogueText.text = "Choose an action:";
-        await UseSkill(null);
+        dialogueText.text = $"我方回合 : UseSkill {battleData.skill.name}";
+        refreshHeroState();
+        await UseSkill(battleData.skill);
+        showHeroStateChange();
+        nextRound();
     }
 
     //IEnumerator PlayerAttack()
@@ -64,30 +84,22 @@ public class BattleSystem : MonoBehaviour
     //    }
     //}
 
-    //IEnumerator EnemyTurn()
-    //{
-    //    dialogueText.text = enemyUnit.unitName + " attacks!";
+    async void EnemyTurn()
+    {
+        dialogueText.text = $"敌方回合 : UseSkill {battleData.skill.name}";
+        refreshHeroState();
+        await UseSkill(battleData.skill);
+        showHeroStateChange();
+        nextRound();
+    }
+    async void WonTurn()
+    {
 
-    //    yield return new WaitForSeconds(1f);
+    }
+    async void LostTurn()
+    {
 
-    //    bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
-
-    //    playerHUD.SetHP(playerUnit.currentHP);
-
-    //    yield return new WaitForSeconds(1f);
-
-    //    if (isDead)
-    //    {
-    //        state = EBattleState.LOST;
-    //        EndBattle();
-    //    }
-    //    else
-    //    {
-    //        state = EBattleState.PLAYERTURN;
-    //        PlayerTurn();
-    //    }
-    //}
-
+    }
     void EndBattle()
     {
         if (state == EBattleState.WON)
@@ -107,6 +119,17 @@ public class BattleSystem : MonoBehaviour
 
         //StartCoroutine(PlayerAttack());
     }
+    public void refreshHeroState()
+    {
+        playerHUD.refreshHeroState(BattleManager.Instance.playerBattleHeroInfo.battleHero);
+        playerHUD.refreshHeroState(BattleManager.Instance.enemyBattleHeroInfo.battleHero);
+    }
+    public async UniTask showHeroStateChange()
+    {
+        dialogueText.text = "假装在状态同步";
+        await UniTask.Delay(1000);
+    }
+    #region  使用技能
     private float _skillTweenHandle;
     public async UniTask UseSkill(Skill curtSkill)
     {
@@ -191,4 +214,5 @@ public class BattleSystem : MonoBehaviour
 
         return result;
     }
+    #endregion
 }

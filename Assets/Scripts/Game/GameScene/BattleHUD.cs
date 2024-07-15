@@ -10,20 +10,12 @@ public class BattleHUD : MonoBehaviour
 
     public GameObject Skill;
     public GameObject Role;
-    public void SetHUD(Hero hero)
+    public void refreshHeroState(BattleHero battleHero)
     {
-        hpSlider.maxValue = hero.hp;
-        hpSlider.value = hero.hp;
-        mpSlider.maxValue = hero.mp;
-        mpSlider.value = hero.mp;
+        hpSlider.maxValue = battleHero.maxHp;
+        hpSlider.value = battleHero.hp;
+        mpSlider.maxValue = battleHero.maxMp;
+        mpSlider.value = battleHero.mp;
     }
 
-    public void SetHP(float hp)
-    {
-        hpSlider.value = hp;
-    }
-    public void SetMP(float mp)
-    {
-        mpSlider.value = mp;
-    }
 }

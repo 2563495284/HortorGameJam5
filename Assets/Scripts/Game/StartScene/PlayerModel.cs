@@ -8,6 +8,7 @@ using Hortor.O4e.Rpc;
 using Cysharp.Threading.Tasks;
 using System;
 using Unity.VisualScripting;
+using TMPro.Examples;
 
 public class PlayerModel : Singleton<PlayerModel>
 {
@@ -191,10 +192,10 @@ public class PlayerModel : Singleton<PlayerModel>
 
         var respStartBattle = await GameService.StartBattle(new Game_StartBattle
         {
-            roleId1 = heroId,
-            player1 = role.id,
-            roleId2 = role.heros[0].id,
-            player2 = role.id
+            roleId1 = role.id,
+            player1 = heroId,
+            roleId2 = role.id,
+            player2 = role.heros[0].id
         });
         Game_StartBattleR battleSkillsR = respStartBattle.GetData();
         if (battleSkillsR == null)
@@ -209,6 +210,7 @@ public class PlayerModel : Singleton<PlayerModel>
             return null;
         }
         BattleManager.Instance.SetBattleManager(finishBattleR.data);
+        Debug.LogWarning(JsonUtility.ToJson(respFinishBattle));
         return finishBattleR.data;
     }
 }
