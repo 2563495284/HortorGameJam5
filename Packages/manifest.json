@@ -54,10 +54,7 @@
     {
       "name": "hortor",
       "url": "https://packages.aliyun.com/61024aef9187b7df39057859/npm/npm-registry",
-      "scopes": [
-        "com.hortor",
-        "com.hortorgames"
-      ]
+      "scopes": ["com.hortor","com.hortorgames"]
     }
   ]
 }

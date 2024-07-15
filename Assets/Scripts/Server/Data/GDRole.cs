@@ -57,6 +57,10 @@ public partial class GDRole: DataBase {
     /// <summary>
     public long activeHero = 0;
     /// <summary>
+    /// 已经通关的敌人名字
+    /// <summary>
+    public List<string> levelEnemies = new List<string>();
+    /// <summary>
     /// 下一关id
     /// <summary>
     public long nextLevelId = 0;
