@@ -13,6 +13,10 @@ public partial class RoundState: DataBase {
     }
     
     /// <summary>
+    /// 本回合英雄 id
+    /// <summary>
+    public long heroId = 0;
+    /// <summary>
     /// 当前回合
     /// <summary>
     public long round = 0;
