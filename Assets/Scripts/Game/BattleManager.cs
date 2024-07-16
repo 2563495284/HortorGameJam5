@@ -67,33 +67,11 @@ public class BattleHeroInfo
 }
 public class BattleManager : Singleton<BattleManager>
 {
-    Battle _battle;
-    public Battle battle
-    {
-        get
-        {
-            return battle;
-        }
-    }
-    public List<RoundSettlement> roundSettlements;
+    public Battle battle;
     public RoundSettlement currentRoundSettlement;
+    public BattleHeroInfo playerBattleHeroInfo = new BattleHeroInfo(EBattleHeroType.PLAYER);
 
-    private BattleHeroInfo _playerBattleHeroInfo = new BattleHeroInfo(EBattleHeroType.PLAYER);
-    public BattleHeroInfo playerBattleHeroInfo
-    {
-        get
-        {
-            return _playerBattleHeroInfo;
-        }
-    }
-    private BattleHeroInfo _enemyBattleHeroInfo = new BattleHeroInfo(EBattleHeroType.ENEMY);
-    public BattleHeroInfo enemyBattleHeroInfo
-    {
-        get
-        {
-            return _enemyBattleHeroInfo;
-        }
-    }
+    public BattleHeroInfo enemyBattleHeroInfo = new BattleHeroInfo(EBattleHeroType.ENEMY);
 
     public int round;
     protected override void OnDestroy()
@@ -102,7 +80,7 @@ public class BattleManager : Singleton<BattleManager>
     }
     public void SetBattleManager(Battle data)
     {
-        _battle = data;
+        battle = data;
     }
     public void InitGame()
     {
@@ -114,12 +92,11 @@ public class BattleManager : Singleton<BattleManager>
     {
         SBattleData battleData = new SBattleData();
         Skill skill;
-        if (round >= roundSettlements.Count)
+        if (round >= battle.roundSettlements.Count)
         {
-            if (battle.winner == playerBattleHeroInfo.hero.name)
+            if (battle.winnerHero == playerBattleHeroInfo.hero.id)
             {
                 battleData.battleState = EBattleState.WON;
-
             }
             else
             {
@@ -127,7 +104,7 @@ public class BattleManager : Singleton<BattleManager>
             }
             return battleData;
         }
-        currentRoundSettlement = roundSettlements[round];
+        currentRoundSettlement = battle.roundSettlements[round];
         if (currentRoundSettlement.attacker.id == playerBattleHeroInfo.battleHero.id)
         {
             battleData.battleState = EBattleState.PLAYERTURN;
@@ -157,17 +134,17 @@ public class BattleManager : Singleton<BattleManager>
 
         if (PlayerModel.Instance.curtHero.id == battle.player1.id)
         {
-            _playerBattleHeroInfo.hero = battle.player1;
-            _enemyBattleHeroInfo.hero = battle.player2;
-            _playerBattleHeroInfo.battleHero = battle.battlePlayer1;
-            _enemyBattleHeroInfo.battleHero = battle.battlePlayer2;
+            playerBattleHeroInfo.hero = battle.player1;
+            enemyBattleHeroInfo.hero = battle.player2;
+            playerBattleHeroInfo.battleHero = battle.battlePlayer1;
+            enemyBattleHeroInfo.battleHero = battle.battlePlayer2;
         }
         else
         {
-            _playerBattleHeroInfo.hero = battle.player2;
-            _enemyBattleHeroInfo.hero = battle.player1;
-            _playerBattleHeroInfo.battleHero = battle.battlePlayer2;
-            _enemyBattleHeroInfo.battleHero = battle.battlePlayer1;
+            playerBattleHeroInfo.hero = battle.player2;
+            enemyBattleHeroInfo.hero = battle.player1;
+            playerBattleHeroInfo.battleHero = battle.battlePlayer2;
+            enemyBattleHeroInfo.battleHero = battle.battlePlayer1;
         }
     }
 }

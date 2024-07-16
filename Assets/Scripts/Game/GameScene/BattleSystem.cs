@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEditor;
@@ -18,8 +19,24 @@ public class BattleSystem : MonoBehaviour
 
     private EBattleState state;
 
-    public GameObject Skill;
+    public GameObject skill;
+
+    public Text skillText;
     public Material dissolveMaterial;
+    public BattleHeroInfo playerBattleInfo
+    {
+        get
+        {
+            return BattleManager.Instance.playerBattleHeroInfo;
+        }
+    }
+    public BattleHeroInfo enemyBattleInfo
+    {
+        get
+        {
+            return BattleManager.Instance.enemyBattleHeroInfo;
+        }
+    }
     void Start()
     {
         state = EBattleState.START;
@@ -29,21 +46,22 @@ public class BattleSystem : MonoBehaviour
     async void StartBattle()
     {
         BattleManager.Instance.InitGame();
-        this.refreshHeroState();
+        initHero();
+        refreshHeroState();
         await UniTask.Delay(2000);
         dialogueText.text = "回合开始！";
         nextRound();
     }
-    void nextRound()
+    async void nextRound()
     {
         battleData = BattleManager.Instance.getNextRoundState();
         switch (battleData.battleState)
         {
             case EBattleState.PLAYERTURN:
-                PlayerTurn();
+                await PlayerTurnAsync();
                 break;
             case EBattleState.ENEMYTURN:
-                EnemyTurn();
+                await EnemyTurnAsync();
                 break;
             case EBattleState.WON:
                 WonTurn();
@@ -54,12 +72,12 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    async void PlayerTurn()
+    public async UniTask PlayerTurnAsync()
     {
         dialogueText.text = $"我方回合 : UseSkill {battleData.skill.name}";
-        refreshHeroState();
         await UseSkill(battleData.skill);
-        showHeroStateChange();
+        await showHeroStateChange();
+        refreshHeroState();
         nextRound();
     }
 
@@ -84,21 +102,21 @@ public class BattleSystem : MonoBehaviour
     //    }
     //}
 
-    async void EnemyTurn()
+    public async UniTask EnemyTurnAsync()
     {
         dialogueText.text = $"敌方回合 : UseSkill {battleData.skill.name}";
-        refreshHeroState();
         await UseSkill(battleData.skill);
-        showHeroStateChange();
+        await showHeroStateChange();
+        refreshHeroState();
         nextRound();
     }
-    async void WonTurn()
+    public void WonTurn()
     {
-
+        dialogueText.text = "我方胜利！";
     }
-    async void LostTurn()
+    public void LostTurn()
     {
-
+        dialogueText.text = "敌人胜利！";
     }
     void EndBattle()
     {
@@ -111,38 +129,40 @@ public class BattleSystem : MonoBehaviour
             dialogueText.text = "You were defeated.";
         }
     }
-
-    public void OnAttackButton()
+    public void initHero()
     {
-        if (state != EBattleState.PLAYERTURN)
-            return;
-
-        //StartCoroutine(PlayerAttack());
+        playerHUD.init(playerBattleInfo.hero);
+        enemyHUD.init(enemyBattleInfo.hero);
     }
     public void refreshHeroState()
     {
-        playerHUD.refreshHeroState(BattleManager.Instance.playerBattleHeroInfo.battleHero);
-        playerHUD.refreshHeroState(BattleManager.Instance.enemyBattleHeroInfo.battleHero);
+        playerHUD.refreshHeroState(playerBattleInfo.battleHero);
+        enemyHUD.refreshHeroState(enemyBattleInfo.battleHero);
     }
     public async UniTask showHeroStateChange()
     {
         dialogueText.text = "假装在状态同步";
-        await UniTask.Delay(1000);
+        await playerHUD.playHeroStateChange(playerBattleInfo.roundState);
+        await enemyHUD.playHeroStateChange(enemyBattleInfo.roundState);
+        await UniTask.Delay(500);
     }
     #region  使用技能
     private float _skillTweenHandle;
     public async UniTask UseSkill(Skill curtSkill)
     {
+        skillText.text = curtSkill.name;
+
         float originalY = 0;
         float originalX = Screen.width;
-        Skill.transform.position.Set(originalX, originalY, 0f);
+        skill.transform.position.Set(originalX, originalY, 0f);
 
         dissolveMaterial.SetFloat("_TimeDuration", 1.3f);
-        Skill.SetActive(true);
+        skill.SetActive(true);
         await PlayCardMove();
         await UniTask.Delay(800);
         await PlayCardDissolve();
         _skillTweenHandle = 0f;
+
     }
     private UniTask PlayCardDissolve()
     {
@@ -158,7 +178,7 @@ public class BattleSystem : MonoBehaviour
             1f
             ).OnComplete(() =>
             {
-                Skill.SetActive(false);
+                skill.SetActive(false);
                 tcs.TrySetResult();
             });
         return tcs.Task;
@@ -167,9 +187,9 @@ public class BattleSystem : MonoBehaviour
     {
         float originalY = 0;
         float originalX = Screen.width;
-        Vector2 startPos = Skill.transform.TransformPoint(new Vector2(originalX, originalY));
-        Vector2 midPos = Skill.transform.TransformPoint(new Vector2(originalX / 2, originalY + 300f));
-        Vector2 endPos = Skill.transform.TransformPoint(new Vector2(0f, 0f));
+        Vector2 startPos = skill.transform.TransformPoint(new Vector2(originalX, originalY));
+        Vector2 midPos = skill.transform.TransformPoint(new Vector2(originalX / 2, originalY + 300f));
+        Vector2 endPos = skill.transform.TransformPoint(new Vector2(0f, 0f));
         List<Vector2> cp = new List<Vector2>
         {
             startPos,
@@ -184,7 +204,7 @@ public class BattleSystem : MonoBehaviour
             (t) =>
             {
                 Vector2 pos = PointOnCubicBezier(cp, t);
-                Skill.transform.position = new Vector3(pos.x, pos.y, 0f);
+                skill.transform.position = new Vector3(pos.x, pos.y, 0f);
             },
             1f,
             1f

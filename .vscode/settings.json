@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "HortorGameJam5.sln"
+    "dotnet.defaultSolution": "HortorGameJam5.sln",
+    "dotnet.preferCSharpExtension": true
 }
