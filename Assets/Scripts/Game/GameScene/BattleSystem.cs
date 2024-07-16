@@ -47,7 +47,6 @@ public class BattleSystem : MonoBehaviour
     {
         BattleManager.Instance.InitGame();
         initHero();
-        refreshHeroState();
         await UniTask.Delay(2000);
         dialogueText.text = "回合开始！";
         nextRound();
@@ -75,39 +74,18 @@ public class BattleSystem : MonoBehaviour
     public async UniTask PlayerTurnAsync()
     {
         dialogueText.text = $"我方回合 : UseSkill {battleData.skill.name}";
-        await UseSkill(battleData.skill);
+        await UseSkill(battleData.skill, EBattleHeroType.PLAYER);
+        CheckHeroStateChange();
         await showHeroStateChange();
-        refreshHeroState();
         nextRound();
     }
-
-    //IEnumerator PlayerAttack()
-    //{
-    //    bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
-
-    //    enemyHUD.SetHP(enemyUnit.currentHP);
-    //    dialogueText.text = "The attack is successful!";
-
-    //    yield return new WaitForSeconds(2f);
-
-    //    if (isDead)
-    //    {
-    //        state = EBattleState.WON;
-    //        EndBattle();
-    //    }
-    //    else
-    //    {
-    //        state = EBattleState.ENEMYTURN;
-    //        StartCoroutine(EnemyTurn());
-    //    }
-    //}
 
     public async UniTask EnemyTurnAsync()
     {
         dialogueText.text = $"敌方回合 : UseSkill {battleData.skill.name}";
-        await UseSkill(battleData.skill);
+        await UseSkill(battleData.skill, EBattleHeroType.ENEMY);
+        CheckHeroStateChange();
         await showHeroStateChange();
-        refreshHeroState();
         nextRound();
     }
     public void WonTurn()
@@ -131,25 +109,34 @@ public class BattleSystem : MonoBehaviour
     }
     public void initHero()
     {
-        playerHUD.init(playerBattleInfo.hero);
-        enemyHUD.init(enemyBattleInfo.hero);
+        playerHUD.init(EBattleHeroType.PLAYER);
+        enemyHUD.init(EBattleHeroType.ENEMY);
     }
-    public void refreshHeroState()
+    public void CheckHeroStateChange()
     {
-        playerHUD.refreshHeroState(playerBattleInfo.battleHero);
-        enemyHUD.refreshHeroState(enemyBattleInfo.battleHero);
+        playerHUD.CheckHeroStateChange(playerBattleInfo.roundState);
+        enemyHUD.CheckHeroStateChange(enemyBattleInfo.roundState);
     }
     public async UniTask showHeroStateChange()
     {
         dialogueText.text = "假装在状态同步";
-        await playerHUD.playHeroStateChange(playerBattleInfo.roundState);
-        await enemyHUD.playHeroStateChange(enemyBattleInfo.roundState);
+        await playerHUD.playHeroStateChange();
+        await enemyHUD.playHeroStateChange();
         await UniTask.Delay(500);
     }
     #region  使用技能
     private float _skillTweenHandle;
-    public async UniTask UseSkill(Skill curtSkill)
+    public async UniTask UseSkill(Skill curtSkill, EBattleHeroType battleHeroType)
     {
+        switch (battleHeroType)
+        {
+            case EBattleHeroType.PLAYER:
+                dissolveMaterial.SetColor("_EdgeColor", new Color(0, 0.1f, 1, 1));
+                break;
+            case EBattleHeroType.ENEMY:
+                dissolveMaterial.SetColor("_EdgeColor", new Color(1, 0.1f, 0, 1));
+                break;
+        }
         skillText.text = curtSkill.name;
 
         float originalY = 0;

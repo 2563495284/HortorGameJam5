@@ -26,42 +26,28 @@ public class BattleHeroInfo
     {
         _battleHeroType = eBattleHeroType;
     }
-    private BattleHero _battleHero;
-    public BattleHero battleHero
+    public void init(Hero hero)
     {
-        get
-        {
-            return _battleHero;
-        }
-        set
-        {
-            _battleHero = value;
-        }
+        _hero = hero;
+        maxHp = hero.hp;
+        hp = hero.hp;
+        maxMp = hero.mp;
+        mp = hero.mp;
+        heroName = hero.name;
+        heroId = hero.id;
     }
-
+    public string heroName;
+    public long heroId;
+    public long maxHp;
+    public long hp;
+    public long maxMp;
+    public long mp;
     private Hero _hero;
-    public Hero hero
+    public RoundState roundState;
+
+    public Skill getHeroSkillById(long skillId)
     {
-        get
-        {
-            return _hero;
-        }
-        set
-        {
-            _hero = value;
-        }
-    }
-    private RoundState _roundState;
-    public RoundState roundState
-    {
-        get
-        {
-            return _roundState;
-        }
-        set
-        {
-            _roundState = value;
-        }
+        return _hero.battleSkills.Find(skill => skill.id == skillId);
     }
 
 }
@@ -94,7 +80,7 @@ public class BattleManager : Singleton<BattleManager>
         Skill skill;
         if (round >= battle.roundSettlements.Count)
         {
-            if (battle.winnerHero == playerBattleHeroInfo.hero.id)
+            if (battle.winnerHero == playerBattleHeroInfo.heroId)
             {
                 battleData.battleState = EBattleState.WON;
             }
@@ -105,24 +91,20 @@ public class BattleManager : Singleton<BattleManager>
             return battleData;
         }
         currentRoundSettlement = battle.roundSettlements[round];
-        if (currentRoundSettlement.attacker.id == playerBattleHeroInfo.battleHero.id)
+        if (currentRoundSettlement.attackerRoundStates.heroId == playerBattleHeroInfo.heroId)
         {
             battleData.battleState = EBattleState.PLAYERTURN;
-            skill = playerBattleHeroInfo.hero.skills.Find(x => x.id == currentRoundSettlement.skill);
-            playerBattleHeroInfo.battleHero = currentRoundSettlement.attacker;
+            skill = playerBattleHeroInfo.getHeroSkillById(currentRoundSettlement.skill);
             playerBattleHeroInfo.roundState = currentRoundSettlement.attackerRoundStates;
 
-            enemyBattleHeroInfo.battleHero = currentRoundSettlement.defender;
             enemyBattleHeroInfo.roundState = currentRoundSettlement.defenderRoundStates;
         }
         else
         {
             battleData.battleState = EBattleState.ENEMYTURN;
-            skill = enemyBattleHeroInfo.hero.skills.Find(x => x.id == currentRoundSettlement.skill);
-            playerBattleHeroInfo.battleHero = currentRoundSettlement.defender;
+            skill = enemyBattleHeroInfo.getHeroSkillById(currentRoundSettlement.skill);
             playerBattleHeroInfo.roundState = currentRoundSettlement.defenderRoundStates;
 
-            enemyBattleHeroInfo.battleHero = currentRoundSettlement.attacker;
             enemyBattleHeroInfo.roundState = currentRoundSettlement.attackerRoundStates;
         }
         round++;
@@ -134,17 +116,25 @@ public class BattleManager : Singleton<BattleManager>
 
         if (PlayerModel.Instance.curtHero.id == battle.player1.id)
         {
-            playerBattleHeroInfo.hero = battle.player1;
-            enemyBattleHeroInfo.hero = battle.player2;
-            playerBattleHeroInfo.battleHero = battle.battlePlayer1;
-            enemyBattleHeroInfo.battleHero = battle.battlePlayer2;
+            playerBattleHeroInfo.init(battle.player1);
+            enemyBattleHeroInfo.init(battle.player2);
         }
         else
         {
-            playerBattleHeroInfo.hero = battle.player2;
-            enemyBattleHeroInfo.hero = battle.player1;
-            playerBattleHeroInfo.battleHero = battle.battlePlayer2;
-            enemyBattleHeroInfo.battleHero = battle.battlePlayer1;
+            playerBattleHeroInfo.init(battle.player2);
+            enemyBattleHeroInfo.init(battle.player1);
+        }
+    }
+    public BattleHeroInfo getBattleHeroInfo(EBattleHeroType battleHeroType)
+    {
+        if (battleHeroType == EBattleHeroType.PLAYER)
+        {
+            return BattleManager.Instance.playerBattleHeroInfo;
+        }
+        else
+        {
+            return BattleManager.Instance.enemyBattleHeroInfo;
         }
     }
 }
+
