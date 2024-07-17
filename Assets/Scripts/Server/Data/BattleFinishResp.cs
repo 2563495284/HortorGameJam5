@@ -5,30 +5,14 @@ using Hortor.Bon;
 using UnityEngine.Scripting;
 
 /// <summary>
-/// 战斗
+/// 战斗结算响应
 /// <summary>
-public partial class Battle: DataBase {
+public partial class BattleFinishResp: DataBase {
     [Preserve]
-    public Battle() {
+    public BattleFinishResp() {
     }
     
     public long id = 0;
-    /// <summary>
-    /// 玩家 1
-    /// <summary>
-    public Hero player1 = new Hero();
-    /// <summary>
-    /// 玩家 2
-    /// <summary>
-    public Hero player2 = new Hero();
-    /// <summary>
-    /// 战斗状态 1
-    /// <summary>
-    public BattleHero battlePlayer1 = new BattleHero();
-    /// <summary>
-    /// 战斗状态 2
-    /// <summary>
-    public BattleHero battlePlayer2 = new BattleHero();
     /// <summary>
     /// 回合
     /// <summary>
@@ -36,7 +20,7 @@ public partial class Battle: DataBase {
     /// <summary>
     /// 每回合战斗结算
     /// <summary>
-    public List<RoundSettlement> roundSettlements = new List<RoundSettlement>();
+    public List<RoundSettlementResp> roundSettlements = new List<RoundSettlementResp>();
     /// <summary>
     /// 战斗是否结束
     /// <summary>
