@@ -6,5 +6,5 @@ public partial class Game_FinishBattleR: RespBase {
     public Game_FinishBattleR() {
     }
     
-    public Battle data;
+    public BattleFinishResp data;
 }

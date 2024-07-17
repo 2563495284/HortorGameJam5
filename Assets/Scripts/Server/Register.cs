@@ -21,23 +21,25 @@ public static partial class Register {
 	[Preserve]
 	static readonly List<RoundSettlement> t7;
 	[Preserve]
-	static readonly List<RoundState> t8;
+	static readonly List<RoundSettlementResp> t8;
 	[Preserve]
-	static readonly List<Skill> t9;
+	static readonly List<RoundState> t9;
 	[Preserve]
-	static readonly List<SkillMechanic> t10;
+	static readonly List<Skill> t10;
 	[Preserve]
-	static readonly List<long> t11;
+	static readonly List<SkillMechanic> t11;
 	[Preserve]
-	static readonly List<string> t12;
+	static readonly List<long> t12;
 	[Preserve]
-	static readonly Dictionary<int, GDItem> t13;
+	static readonly List<string> t13;
 	[Preserve]
-	static readonly Dictionary<long, GDBattlefieldRole> t14;
+	static readonly Dictionary<int, GDItem> t14;
 	[Preserve]
-	static readonly Dictionary<long, GDRoomRole> t15;
+	static readonly Dictionary<long, GDBattlefieldRole> t15;
 	[Preserve]
-	static readonly Dictionary<long, GDServerRole> t16;
+	static readonly Dictionary<long, GDRoomRole> t16;
 	[Preserve]
-	static readonly Dictionary<string, object> t17;
+	static readonly Dictionary<long, GDServerRole> t17;
+	[Preserve]
+	static readonly Dictionary<string, object> t18;
 }

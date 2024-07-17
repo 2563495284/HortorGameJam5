@@ -30,7 +30,7 @@ public partial class Battle: DataBase {
     /// <summary>
     public BattleHero battlePlayer2 = new BattleHero();
     /// <summary>
-    /// 单签回合
+    /// 回合
     /// <summary>
     public long round = 0;
     /// <summary>

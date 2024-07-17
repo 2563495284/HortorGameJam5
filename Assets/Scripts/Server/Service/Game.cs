@@ -85,6 +85,20 @@ public partial class IsolateGameService : ServiceBase
         return SendAsync<Game_NextRoundR>(ToSendMsg("game_nextround", data, opt));
     }
     /// <summary>
+    /// pvp 匹配
+    /// <summary>
+    public Task<ReceiveMsg<Game_PvpMatchR>> PvpMatch(Game_PvpMatch data, CmdOption opt = default)
+	{
+        return SendAsync<Game_PvpMatchR>(ToSendMsg("game_pvpmatch", data, opt));
+    }
+    /// <summary>
+    /// pvp 匹配结果
+    /// <summary>
+    public Task<ReceiveMsg<Game_PvpMatchResultR>> PvpMatchResult(Game_PvpMatchResult data, CmdOption opt = default)
+	{
+        return SendAsync<Game_PvpMatchResultR>(ToSendMsg("game_pvpmatchresult", data, opt));
+    }
+    /// <summary>
     /// 角色登陆
     /// <summary>
     public Task<ReceiveMsg<RespSync>> RoleLogin(Game_RoleLogin data, CmdOption opt = default)
@@ -194,6 +208,20 @@ public partial class GameService
     public static Task<ReceiveMsg<Game_NextRoundR>> NextRound(Game_NextRound data, CmdOption opt = default)
 	{
         return Isolate.Default.GameService.NextRound(data, opt);
+    }
+    /// <summary>
+    /// pvp 匹配
+    /// <summary>
+    public static Task<ReceiveMsg<Game_PvpMatchR>> PvpMatch(Game_PvpMatch data, CmdOption opt = default)
+	{
+        return Isolate.Default.GameService.PvpMatch(data, opt);
+    }
+    /// <summary>
+    /// pvp 匹配结果
+    /// <summary>
+    public static Task<ReceiveMsg<Game_PvpMatchResultR>> PvpMatchResult(Game_PvpMatchResult data, CmdOption opt = default)
+	{
+        return Isolate.Default.GameService.PvpMatchResult(data, opt);
     }
     /// <summary>
     /// 角色登陆
