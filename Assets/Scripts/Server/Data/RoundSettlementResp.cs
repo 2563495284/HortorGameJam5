@@ -21,14 +21,6 @@ public partial class RoundSettlementResp: DataBase {
     /// <summary>
     public long skill = 0;
     /// <summary>
-    /// 己方英雄状态
-    /// <summary>
-    public BattleFinishHeroResp attacker = new BattleFinishHeroResp();
-    /// <summary>
-    /// 敌方英雄状态
-    /// <summary>
-    public BattleFinishHeroResp defender = new BattleFinishHeroResp();
-    /// <summary>
     /// 攻击者的状态变化
     /// <summary>
     public RoundState attackerRoundStates = new RoundState();
