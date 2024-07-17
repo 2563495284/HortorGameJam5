@@ -203,7 +203,7 @@ public class PlayerModel : Singleton<PlayerModel>
             return null;
         }
 
-        var respFinishBattle = await GameService.FinishBattle(new Game_FinishBattle { battleId = battleSkillsR.data });
+        var respFinishBattle = await GameService.FinishBattle(new Game_FinishBattle { battleId = battleSkillsR.data.id });
         Game_FinishBattleR finishBattleR = respFinishBattle.GetData();
         if (finishBattleR == null)
         {

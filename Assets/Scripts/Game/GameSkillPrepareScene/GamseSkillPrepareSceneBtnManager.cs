@@ -36,7 +36,7 @@ public class GamseSkillPrepareSceneBtnManager : MonoBehaviour
             MessageManager.Instance.ShowMessage("游戏开始失败,请稍后重试");
             return;
         }
-        Battle battleData = await PlayerModel.Instance.startBattle(heroId);
+        BattleFinishResp battleData = await PlayerModel.Instance.startBattle(heroId);
         if (battleData == null)
         {
             _waitingGame = false;

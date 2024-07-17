@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Localization.Platform.Android;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UI;
-
+using UnityEngine.Localization.Settings;
 public class GameSkillPrepareListMng : MonoBehaviour
 {
     public Transform skillScrollContent; // 这个是Content对象的Transformm

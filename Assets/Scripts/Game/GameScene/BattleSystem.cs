@@ -1,12 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using UnityEditor;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 public class BattleSystem : MonoBehaviour
 {
@@ -23,6 +21,10 @@ public class BattleSystem : MonoBehaviour
 
     public Text skillText;
     public Material dissolveMaterial;
+
+    public GameObject battleFinish;
+
+    public Button btnBattleFinish;
     public BattleHeroInfo playerBattleInfo
     {
         get
@@ -39,8 +41,15 @@ public class BattleSystem : MonoBehaviour
     }
     void Start()
     {
+        skill.SetActive(false);
         state = EBattleState.START;
+        btnBattleFinish.onClick.AddListener(OnClickBtnBattleFinish);
+        battleFinish.SetActive(false);
         StartBattle();
+    }
+    private void OnClickBtnBattleFinish()
+    {
+        SceneSwitcher.LoadSceneByIndex(ESceneType.MAINSCENE);
     }
     private SBattleData battleData;
     async void StartBattle()
@@ -54,6 +63,7 @@ public class BattleSystem : MonoBehaviour
     async void nextRound()
     {
         battleData = BattleManager.Instance.getNextRoundState();
+        Debug.LogWarning("<<<<getNextRoundState<<<<" + battleData);
         switch (battleData.battleState)
         {
             case EBattleState.PLAYERTURN:
@@ -91,10 +101,12 @@ public class BattleSystem : MonoBehaviour
     public void WonTurn()
     {
         dialogueText.text = "我方胜利！";
+        battleFinish.SetActive(true);
     }
     public void LostTurn()
     {
         dialogueText.text = "敌人胜利！";
+        battleFinish.SetActive(true);
     }
     void EndBattle()
     {

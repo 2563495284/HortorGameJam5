@@ -45,7 +45,10 @@ public class BattleHUD : MonoBehaviour
         // else if (roundState.hp < 0)
         // {
         // }
-        hpSlider.DOValue(battleHeroInfo.hp + roundState.hp, 0.5f, true);
+        if (roundState.hp != 0)
+        {
+            hpSlider.DOValue(battleHeroInfo.hp + roundState.hp, 0.5f, true).OnUpdate(UpdateHpText);
+        }
 
 
         // if (roundState.mp > 0)
@@ -55,12 +58,23 @@ public class BattleHUD : MonoBehaviour
         // else if (roundState.mp < 0)
         // {
         // }
-        mpSlider.DOValue(battleHeroInfo.mp + roundState.mp, 0.5f, true);
+        if (roundState.mp != 0)
+        {
+            mpSlider.DOValue(battleHeroInfo.mp + roundState.mp, 0.5f, true).OnComplete(UpdateMpText);
+        }
     }
     public async UniTask playHeroStateChange()
     {
 
         await UniTask.Delay(500);
+    }
+    void UpdateHpText()
+    {
+        hpText.text = $"hp:{hpSlider.value}/{battleHeroInfo.maxHp}";
+    }
+    void UpdateMpText()
+    {
+        mpText.text = $"hp:{mpSlider.value}/{battleHeroInfo.maxMp}";
     }
 
 }

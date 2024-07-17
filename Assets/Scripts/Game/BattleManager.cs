@@ -26,7 +26,7 @@ public class BattleHeroInfo
     {
         _battleHeroType = eBattleHeroType;
     }
-    public void init(Hero hero)
+    public void init(BattleFinishHeroResp hero)
     {
         _hero = hero;
         maxHp = hero.hp;
@@ -42,7 +42,7 @@ public class BattleHeroInfo
     public long hp;
     public long maxMp;
     public long mp;
-    private Hero _hero;
+    private BattleFinishHeroResp _hero;
     public RoundState roundState;
 
     public Skill getHeroSkillById(long skillId)
@@ -54,7 +54,7 @@ public class BattleHeroInfo
 public class BattleManager : Singleton<BattleManager>
 {
     public BattleFinishResp battleFinishData;
-    public RoundSettlement currentRoundSettlement;
+    public RoundSettlementResp currentRoundSettlement;
     public BattleHeroInfo playerBattleHeroInfo = new BattleHeroInfo(EBattleHeroType.PLAYER);
 
     public BattleHeroInfo enemyBattleHeroInfo = new BattleHeroInfo(EBattleHeroType.ENEMY);
@@ -113,8 +113,8 @@ public class BattleManager : Singleton<BattleManager>
     }
     public void initHerosState()
     {
-
-        if (PlayerModel.Instance.curtHero.id == battleFinishData.player1.id)
+        Debug.LogWarning("<<<<initHerosState<<<<" + playerBattleHeroInfo);
+        if (battleFinishData.player1.id == playerBattleHeroInfo.heroId)
         {
             playerBattleHeroInfo.init(battleFinishData.player1);
             enemyBattleHeroInfo.init(battleFinishData.player2);
