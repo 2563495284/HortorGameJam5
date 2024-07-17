@@ -9,5 +9,5 @@ public partial class Game_StartBattleR: RespBase {
     /// <summary>
     /// 战斗
     /// <summary>
-    public BattleHero data;
+    public Battle data;
 }

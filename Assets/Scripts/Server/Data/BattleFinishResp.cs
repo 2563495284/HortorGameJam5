@@ -18,9 +18,17 @@ public partial class BattleFinishResp: DataBase {
     /// <summary>
     public long round = 0;
     /// <summary>
+    /// 己方英雄状态
+    /// <summary>
+    public BattleFinishHeroResp attacker = new BattleFinishHeroResp();
+    /// <summary>
+    /// 敌方英雄状态
+    /// <summary>
+    public BattleFinishHeroResp defender = new BattleFinishHeroResp();
+    /// <summary>
     /// 每回合战斗结算
     /// <summary>
-    public List<RoundSettlement> roundSettlements = new List<RoundSettlement>();
+    public List<RoundSettlementResp> roundSettlements = new List<RoundSettlementResp>();
     /// <summary>
     /// 战斗是否结束
     /// <summary>
