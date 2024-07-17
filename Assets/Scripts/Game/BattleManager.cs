@@ -53,7 +53,7 @@ public class BattleHeroInfo
 }
 public class BattleManager : Singleton<BattleManager>
 {
-    public Battle battle;
+    public BattleFinishResp battleFinishData;
     public RoundSettlement currentRoundSettlement;
     public BattleHeroInfo playerBattleHeroInfo = new BattleHeroInfo(EBattleHeroType.PLAYER);
 
@@ -64,9 +64,9 @@ public class BattleManager : Singleton<BattleManager>
     {
         base.OnDestroy();
     }
-    public void SetBattleManager(Battle data)
+    public void SetBattleManager(BattleFinishResp data)
     {
-        battle = data;
+        battleFinishData = data;
     }
     public void InitGame()
     {
@@ -78,9 +78,9 @@ public class BattleManager : Singleton<BattleManager>
     {
         SBattleData battleData = new SBattleData();
         Skill skill;
-        if (round >= battle.roundSettlements.Count)
+        if (round >= battleFinishData.roundSettlements.Count)
         {
-            if (battle.winnerHero == playerBattleHeroInfo.heroId)
+            if (battleFinishData.winnerHero == playerBattleHeroInfo.heroId)
             {
                 battleData.battleState = EBattleState.WON;
             }
@@ -90,7 +90,7 @@ public class BattleManager : Singleton<BattleManager>
             }
             return battleData;
         }
-        currentRoundSettlement = battle.roundSettlements[round];
+        currentRoundSettlement = battleFinishData.roundSettlements[round];
         if (currentRoundSettlement.attackerRoundStates.heroId == playerBattleHeroInfo.heroId)
         {
             battleData.battleState = EBattleState.PLAYERTURN;
@@ -114,15 +114,15 @@ public class BattleManager : Singleton<BattleManager>
     public void initHerosState()
     {
 
-        if (PlayerModel.Instance.curtHero.id == battle.player1.id)
+        if (PlayerModel.Instance.curtHero.id == battleFinishData.player1.id)
         {
-            playerBattleHeroInfo.init(battle.player1);
-            enemyBattleHeroInfo.init(battle.player2);
+            playerBattleHeroInfo.init(battleFinishData.player1);
+            enemyBattleHeroInfo.init(battleFinishData.player2);
         }
         else
         {
-            playerBattleHeroInfo.init(battle.player2);
-            enemyBattleHeroInfo.init(battle.player1);
+            playerBattleHeroInfo.init(battleFinishData.player2);
+            enemyBattleHeroInfo.init(battleFinishData.player1);
         }
     }
     public BattleHeroInfo getBattleHeroInfo(EBattleHeroType battleHeroType)

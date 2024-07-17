@@ -187,7 +187,7 @@ public class PlayerModel : Singleton<PlayerModel>
             return false;
         }
     }
-    public async UniTask<Battle> startBattle(long heroId)
+    public async UniTask<BattleFinishResp> startBattle(long heroId)
     {
 
         var respStartBattle = await GameService.StartBattle(new Game_StartBattle
@@ -210,7 +210,6 @@ public class PlayerModel : Singleton<PlayerModel>
             return null;
         }
         BattleManager.Instance.SetBattleManager(finishBattleR.data);
-        Debug.LogWarning(JsonUtility.ToJson(respFinishBattle));
         return finishBattleR.data;
     }
 }
