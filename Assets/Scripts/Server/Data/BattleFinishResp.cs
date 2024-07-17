@@ -20,7 +20,7 @@ public partial class BattleFinishResp: DataBase {
     /// <summary>
     /// 每回合战斗结算
     /// <summary>
-    public List<RoundSettlementResp> roundSettlements = new List<RoundSettlementResp>();
+    public List<RoundSettlement> roundSettlements = new List<RoundSettlement>();
     /// <summary>
     /// 战斗是否结束
     /// <summary>
