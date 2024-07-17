@@ -7,7 +7,7 @@ public partial class Game_StartBattleR: RespBase {
     }
     
     /// <summary>
-    /// 战斗 id
+    /// 战斗
     /// <summary>
-    public long data = 0;
+    public BattleHero data;
 }
