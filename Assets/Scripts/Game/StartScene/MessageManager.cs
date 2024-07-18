@@ -16,8 +16,21 @@ public class MessageManager : Singleton<MessageManager>
 
     private void Start()
     {
-        messageText.DOFade(0f, 0f);
-        messagePanel.SetActive(false);
+        GameObject messagePanelPrefab = Resources.Load<GameObject>("Prefabs/MessageManager");
+        if (messagePanelPrefab)
+        {
+            messagePanel = Instantiate(messagePanelPrefab);
+            messagePanel.transform.SetParent(this.gameObject.transform);
+            messagePanel.SetActive(false);
+
+            messageText = messagePanel.GetComponentInChildren<Text>();
+            messageText.DOFade(0f, 0f);
+
+        }
+        else
+        {
+            Debug.LogError("messagePanel is null");
+        }
     }
 
 

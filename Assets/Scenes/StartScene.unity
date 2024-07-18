@@ -431,71 +431,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &249057291
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 535449069343881668, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 463.48615
-      objectReference: {fileID: 0}
-    - target: {fileID: 535449069343881668, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1243.5785
-      objectReference: {fileID: 0}
-    - target: {fileID: 535449069343881668, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.12713102
-      objectReference: {fileID: 0}
-    - target: {fileID: 535449069343881668, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 535449069343881668, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 535449069343881668, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 535449069343881668, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 535449069343881668, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 535449069343881668, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 535449069343881668, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1214166507268310304, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 927fa2733ddb6490790ca47ec293af36, type: 3}
-    - target: {fileID: 1214166507268310304, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2918110357759534349, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
-      propertyPath: m_Name
-      value: MessageManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
 --- !u!1 &269299168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,6 +1279,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1372988459}
   - component: {fileID: 1372988458}
+  - component: {fileID: 1372988461}
+  - component: {fileID: 1372988460}
   m_Layer: 0
   m_Name: Initializer
   m_TagString: Untagged
@@ -1378,6 +1315,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1372988460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372988457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96db53308f6de4e84bb94529d733d8f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroInfoView: {fileID: 0}
+--- !u!114 &1372988461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372988457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b04644a61c9950941a1eb07b7cc08be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageText: {fileID: 0}
+  messagePanel: {fileID: 0}
+  displayDuration: 2
 --- !u!1 &1531610161
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,5 +1858,4 @@ SceneRoots:
   - {fileID: 1372988459}
   - {fileID: 1896267015}
   - {fileID: 459340206}
-  - {fileID: 249057291}
   - {fileID: 1136125632}

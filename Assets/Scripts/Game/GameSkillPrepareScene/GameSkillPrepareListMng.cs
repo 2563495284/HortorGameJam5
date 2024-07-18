@@ -14,7 +14,7 @@ public class GameSkillPrepareListMng : MonoBehaviour
 
     void Start()
     {
-        PlayerModel.Instance.initSkillList();
+        PlayerModel.Instance.initHeroAttrList();
         PopulateSkillList();
         PopulateSelectedSkillList();
     }

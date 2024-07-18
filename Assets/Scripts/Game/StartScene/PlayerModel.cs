@@ -191,7 +191,7 @@ public class PlayerModel : Singleton<PlayerModel>
             return false;
         }
     }
-    public void initSkillList()
+    public void initHeroAttrList()
     {
         _skills.Clear();
         _skills = curtHero.battleSkills;

@@ -39,6 +39,8 @@ public class CardBagSceneBtnManager : MonoBehaviour
     public CardBagListMng cardBagListMng;
 
     public GameObject mask;
+
+    public Button BtnShowHerAttrView;
     void Start()
     {
         btnCardBagBack.onClick.AddListener(OnClickCardBagBackBtn);
@@ -54,6 +56,7 @@ public class CardBagSceneBtnManager : MonoBehaviour
 
         btnSkillScrollView.onClick.AddListener(OnClickShowSkillScrollView);
 
+        BtnShowHerAttrView.onClick.AddListener(OnClickShowHerAttrView);
 
         createRolePanel.SetActive(false);
         createSkillPanel.SetActive(false);
@@ -173,6 +176,17 @@ public class CardBagSceneBtnManager : MonoBehaviour
         {
             HideSkillScrollView();
             _btnSkillScrollViewIsShow = true;
+        }
+    }
+    void OnClickShowHerAttrView()
+    {
+        if (PlayerModel.Instance.curtHero != null)
+        {
+            HeroInfoView.Instance.ShowHeroInfoView();
+        }
+        else
+        {
+            MessageManager.Instance.ShowMessage("请选择角色！");
         }
     }
     private void ShowSkillScrollView()

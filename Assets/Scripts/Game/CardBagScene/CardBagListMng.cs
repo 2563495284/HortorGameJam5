@@ -35,6 +35,10 @@ public class CardBagListMng : MonoBehaviour
             listItemRoleObjectPool.ReturnPooledObject(child.gameObject);
         }
         List<Hero> listHeros = PlayerModel.Instance.role.heros;
+        if (listHeros.Count > 0)
+        {
+            PlayerModel.Instance.setCurtHero(listHeros[0]);
+        }
         // Create new items
         for (int i = 0; i < listHeros.Count; i++)
         {
