@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8962264, g: 0.65948737, b: 0.65948737, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -543,7 +543,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 196777963}
-  - {fileID: 2011956223}
   - {fileID: 2044026165}
   - {fileID: 482426020}
   - {fileID: 1975574243}
@@ -588,7 +587,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 720, y: 1280}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -695,7 +694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8563206980277827065, guid: a2e1de4693f8a4ba4a083d70a788e67d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -270
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 8563206980277827065, guid: a2e1de4693f8a4ba4a083d70a788e67d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1259,13 +1258,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2011956223}
   - {fileID: 289906446}
   m_Father: {fileID: 475078155}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -335}
-  m_SizeDelta: {x: 0, y: -670}
+  m_AnchoredPosition: {x: 0, y: -273.5}
+  m_SizeDelta: {x: 0, y: -547}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1975574245
 MonoBehaviour:
@@ -1311,7 +1311,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 475078155}
+    m_TransformParent: {fileID: 1975574243}
     m_Modifications:
     - target: {fileID: 2128628886325097785, guid: c8e568cd279e27a448eab1a66568625a, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1387,7 +1387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2769610027231759068, guid: c8e568cd279e27a448eab1a66568625a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -600
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2769610027231759068, guid: c8e568cd279e27a448eab1a66568625a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1463,10 +1463,10 @@ RectTransform:
   - {fileID: 823910217}
   m_Father: {fileID: 475078155}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -350}
-  m_SizeDelta: {x: 720, y: 210}
+  m_SizeDelta: {x: 0, y: 232.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2044026166
 MonoBehaviour:
