@@ -31,6 +31,7 @@ public class GameRolePrepareListMng : MonoBehaviour
             Hero hero = listHeros[i];
             GameObject listItem = listItemRoleObjectPool.GetPooledObject();
             listItem.transform.SetParent(roleScrollContent);
+            listItem.transform.localScale = new Vector3(0.8f, 0.8f, 1);
             listItem.SetActive(true); // 确保模板项是启用状态
             Button btn = listItem.GetComponent<Button>();
             btn.onClick.RemoveAllListeners();

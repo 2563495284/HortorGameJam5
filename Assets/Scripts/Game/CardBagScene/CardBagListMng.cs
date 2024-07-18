@@ -24,7 +24,7 @@ public class CardBagListMng : MonoBehaviour
     {
         PopulateRoleList();
         PopulateSkillList();
-        RefreshRole(); 
+        RefreshRole();
     }
     #region 角色卡牌
     public void PopulateRoleList()
@@ -41,6 +41,7 @@ public class CardBagListMng : MonoBehaviour
             Hero hero = listHeros[i];
             GameObject listItem = listItemRoleObjectPool.GetPooledObject();
             listItem.transform.SetParent(roleScrollContent);
+            listItem.transform.localScale = new Vector3(0.8f, 0.8f, 1);
             listItem.SetActive(true); // 确保模板项是启用状态
             Button btn = listItem.GetComponent<Button>();
             btn.onClick.RemoveAllListeners();
@@ -77,12 +78,12 @@ public class CardBagListMng : MonoBehaviour
         List<Skill> listSkills = hero.skills;
         Debug.Log(hero.skills.Count);
         // Create new items
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < listSkills.Count; i++)
         {
-            Skill skill = listSkills[0];
+            Skill skill = listSkills[i];
             GameObject listItem = listItemSkillObjectPool.GetPooledObject();
             listItem.transform.SetParent(skillScrollContent);
-
+            listItem.transform.localScale = new Vector3(0.8f, 0.8f, 1);
             listItem.SetActive(true); // 确保模板项是启用状态
             SkillRender skillRender = listItem.GetComponentInChildren<SkillRender>();
             skillRender.OnData(skill);
