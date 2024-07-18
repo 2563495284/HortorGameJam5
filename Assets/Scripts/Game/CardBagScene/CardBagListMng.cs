@@ -44,11 +44,15 @@ public class CardBagListMng : MonoBehaviour
             // 设置按钮的文本（你可以根据具体需求进行各种设置）
             Text listItemText = listItem.GetComponentInChildren<Text>();
             Image avatar = listItem.transform.Find("HeadImg").GetComponentInChildren<Image>();
-            byte[] imageBytes = Convert.FromBase64String(hero.avatar);
-            Debug.Log("宽:"+ avatar.rectTransform.rect.width+"高："+avatar.rectTransform.rect.height);
-            Texture2D tex = new Texture2D((int)avatar.rectTransform.rect.width, (int)avatar.rectTransform.rect.height);
-            tex.LoadImage( imageBytes );
-            avatar.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
+            if (avatar != null && hero.avatar != null)
+            {
+                Debug.LogWarning("<<<<avatar<<<<" + hero.avatar);
+                byte[] imageBytes = Convert.FromBase64String(hero.avatar);
+                Debug.Log("宽:" + avatar.rectTransform.rect.width + "高：" + avatar.rectTransform.rect.height);
+                Texture2D tex = new Texture2D((int)avatar.rectTransform.rect.width, (int)avatar.rectTransform.rect.height);
+                tex.LoadImage(imageBytes);
+                avatar.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
+            }
             if (listItemText != null)
             {
                 listItemText.text = hero.name;
@@ -74,6 +78,10 @@ public class CardBagListMng : MonoBehaviour
             listItemSkillObjectPool.ReturnPooledObject(child.gameObject);
         }
         Hero hero = PlayerModel.Instance.curtHero;
+        if (hero == null)
+        {
+            return;
+        }
         if (hero == null) return;
         List<Skill> listSkills = hero.skills;
         Debug.Log(hero.skills.Count);
@@ -103,6 +111,11 @@ public class CardBagListMng : MonoBehaviour
         {
             Text RoleText = Role.GetComponentInChildren<Text>();
             RoleText.text = hero.name;
+            Role.SetActive(true);
+        }
+        else
+        {
+            Role.SetActive(false);
         }
 
     }
