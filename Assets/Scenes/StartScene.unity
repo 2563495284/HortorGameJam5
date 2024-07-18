@@ -479,6 +479,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1214166507268310304, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 927fa2733ddb6490790ca47ec293af36, type: 3}
+    - target: {fileID: 1214166507268310304, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2918110357759534349, guid: 81e4f3fac0eb2db43b2a1d55cba095f8, type: 3}
       propertyPath: m_Name
       value: MessageManager
@@ -991,6 +999,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: "\u8BED\u8A00"
       objectReference: {fileID: 0}
+    - target: {fileID: 4671487840131277678, guid: c8e568cd279e27a448eab1a66568625a, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 927fa2733ddb6490790ca47ec293af36, type: 3}
     - target: {fileID: 5123257451458971534, guid: c8e568cd279e27a448eab1a66568625a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -1123,9 +1135,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 927fa2733ddb6490790ca47ec293af36, type: 3}
     m_FontSize: 28
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
@@ -2097,6 +2109,14 @@ PrefabInstance:
     - target: {fileID: 2769610027231759068, guid: c8e568cd279e27a448eab1a66568625a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4671487840131277678, guid: c8e568cd279e27a448eab1a66568625a, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 927fa2733ddb6490790ca47ec293af36, type: 3}
+    - target: {fileID: 4671487840131277678, guid: c8e568cd279e27a448eab1a66568625a, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5123257451458971534, guid: c8e568cd279e27a448eab1a66568625a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
