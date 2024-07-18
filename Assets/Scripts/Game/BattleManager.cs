@@ -10,6 +10,7 @@ public struct SBattleData
 {
     public EBattleState battleState;
     public Skill skill;
+    public string name;
 
 }
 public class BattleHeroInfo
@@ -95,6 +96,7 @@ public class BattleManager : Singleton<BattleManager>
         {
             battleData.battleState = EBattleState.PLAYERTURN;
             skill = playerBattleHeroInfo.getHeroSkillById(currentRoundSettlement.skill);
+            battleData.name = playerBattleHeroInfo.heroName;
             playerBattleHeroInfo.roundState = currentRoundSettlement.attackerRoundStates;
 
             enemyBattleHeroInfo.roundState = currentRoundSettlement.defenderRoundStates;
@@ -103,12 +105,14 @@ public class BattleManager : Singleton<BattleManager>
         {
             battleData.battleState = EBattleState.ENEMYTURN;
             skill = enemyBattleHeroInfo.getHeroSkillById(currentRoundSettlement.skill);
+            battleData.name = enemyBattleHeroInfo.heroName;
             playerBattleHeroInfo.roundState = currentRoundSettlement.defenderRoundStates;
 
             enemyBattleHeroInfo.roundState = currentRoundSettlement.attackerRoundStates;
         }
         round++;
         battleData.skill = skill;
+
         return battleData;
     }
     public void initHerosState()
