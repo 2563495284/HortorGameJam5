@@ -15,7 +15,14 @@ public class MainSceneBtnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (PlayerModel.Instance.curtHero == null)
+        {
+            startBtn.enabled = false;
+        }
+        else
+        {
+            startBtn.enabled = true;
+        }
     }
     private void OnClickStartBtn()
     {

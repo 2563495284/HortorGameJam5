@@ -93,7 +93,15 @@ public class PlayerModel : Singleton<PlayerModel>
         opt.url = "http://180.184.55.2:10101";
         opt.debug = true;
         O4e.Startup(opt);
-        ReceiveMsg<Login_AuthUserR> resp1 = await LoginService.AuthUser(new Login_AuthUser { platform = "debug", info = "{\"id\":\"111\"}" });
+
+        const string UidPrefKey = "uid";
+        var uid = PlayerPrefs.GetString(UidPrefKey);
+        if (uid == "")
+        {
+            uid = await fetchNewUid();
+            PlayerPrefs.SetString(UidPrefKey, uid);
+        }
+        ReceiveMsg<Login_AuthUserR> resp1 = await LoginService.AuthUser(new Login_AuthUser { platform = "debug", info = "{\"id\":\"" + uid + "\"}" });
         if (resp1.code != 0)
         {
             Debug.LogError(resp1.error);
@@ -116,10 +124,23 @@ public class PlayerModel : Singleton<PlayerModel>
         role = resp2.GetData().role;
         this.init();
     }
+    public async UniTask<string> fetchNewUid()
+    {
+        ReceiveMsg<Login_CreateNewUidR> resp = await LoginService.CreateNewUid(new Login_CreateNewUid() { });
+        if (resp.code != 0)
+        {
+            return "111";
+        }
+        Debug.Log(resp.GetData().data);
+        return resp.GetData().data;
+    }
     public void init()
     {
         _skills = new List<Skill>();
-        curtHero = role.heros[0];
+        if (role.heros.Count > 0)
+        {
+            curtHero = role.heros[0];
+        }
 
     }
     public async UniTask<bool> createRole(string roleName)
