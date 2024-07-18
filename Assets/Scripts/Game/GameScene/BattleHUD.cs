@@ -76,7 +76,7 @@ public class BattleHUD : MonoBehaviour
     }
     void UpdateMpText()
     {
-        mpText.text = $"hp:{mpSlider.value}/{battleHeroInfo.maxMp}";
+        mpText.text = $"mp:{mpSlider.value}/{battleHeroInfo.maxMp}";
     }
 
 }
