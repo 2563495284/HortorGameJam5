@@ -83,7 +83,7 @@ public class BattleSystem : MonoBehaviour
 
     public async UniTask PlayerTurnAsync()
     {
-        await UseSkill(battleData.name, battleData.skill, EBattleHeroType.PLAYER);
+        await UseSkill(battleData.skillHeroName, battleData.textTargetHolder, battleData.skill, EBattleHeroType.PLAYER);
         CheckHeroStateChange();
         await showHeroStateChange();
         nextRound();
@@ -91,7 +91,7 @@ public class BattleSystem : MonoBehaviour
 
     public async UniTask EnemyTurnAsync()
     {
-        await UseSkill(battleData.name, battleData.skill, EBattleHeroType.ENEMY);
+        await UseSkill(battleData.skillHeroName, battleData.textTargetHolder, battleData.skill, EBattleHeroType.ENEMY);
         CheckHeroStateChange();
         await showHeroStateChange();
         nextRound();
@@ -136,12 +136,12 @@ public class BattleSystem : MonoBehaviour
     }
     #region  使用技能
     private float _skillTweenHandle;
-    public async UniTask UseSkill(string textPlayer, Skill curtSkill, EBattleHeroType battleHeroType)
+    public async UniTask UseSkill(string textPlayer, string textTargetHolder,Skill curtSkill, EBattleHeroType battleHeroType)
     {
         var uiDelayMs = 800;
         if (curtSkill == null)
         {
-            dialogueText.text = $"{textPlayer} : 魔法值不足";
+            dialogueText.text = $"{textPlayer}说 : 我魔法值不足";
             Debug.Log(dialogueText.text);
             await UniTask.Delay(uiDelayMs);
             return;
@@ -149,11 +149,11 @@ public class BattleSystem : MonoBehaviour
         switch (battleHeroType)
         {
             case EBattleHeroType.PLAYER:
-                dialogueText.text = $"{textPlayer} : UseSkill {curtSkill.name}";
+                dialogueText.text = $"{curtSkill.text.Replace("%s", textTargetHolder)}";
                 dissolveMaterial.SetColor("_EdgeColor", new Color(0, 0.1f, 1, 1));
                 break;
             case EBattleHeroType.ENEMY:
-                dialogueText.text = $"{textPlayer} : UseSkill {curtSkill.name}";
+                dialogueText.text = $"{curtSkill.text.Replace("%s", textTargetHolder)}";
                 dissolveMaterial.SetColor("_EdgeColor", new Color(1, 0.1f, 0, 1));
                 break;
         }

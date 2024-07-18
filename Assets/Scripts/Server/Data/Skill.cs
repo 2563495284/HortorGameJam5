@@ -25,6 +25,10 @@ public partial class Skill: DataBase {
     /// <summary>
     public long mp = 0;
     /// <summary>
+    /// 文案
+    /// <summary>
+    public string text = string.Empty;
+    /// <summary>
     /// 技能描述
     /// <summary>
     public string desc = string.Empty;
