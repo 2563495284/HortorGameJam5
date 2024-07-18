@@ -42,6 +42,7 @@ public class CardBagListMng : MonoBehaviour
             btn.onClick.AddListener(() => { onClickRole(hero); });
             // 设置按钮的文本（你可以根据具体需求进行各种设置）
             Text listItemText = listItem.GetComponentInChildren<Text>();
+            Image image = listItem.GetComponent<Image>();
             if (listItemText != null)
             {
                 listItemText.text = hero.name;
