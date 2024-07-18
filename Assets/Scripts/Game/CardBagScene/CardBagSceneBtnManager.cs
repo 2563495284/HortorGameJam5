@@ -108,6 +108,10 @@ public class CardBagSceneBtnManager : MonoBehaviour
 
     private async void OnClickDeleteHero()
     {
+        if (PlayerModel.Instance.curtHero == null)
+        {
+            return;
+        }
         var curHeroId = PlayerModel.Instance.curtHero.id;
         if (await PlayerModel.Instance.deleteHero(curHeroId))
         {
