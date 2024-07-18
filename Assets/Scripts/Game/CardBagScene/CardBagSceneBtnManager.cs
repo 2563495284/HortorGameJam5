@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Hortor.O4e.Rpc;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,7 @@ public class CardBagSceneBtnManager : MonoBehaviour
     public Button btnShowCreateRole;
     public Button btnShowCreateSkill;
     public Button btnSkillScrollView;
+    public Button btnDeleteHero;
 
     #region 角色创建界面
     public Button btnCreateRoleClose;
@@ -44,6 +46,7 @@ public class CardBagSceneBtnManager : MonoBehaviour
         btnShowCreateRole.onClick.AddListener(OnClickBtnCreateRole);
         btnCreateRoleClose.onClick.AddListener(OnClickbtnCreateRoleClose);
         btnCreateRole.onClick.AddListener(OnClickbtnCreateRole);
+        btnDeleteHero.onClick.AddListener(OnClickDeleteHero);
 
         btnShowCreateSkill.onClick.AddListener(OnClickBtnCreateSkill);
         btnCreateSkillClose.onClick.AddListener(OnClickbtnCreateSkillClose);
@@ -98,6 +101,15 @@ public class CardBagSceneBtnManager : MonoBehaviour
         }
         createRolePanel.SetActive(false);
         isCreateRoleing = false;
+    }
+
+    private async void OnClickDeleteHero()
+    {
+        var curHeroId = PlayerModel.Instance.curtHero.id;
+        if (await PlayerModel.Instance.deleteHero(curHeroId))
+        {
+            cardBagListMng.resetHero();
+        }
     }
     #endregion
 

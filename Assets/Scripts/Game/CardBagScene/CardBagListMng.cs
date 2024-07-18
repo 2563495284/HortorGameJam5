@@ -17,10 +17,14 @@ public class CardBagListMng : MonoBehaviour
     public GameObject Role;//选择的主角
     void Start()
     {
+        resetHero();
+    }
+
+    public void resetHero()
+    {
         PopulateRoleList();
         PopulateSkillList();
-        RefreshRole();
-
+        RefreshRole(); 
     }
     #region 角色卡牌
     public void PopulateRoleList()
