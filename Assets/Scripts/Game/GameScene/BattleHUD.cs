@@ -48,6 +48,7 @@ public class BattleHUD : MonoBehaviour
         if (roundState.hp != 0)
         {
             hpSlider.DOValue(battleHeroInfo.hp + roundState.hp, 0.5f, true).OnUpdate(UpdateHpText);
+            battleHeroInfo.hp += roundState.hp;
         }
 
 
@@ -61,6 +62,7 @@ public class BattleHUD : MonoBehaviour
         if (roundState.mp != 0)
         {
             mpSlider.DOValue(battleHeroInfo.mp + roundState.mp, 0.5f, true).OnComplete(UpdateMpText);
+            battleHeroInfo.mp += roundState.mp;
         }
     }
     public async UniTask playHeroStateChange()
