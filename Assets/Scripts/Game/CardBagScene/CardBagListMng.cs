@@ -42,21 +42,8 @@ public class CardBagListMng : MonoBehaviour
             btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(() => { onClickRole(hero); });
             // 设置按钮的文本（你可以根据具体需求进行各种设置）
-            Text listItemText = listItem.GetComponentInChildren<Text>();
-            Image avatar = listItem.transform.Find("HeadImg").GetComponentInChildren<Image>();
-            if (avatar != null && hero.avatar != null)
-            {
-                Debug.LogWarning("<<<<avatar<<<<" + hero.avatar);
-                byte[] imageBytes = Convert.FromBase64String(hero.avatar);
-                Debug.Log("宽:" + avatar.rectTransform.rect.width + "高：" + avatar.rectTransform.rect.height);
-                Texture2D tex = new Texture2D((int)avatar.rectTransform.rect.width, (int)avatar.rectTransform.rect.height);
-                tex.LoadImage(imageBytes);
-                avatar.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
-            }
-            if (listItemText != null)
-            {
-                listItemText.text = hero.name;
-            }
+            RoleRender roleRender = listItem.GetComponentInChildren<RoleRender>();
+            roleRender.OnData(hero);
 
             // 你可以在这里添加任何其他的初始化代码，比如添加事件监听器等
         }
@@ -86,19 +73,15 @@ public class CardBagListMng : MonoBehaviour
         List<Skill> listSkills = hero.skills;
         Debug.Log(hero.skills.Count);
         // Create new items
-        for (int i = 0; i < listSkills.Count; i++)
+        for (int i = 0; i < 20; i++)
         {
-            Skill skill = listSkills[i];
+            Skill skill = listSkills[0];
             GameObject listItem = listItemSkillObjectPool.GetPooledObject();
             listItem.transform.SetParent(skillScrollContent);
-            listItem.SetActive(true); // 确保模板项是启用状态
 
-            // 设置按钮的文本（你可以根据具体需求进行各种设置）
-            Text listItemText = listItem.GetComponentInChildren<Text>();
-            if (listItemText != null)
-            {
-                listItemText.text = skill.name;
-            }
+            listItem.SetActive(true); // 确保模板项是启用状态
+            SkillRender skillRender = listItem.GetComponentInChildren<SkillRender>();
+            skillRender.OnData(skill);
 
             // 你可以在这里添加任何其他的初始化代码，比如添加事件监听器等
         }
@@ -109,8 +92,8 @@ public class CardBagListMng : MonoBehaviour
         Hero hero = PlayerModel.Instance.curtHero;
         if (hero != null)
         {
-            Text RoleText = Role.GetComponentInChildren<Text>();
-            RoleText.text = hero.name;
+            RoleRender roleRender = Role.GetComponentInChildren<RoleRender>();
+            roleRender.OnData(hero);
             Role.SetActive(true);
         }
         else

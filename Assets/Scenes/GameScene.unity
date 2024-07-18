@@ -948,7 +948,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0.3
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -2165,10 +2165,6 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: a19944c6e93054c57af5658c9af4380e, type: 2}
-    - target: {fileID: 4118569765821244149, guid: 97fb1baa30f694a42b9a48be4bfc1923, type: 3}
-      propertyPath: m_UseSpriteMesh
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6683721717222403886, guid: 97fb1baa30f694a42b9a48be4bfc1923, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
