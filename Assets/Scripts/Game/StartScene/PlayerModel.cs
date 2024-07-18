@@ -160,6 +160,37 @@ public class PlayerModel : Singleton<PlayerModel>
             return false;
         }
     }
+    public async UniTask<bool> deleteHero(long heroId)
+    {
+        var resp = await GameService.DeleteHero(new Game_DeleteHero() {heroId = heroId});
+        Game_DeleteHeroR roleData = resp.GetData();
+        if (roleData != null)
+        {
+            setCurtHero(null);
+            var roleHeros = role.heros;
+            int removeI = -1;
+            for (int i = 0; i < roleHeros.Count; i++)
+            {
+                if (roleHeros[i].id == heroId)
+                {
+                    removeI = i;
+                    break;
+                }
+            }
+
+            if (removeI != -1)
+            {
+                roleHeros.RemoveAt(removeI);
+                role.heros = roleHeros;
+            }
+            return true;
+        }
+        else
+        {
+            MessageManager.Instance.ShowMessage("删除英雄失败，请稍后重试!");
+            return false;
+        }
+    }
     public void initSkillList()
     {
         _skills.Clear();
