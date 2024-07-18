@@ -38,10 +38,10 @@ public class GameSkillPrepareListMng : MonoBehaviour
             btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(() => { onClickSkill(skill); });
             // 设置按钮的文本（你可以根据具体需求进行各种设置）
-            Text listItemText = listItem.GetComponentInChildren<Text>();
-            if (listItemText != null)
+            SkillRender skillRender = listItem.GetComponentInChildren<SkillRender>();
+            if (skillRender != null)
             {
-                listItemText.text = skill.name;
+                skillRender.OnData(skill);
             }
 
         }
@@ -65,10 +65,10 @@ public class GameSkillPrepareListMng : MonoBehaviour
             btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(() => { onClickSelectedSkill(skill); });
             // 设置按钮的文本（你可以根据具体需求进行各种设置）
-            Text listItemText = listItem.GetComponentInChildren<Text>();
-            if (listItemText != null)
+            SkillRender skillRender = listItem.GetComponentInChildren<SkillRender>();
+            if (skillRender != null)
             {
-                listItemText.text = skill.name;
+                skillRender.OnData(skill);
             }
 
         }

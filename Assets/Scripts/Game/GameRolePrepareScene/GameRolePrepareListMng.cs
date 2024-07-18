@@ -36,10 +36,10 @@ public class GameRolePrepareListMng : MonoBehaviour
             btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(() => { onClickRole(hero); });
             // 设置按钮的文本（你可以根据具体需求进行各种设置）
-            Text listItemText = listItem.GetComponentInChildren<Text>();
-            if (listItemText != null)
+            RoleRender roleRender = listItem.GetComponentInChildren<RoleRender>();
+            if (roleRender != null)
             {
-                listItemText.text = hero.name;
+                roleRender.OnData(hero);
             }
 
         }
@@ -47,8 +47,11 @@ public class GameRolePrepareListMng : MonoBehaviour
     public void RefreshRole()
     {
         Hero hero = PlayerModel.Instance.curtHero;
-        Text RoleText = Role.GetComponentInChildren<Text>();
-        RoleText.text = hero.name;
+        RoleRender roleRender = Role.GetComponentInChildren<RoleRender>();
+        if (roleRender != null)
+        {
+            roleRender.OnData(hero);
+        }
     }
     public void onClickRole(Hero hero)
     {
