@@ -54,6 +54,7 @@ public class MainSceneBtnManager : MonoBehaviour
     {
         if (level != null)
         {
+            Debug.Log(level);
             var hero = level.enemy;
             RoleRender roleRender = pveEnemy.GetComponent<RoleRender>();
             roleRender.OnData(hero, OnClickPevBtn, ShowPveEnemyInfo);
