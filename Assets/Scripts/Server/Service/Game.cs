@@ -85,6 +85,13 @@ public partial class IsolateGameService : ServiceBase
         return SendAsync<Game_NextRoundR>(ToSendMsg("game_nextround", data, opt));
     }
     /// <summary>
+    /// pvp取消
+    /// <summary>
+    public Task<ReceiveMsg<Game_PvpCancelR>> PvpCancel(Game_PvpCancel data, CmdOption opt = default)
+	{
+        return SendAsync<Game_PvpCancelR>(ToSendMsg("game_pvpcancel", data, opt));
+    }
+    /// <summary>
     /// pvp 匹配
     /// <summary>
     public Task<ReceiveMsg<Game_PvpMatchR>> PvpMatch(Game_PvpMatch data, CmdOption opt = default)
@@ -208,6 +215,13 @@ public partial class GameService
     public static Task<ReceiveMsg<Game_NextRoundR>> NextRound(Game_NextRound data, CmdOption opt = default)
 	{
         return Isolate.Default.GameService.NextRound(data, opt);
+    }
+    /// <summary>
+    /// pvp取消
+    /// <summary>
+    public static Task<ReceiveMsg<Game_PvpCancelR>> PvpCancel(Game_PvpCancel data, CmdOption opt = default)
+	{
+        return Isolate.Default.GameService.PvpCancel(data, opt);
     }
     /// <summary>
     /// pvp 匹配

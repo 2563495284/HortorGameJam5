@@ -11,6 +11,7 @@ public enum ESceneType
     CARDBAGSCENE,
     GAMEROLEPREPARESCENE,
     GAMESKILLPREPARESCENE,
+    GAMEPVPQUEUEINGSCENE,
 }
 public class SceneSwitcher : Singleton<SceneSwitcher>
 {

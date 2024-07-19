@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,18 +8,27 @@ using UnityEngine.UI;
 public class GameRolePrepareSceneBtnManager : MonoBehaviour
 {
     public Button btnComfirm;
+    public Button btnBattleTest;
 
     public Button btnCancel;
 
     private void Start()
     {
-        btnComfirm.onClick.AddListener(OnClickBtnComfirm);
+        btnBattleTest.onClick.AddListener(OnClickbtnBattleTest);
+        btnComfirm.onClick.AddListener(OnClickBtnConfim);
         btnCancel.onClick.AddListener(OnClickBtnCancel);
     }
-    private void OnClickBtnComfirm()
+
+    private void OnClickBtnConfim()
+    {
+        SceneSwitcher.LoadSceneByIndex((ESceneType.GAMEPVPQUEUEINGSCENE));
+    }
+
+    private void OnClickbtnBattleTest()
     {
         SceneSwitcher.LoadSceneByIndex(ESceneType.GAMESKILLPREPARESCENE);
     }
+
     private void OnClickBtnCancel()
     {
         SceneSwitcher.LoadSceneByIndex(ESceneType.MAINSCENE);
