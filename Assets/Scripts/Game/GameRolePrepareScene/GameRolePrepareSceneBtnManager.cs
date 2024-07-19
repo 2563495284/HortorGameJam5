@@ -21,7 +21,7 @@ public class GameRolePrepareSceneBtnManager : MonoBehaviour
 
     private void OnClickBtnConfim()
     {
-        SceneSwitcher.LoadSceneByIndex((ESceneType.GAMEPVPQUEUEINGSCENE));
+        SceneSwitcher.LoadSceneByIndex(ESceneType.GAMESKILLPREPARESCENE);
     }
 
     private void OnClickbtnBattleTest()
