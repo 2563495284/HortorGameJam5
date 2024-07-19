@@ -9,7 +9,19 @@ using Cysharp.Threading.Tasks;
 using System;
 using Unity.VisualScripting;
 using TMPro.Examples;
+using Unity.Burst.Intrinsics;
+public class EGameEvent
+{
+    public const string NEXT_LEVEL_REFRESH = "NEXT_LEVEL_REFRESH";
+}
+public enum EBattleType
+{
+    EMPTY,
+    PVE,
+    PVP,
+    SELF,
 
+}
 public class PlayerModel : Singleton<PlayerModel>
 {
     GDUser _user;
@@ -36,27 +48,51 @@ public class PlayerModel : Singleton<PlayerModel>
             _role = value;
         }
     }
+    private Hero _pveEnemy;
+    public Hero pveEnemy
+    {
+        get
+        {
+            return _pveEnemy;
+        }
+        private set
+        {
+            _pveEnemy = value;
+        }
+    }
     Hero _curtSelectedHero;
     public Hero curtHero
     {
         get { return _curtSelectedHero; }
         set { _curtSelectedHero = value; }
     }
+    private EBattleType _battleType = EBattleType.EMPTY;
+    public EBattleType battleType
+    {
+        set
+        {
+            _battleType = value;
+        }
+        get
+        {
+            return _battleType;
+        }
+    }
     public List<Skill> _skills;
     public List<Skill> skillList
     {
         get { return _skills; }
     }
-    CustomDelegateDispatcher _dispatcher = new CustomDelegateDispatcher();
-    public CustomDelegateDispatcher dispatcher
+    CustomDelegateDispatcher _e = new CustomDelegateDispatcher();
+    public CustomDelegateDispatcher e
     {
         get
         {
-            return _dispatcher;
+            return _e;
         }
-        set
+        private set
         {
-            _dispatcher = value;
+            _e = value;
         }
     }
     private void Awake()
@@ -67,7 +103,6 @@ public class PlayerModel : Singleton<PlayerModel>
     // Use this for initialization
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -85,6 +120,7 @@ public class PlayerModel : Singleton<PlayerModel>
         curtHero = hero;
         _skills.Clear();
     }
+
 
     public async Task login()
     {
@@ -162,7 +198,7 @@ public class PlayerModel : Singleton<PlayerModel>
     }
     public async UniTask<bool> deleteHero(long heroId)
     {
-        var resp = await GameService.DeleteHero(new Game_DeleteHero() {heroId = heroId});
+        var resp = await GameService.DeleteHero(new Game_DeleteHero() { heroId = heroId });
         Game_DeleteHeroR roleData = resp.GetData();
         if (roleData != null)
         {
@@ -239,6 +275,18 @@ public class PlayerModel : Singleton<PlayerModel>
             return false;
         }
     }
+    public async UniTask<bool> StartPevBattleAsync(long roleId)
+    {
+        var resp = await GameService.FinishNextLevelBattle(new Game_FinishNextLevelBattle { heroId = roleId });
+        Game_FinishNextLevelBattleR finishNextLevelBattleR = resp.GetData();
+        if (finishNextLevelBattleR == null)
+        {
+            return false;
+        }
+        // BattleManager.Instance.SetBattleManager(finishNextLevelBattleR.data);
+
+        return true;
+    }
     public async UniTask<BattleFinishResp> startBattle(long heroId)
     {
 
@@ -263,6 +311,20 @@ public class PlayerModel : Singleton<PlayerModel>
         }
         BattleManager.Instance.SetBattleManager(finishBattleR.data);
         return finishBattleR.data;
+    }
+
+    public async void GetNextPveEnemyInfoAsync()
+    {
+        if (_pveEnemy != null) return;
+        //获取下一个敌人信息
+        var resp = await GameService.GetNextLevel(new Game_GetNextLevel { });
+        Game_GetNextLevelR nextLevelR = resp.GetData();
+        if (nextLevelR != null)
+        {
+            _pveEnemy = nextLevelR.data.enemy;
+            Debug.Log("获取下一个敌人信息成功");
+            e.TriggerEvent(EGameEvent.NEXT_LEVEL_REFRESH, _pveEnemy);
+        }
     }
 }
 

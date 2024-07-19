@@ -66,6 +66,7 @@ MonoBehaviour:
   btnRole: {fileID: 3313878877907892670}
   headImg: {fileID: 4962992344213390786}
   nameText: {fileID: 1613934189487303650}
+  natureSkillImg: {fileID: 2755820240372545581}
 --- !u!114 &3313878877907892670
 MonoBehaviour:
   m_ObjectHideFlags: 0

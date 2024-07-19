@@ -6,20 +6,10 @@ public class CustomDelegateDispatcher
     private Dictionary<string, List<Delegate>> eventDictionary;
     private Dictionary<string, HashSet<object>> eventSubscribers;
 
-    private static CustomDelegateDispatcher customDelegateDispatcher;
 
-    public static CustomDelegateDispatcher Instance
+    public CustomDelegateDispatcher()
     {
-        get
-        {
-            if (customDelegateDispatcher == null)
-            {
-                customDelegateDispatcher = new CustomDelegateDispatcher();
-                customDelegateDispatcher.Initialize();
-            }
-
-            return customDelegateDispatcher;
-        }
+        this.Initialize();
     }
 
     void Initialize()
@@ -65,7 +55,6 @@ public class CustomDelegateDispatcher
 
     public void StopListening<T>(string eventName, Action<T> listener)
     {
-        if (customDelegateDispatcher == null) return;
 
         if (eventSubscribers.TryGetValue(eventName, out var subscribers))
         {

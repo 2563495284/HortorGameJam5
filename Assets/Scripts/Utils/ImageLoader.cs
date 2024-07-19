@@ -23,7 +23,6 @@ public class ImageLoader : Singleton<ImageLoader>
 
         // 创建一个Sprite并应用到UI的Image组件上
         Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-        
         return sprite;
     }
 }

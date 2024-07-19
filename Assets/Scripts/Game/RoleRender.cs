@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,8 @@ public class RoleRender : MonoBehaviour
     public Image headImg;
 
     public Text nameText;
+
+    public Image natureSkillImg;
     private bool _showInfo;
     private void Start()
     {
@@ -36,6 +39,13 @@ public class RoleRender : MonoBehaviour
                 Texture2D tex = new Texture2D((int)headImg.rectTransform.rect.width, (int)headImg.rectTransform.rect.height);
                 tex.LoadImage(imageBytes);
                 headImg.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
+            }
+            Sprite natureSprite = ImageLoader.Instance.getSkillAttr(hero.talent.attr);
+            if (natureSprite != null)
+            {
+                natureSkillImg.sprite = natureSprite;
+            }else{
+                natureSkillImg.sprite = null;
             }
         }
     }

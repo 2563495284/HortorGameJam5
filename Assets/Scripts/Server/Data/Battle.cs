@@ -7,11 +7,13 @@ using UnityEngine.Scripting;
 /// <summary>
 /// 战斗
 /// <summary>
-public partial class Battle: DataBase {
+public partial class Battle : DataBase
+{
     [Preserve]
-    public Battle() {
+    public Battle()
+    {
     }
-    
+
     public long id = 0;
     /// <summary>
     /// 玩家 1

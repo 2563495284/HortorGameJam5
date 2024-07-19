@@ -40,7 +40,7 @@ public class SkillRender : MonoBehaviour
             }
             else
             {
-                skillRound.text = "";
+                skillRound.text = "0";
             }
         }
         if (skill.attrSummary.Count >= 2)
