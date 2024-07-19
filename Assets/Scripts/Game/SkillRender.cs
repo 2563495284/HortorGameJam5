@@ -10,7 +10,7 @@ public class SkillRender : MonoBehaviour
 
     public Text skillRound;
     public Text skillMpCost;
-
+    private bool _showInfo;
     private void Start()
     {
 
@@ -18,10 +18,12 @@ public class SkillRender : MonoBehaviour
     }
     private void OnClickSkill()
     {
+        if (!_showInfo) return;
         MessageManager.Instance.ShowMessage("还没做～");
     }
-    public void OnData(Skill skill)
+    public void OnData(Skill skill, bool showInfo = false)
     {
+        _showInfo = showInfo;
         if (skill != null)
         {
             skillName.text = skill.name;

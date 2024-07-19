@@ -47,6 +47,7 @@ public class HeroInfoAttrListMng : MonoBehaviour
         {
             SHeroAttr heroAttr = heroAttrs[i];
             GameObject listItem = listItemHeroAttrObjectPool.GetPooledObject();
+            listItem.transform.localScale = new Vector3(1, 1, 1);
             listItem.transform.SetParent(heroAttrScrollContent);
             listItem.SetActive(true); // 确保模板项是启用状态
             // 设置按钮的文本（你可以根据具体需求进行各种设置）
@@ -60,6 +61,6 @@ public class HeroInfoAttrListMng : MonoBehaviour
     }
     private void OnClickBtnClose()
     {
-       HeroInfoView.Instance.HideHeroInfoView();
+        HeroInfoView.Instance.HideHeroInfoView();
     }
 }

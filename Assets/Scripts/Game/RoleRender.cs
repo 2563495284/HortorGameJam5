@@ -9,7 +9,7 @@ public class RoleRender : MonoBehaviour
     public Image headImg;
 
     public Text nameText;
-
+    private bool _showInfo;
     private void Start()
     {
 
@@ -18,11 +18,13 @@ public class RoleRender : MonoBehaviour
 
     private void OnClickRole()
     {
+        if (!_showInfo) return;
 
         MessageManager.Instance.ShowMessage("还没做～");
     }
-    public void OnData(Hero hero)
+    public void OnData(Hero hero, bool showInfo = false)
     {
+        _showInfo = showInfo;
         if (hero != null)
         {
             nameText.text = hero.name;
