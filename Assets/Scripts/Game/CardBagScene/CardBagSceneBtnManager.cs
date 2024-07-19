@@ -113,11 +113,6 @@ public class CardBagSceneBtnManager : MonoBehaviour
 
     private async void OnClickDeleteHero()
     {
-        if (inputFieldCreateSkill.text == "")
-        {
-            MessageManager.Instance.ShowMessage("请输入技能名字");
-            return;
-        }
         if (PlayerModel.Instance.curtHero == null)
         {
             return;
@@ -143,6 +138,11 @@ public class CardBagSceneBtnManager : MonoBehaviour
     private bool isCreateSkilling = false;
     private async void OnClickbtnCreateSkill()
     {
+        if (inputFieldCreateSkill.text == "")
+        {
+            MessageManager.Instance.ShowMessage("请输入技能名字");
+            return;
+        }
         if (isCreateSkilling) return;
         isCreateSkilling = true;
         bool success = await PlayerModel.Instance.createSkill(inputFieldCreateSkill.text);
