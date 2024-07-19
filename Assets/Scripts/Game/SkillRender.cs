@@ -16,7 +16,7 @@ public class SkillRender : MonoBehaviour
     public Image skillMainAttrImg;
     public Image skillSubAttrImg;
 
-    public float requiredHoldTime = 1f; // 长按所需时间
+    public float requiredHoldTime = 0.6f; // 长按所需时间
 
     private bool isPointerDown = false;
     private bool isLongPress = false;

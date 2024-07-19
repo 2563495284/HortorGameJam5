@@ -15,8 +15,16 @@ public class GameRolePrepareListMng : MonoBehaviour
     {
         PopulateRoleList();
         RefreshRole();
-    }
+        PlayerModel.Instance.e.StartListening<Hero>(EGameEvent.LONG_CLICK_ROLE, onShowRoleInfo);
+        PlayerModel.Instance.e.StartListening<Hero>(EGameEvent.SHORT_CLICK_ROLE, onClickRole);
 
+    }
+    void OnDestroy()
+    {
+        PlayerModel.Instance.e.StopListening<Hero>(EGameEvent.LONG_CLICK_ROLE, onShowRoleInfo);
+        PlayerModel.Instance.e.StopListening<Hero>(EGameEvent.SHORT_CLICK_ROLE, onClickRole);
+
+    }
     public void PopulateRoleList()
     {
         // Clear existing items (optional)
@@ -33,9 +41,6 @@ public class GameRolePrepareListMng : MonoBehaviour
             listItem.transform.SetParent(roleScrollContent);
             listItem.transform.localScale = new Vector3(0.8f, 0.8f, 1);
             listItem.SetActive(true); // 确保模板项是启用状态
-            Button btn = listItem.GetComponent<Button>();
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() => { onClickRole(hero); });
             // 设置按钮的文本（你可以根据具体需求进行各种设置）
             RoleRender roleRender = listItem.GetComponentInChildren<RoleRender>();
             if (roleRender != null)
@@ -59,5 +64,8 @@ public class GameRolePrepareListMng : MonoBehaviour
         PlayerModel.Instance.setCurtHero(hero);
         RefreshRole();
     }
-
+    private void onShowRoleInfo(Hero hero)
+    {
+        HeroInfoView.Instance.ShowHeroInfoView(hero);
+    }
 }

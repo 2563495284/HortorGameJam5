@@ -26,7 +26,7 @@ public class MainSceneBtnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerModel.Instance.role.heros.Count == 0)
+        if (PlayerModel.Instance.role?.heros?.Count == 0)
         {
             startBtn.enabled = false;
         }

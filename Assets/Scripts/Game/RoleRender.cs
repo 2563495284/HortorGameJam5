@@ -13,8 +13,7 @@ public class RoleRender : MonoBehaviour
     public Text nameText;
 
     public Image natureSkillImg;
-    private bool _showInfo;
-    public float requiredHoldTime = 1f; // 长按所需时间
+    public float requiredHoldTime = 0.6f; // 长按所需时间
 
     private bool isPointerDown = false;
     private bool isLongPress = false;
@@ -78,9 +77,9 @@ public class RoleRender : MonoBehaviour
 
     private void OnLongPress()
     {
-        Debug.Log("Long Press Triggered!");
         // 在这里添加长按事件处理逻辑
         if (_hero == null) return;
+        Debug.Log("Long Press Triggered!");
         PlayerModel.Instance.e.TriggerEvent(EGameEvent.LONG_CLICK_ROLE, _hero);
     }
 
@@ -94,14 +93,14 @@ public class RoleRender : MonoBehaviour
 
     private void OnShortPress()
     {
-        Debug.Log("Short Press Triggered!");
         // 在这里添加短按事件处理逻辑
         if (_hero == null) return;
+        Debug.Log("Short Press Triggered!");
         PlayerModel.Instance.e.TriggerEvent(EGameEvent.SHORT_CLICK_ROLE, _hero);
     }
-    public void OnData(Hero hero, bool showInfo = false)
+    public void OnData(Hero hero)
     {
-        _showInfo = showInfo;
+        _hero = hero;
         if (hero != null)
         {
             nameText.text = hero.name;
