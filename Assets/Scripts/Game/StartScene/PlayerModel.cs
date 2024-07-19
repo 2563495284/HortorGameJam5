@@ -52,16 +52,16 @@ public class PlayerModel : Singleton<PlayerModel>
             _role = value;
         }
     }
-    private Hero _pveEnemy;
-    public Hero pveEnemy
+    private Level _pveLevel;
+    public Level PveLevel
     {
         get
         {
-            return _pveEnemy;
+            return _pveLevel;
         }
         private set
         {
-            _pveEnemy = value;
+            _pveLevel = value;
         }
     }
     Hero _curtSelectedHero;
@@ -288,7 +288,7 @@ public class PlayerModel : Singleton<PlayerModel>
             return false;
         }
         BattleManager.Instance.SetBattleManager(finishNextLevelBattleR.data);
-        _pveEnemy = null;
+        _pveLevel = null;
         return true;
     }
     public async UniTask<BattleFinishResp> startBattle(long heroId)
@@ -319,15 +319,15 @@ public class PlayerModel : Singleton<PlayerModel>
 
     public async void GetNextPveEnemyInfoAsync()
     {
-        if (_pveEnemy != null) return;
+        if (_pveLevel != null) return;
         //获取下一个敌人信息
         var resp = await GameService.GetNextLevel(new Game_GetNextLevel { });
         Game_GetNextLevelR nextLevelR = resp.GetData();
         if (nextLevelR != null)
         {
-            _pveEnemy = nextLevelR?.data?.enemy;
+            _pveLevel = nextLevelR?.data;
             Debug.Log("获取下一个敌人信息成功");
-            e.TriggerEvent(EGameEvent.NEXT_LEVEL_REFRESH, _pveEnemy);
+            e.TriggerEvent(EGameEvent.NEXT_LEVEL_REFRESH, _pveLevel);
         }
     }
 }
