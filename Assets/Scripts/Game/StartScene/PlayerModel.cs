@@ -284,6 +284,7 @@ public class PlayerModel : Singleton<PlayerModel>
             return false;
         }
         BattleManager.Instance.SetBattleManager(finishNextLevelBattleR.data);
+        _pveEnemy = null;
         return true;
     }
     public async UniTask<BattleFinishResp> startBattle(long heroId)
