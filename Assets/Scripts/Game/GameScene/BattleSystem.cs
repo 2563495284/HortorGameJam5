@@ -197,13 +197,13 @@ public class BattleSystem : MonoBehaviour
                 originalY = 0;
                 originalX = Screen.width;
                 skill.transform.position.Set(originalX, originalY, 0f);
-                offsetH = 300f;
+                offsetH = 400f;
                 break;
             case EBattleHeroType.ENEMY:
                 originalY = 0;
                 originalX = -Screen.width;
                 skill.transform.position.Set(originalX, originalY, 0f);
-                offsetH = -300f;
+                offsetH = 400f;
                 break;
         }
 
