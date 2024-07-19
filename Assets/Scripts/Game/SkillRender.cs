@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,9 @@ public class SkillRender : MonoBehaviour
 
     public Text skillRound;
     public Text skillMpCost;
+
+    public Image skillMainAttrImg;
+    public Image skillSubAttrImg;
     private bool _showInfo;
     private void Start()
     {
@@ -37,6 +41,20 @@ public class SkillRender : MonoBehaviour
             else
             {
                 skillRound.text = "";
+            }
+        }
+        if (skill.attrSummary.Count >= 2)
+        {
+            Sprite mainSprite = ImageLoader.Instance.getSkillAttr(skill.attrSummary[0]);
+            Sprite subSprite = ImageLoader.Instance.getSkillAttr(skill.attrSummary[1]);
+            if (mainSprite)
+            {
+
+                skillMainAttrImg.sprite = mainSprite;
+            }
+            if (subSprite)
+            {
+                skillSubAttrImg.sprite = subSprite;
             }
         }
     }

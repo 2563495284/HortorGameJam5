@@ -7,9 +7,17 @@ using UnityEngine.Localization.Settings;
 
 public static class EHeroAttr
 {
-    public const string hp = "生命值";
-    public const string mp = "魔法值";
-    public const string weaponDamage = "武器伤害";
+    public const string Hp = "Hp";
+    public const string Mp = "Mp";
+    public const string WeaponDamage = "WeaponDamage";
+    public const string Armor = "Armor";
+    public const string CritRate = "CritRate";
+    public const string Dodge = "Dodge";
+    public const string Stun = "Stun";
+    public const string Comb = "Comb";
+    public const string Round = "Round";
+    public const string MaxHp = "MaxHp";
+    public const string MaxMp = "MaxMp";
 }
 
 public struct SHeroAttr
@@ -40,9 +48,9 @@ public class HeroInfoAttrListMng : MonoBehaviour
         if (hero == null) return;
         // Create new items
         List<SHeroAttr> heroAttrs = new List<SHeroAttr>();
-        heroAttrs.Add(new SHeroAttr() { heroAttr = EHeroAttr.hp, val = hero.hp });
-        heroAttrs.Add(new SHeroAttr() { heroAttr = EHeroAttr.mp, val = hero.mp });
-        heroAttrs.Add(new SHeroAttr() { heroAttr = EHeroAttr.weaponDamage, val = hero.weaponDamage });
+        heroAttrs.Add(new SHeroAttr() { heroAttr = EHeroAttr.Hp, val = hero.hp });
+        heroAttrs.Add(new SHeroAttr() { heroAttr = EHeroAttr.Mp, val = hero.mp });
+        heroAttrs.Add(new SHeroAttr() { heroAttr = EHeroAttr.WeaponDamage, val = hero.weaponDamage });
         for (int i = 0; i < heroAttrs.Count; i++)
         {
             SHeroAttr heroAttr = heroAttrs[i];

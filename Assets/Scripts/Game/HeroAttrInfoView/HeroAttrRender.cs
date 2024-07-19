@@ -13,13 +13,13 @@ public class HeroAttrRender : MonoBehaviour
     {
         switch (attrName)
         {
-            case EHeroAttr.hp:
+            case EHeroAttr.Hp:
                 attrName = "生命值";
                 break;
-            case EHeroAttr.mp:
+            case EHeroAttr.Mp:
                 attrName = "魔法值";
                 break;
-            case EHeroAttr.weaponDamage:
+            case EHeroAttr.WeaponDamage:
                 attrName = "武器伤害";
                 break;
         }

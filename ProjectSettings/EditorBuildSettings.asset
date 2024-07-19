@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/CardBagScene.unity
     guid: a9fb933c7a13f4cb08760c361792dd23
   - enabled: 1
-    path: Assets/Scenes/GameRolePrepareScene.unity
+    path: Assets/Resources/Prefabs/GameRolePrepareScene.unity
     guid: 9519a2a63f0d94a96aa3844871a5762d
   - enabled: 1
     path: Assets/Scenes/GameSkillPrepareScene.unity
