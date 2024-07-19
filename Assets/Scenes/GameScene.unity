@@ -2225,7 +2225,15 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 927fa2733ddb6490790ca47ec293af36, type: 3}
+    - target: {fileID: 4450770734515213784, guid: 97fb1baa30f694a42b9a48be4bfc1923, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: a19944c6e93054c57af5658c9af4380e, type: 2}
     - target: {fileID: 4516582201029201633, guid: 97fb1baa30f694a42b9a48be4bfc1923, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: a19944c6e93054c57af5658c9af4380e, type: 2}
+    - target: {fileID: 5164963116639864897, guid: 97fb1baa30f694a42b9a48be4bfc1923, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: a19944c6e93054c57af5658c9af4380e, type: 2}
