@@ -17,6 +17,13 @@ public class GameSkillPrepareListMng : MonoBehaviour
         PlayerModel.Instance.initHeroAttrList();
         PopulateSkillList();
         PopulateSelectedSkillList();
+        PlayerModel.Instance.e.StartListening<Skill>(EGameEvent.LONG_CLICK_SKILL, onClickSkillShowInfo);
+        PlayerModel.Instance.e.StartListening<Skill>(EGameEvent.SHORT_CLICK_SKILL, onClickSkill);
+    }
+    private void OnDestroy()
+    {
+        PlayerModel.Instance.e.StopListening<Skill>(EGameEvent.LONG_CLICK_SKILL, onClickSkillShowInfo);
+        PlayerModel.Instance.e.StopListening<Skill>(EGameEvent.SHORT_CLICK_SKILL, onClickSkill);
     }
 
     public void PopulateSkillList()
@@ -35,9 +42,6 @@ public class GameSkillPrepareListMng : MonoBehaviour
             listItem.transform.SetParent(skillScrollContent);
             listItem.transform.localScale = new Vector3(0.8f, 0.8f, 1);
             listItem.SetActive(true); // 确保模板项是启用状态
-            Button btn = listItem.GetComponent<Button>();
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() => { onClickSkill(skill); });
             // 设置按钮的文本（你可以根据具体需求进行各种设置）
             SkillRender skillRender = listItem.GetComponentInChildren<SkillRender>();
             if (skillRender != null)
@@ -64,9 +68,6 @@ public class GameSkillPrepareListMng : MonoBehaviour
             listItem.transform.localScale = new Vector3(0.8f, 0.8f, 1);
 
             listItem.SetActive(true); // 确保模板项是启用状态
-            Button btn = listItem.GetComponent<Button>();
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() => { onClickSelectedSkill(skill); });
             // 设置按钮的文本（你可以根据具体需求进行各种设置）
             SkillRender skillRender = listItem.GetComponentInChildren<SkillRender>();
             if (skillRender != null)
@@ -87,5 +88,8 @@ public class GameSkillPrepareListMng : MonoBehaviour
         PlayerModel.Instance.removeSkill2List(skill);
         PopulateSelectedSkillList();
     }
-
+    public void onClickSkillShowInfo(Skill skill)
+    {
+        SkillInfoView.Instance.ShowSkillInfoView(skill);
+    }
 }

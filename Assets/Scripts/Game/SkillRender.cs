@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class SkillRender : MonoBehaviour
@@ -14,20 +15,96 @@ public class SkillRender : MonoBehaviour
 
     public Image skillMainAttrImg;
     public Image skillSubAttrImg;
-    private bool _showInfo;
+
+    public float requiredHoldTime = 1f; // 长按所需时间
+
+    private bool isPointerDown = false;
+    private bool isLongPress = false;
+    private float pointerDownTimer = 0;
+    private Skill _skill;
+
     private void Start()
     {
 
-        btnSkill.onClick.AddListener(OnClickSkill);
+        // 添加事件监听器
+        btnSkill.onClick.AddListener(OnShortPressWrapper);
+
+        // 获取按钮的 EventTrigger 组件，如果不存在则添加它
+        EventTrigger eventTrigger = btnSkill.gameObject.GetComponent<EventTrigger>();
+        if (eventTrigger == null)
+        {
+            eventTrigger = btnSkill.gameObject.AddComponent<EventTrigger>();
+        }
+
+        // 创建 PointerDown 事件
+        EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
+        pointerDownEntry.eventID = EventTriggerType.PointerDown;
+        pointerDownEntry.callback.AddListener((eventData) => { OnPointerDown((PointerEventData)eventData); });
+        eventTrigger.triggers.Add(pointerDownEntry);
+
+        // 创建 PointerUp 事件
+        EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
+        pointerUpEntry.eventID = EventTriggerType.PointerUp;
+        pointerUpEntry.callback.AddListener((eventData) => { OnPointerUp((PointerEventData)eventData); });
+        eventTrigger.triggers.Add(pointerUpEntry);
     }
-    private void OnClickSkill()
+    void Update()
     {
-        if (!_showInfo) return;
-        MessageManager.Instance.ShowMessage("还没做～");
+        if (isPointerDown)
+        {
+            pointerDownTimer += Time.deltaTime;
+            if (pointerDownTimer >= requiredHoldTime)
+            {
+                if (!isLongPress)
+                {
+                    isLongPress = true;
+                    OnLongPress();
+                }
+            }
+        }
     }
-    public void OnData(Skill skill, bool showInfo = false)
+    private void OnPointerDown(PointerEventData eventData)
     {
-        _showInfo = showInfo;
+        isPointerDown = true;
+        pointerDownTimer = 0;
+        isLongPress = false;
+    }
+
+    private void OnPointerUp(PointerEventData eventData)
+    {
+        isPointerDown = false;
+        if (!isLongPress)
+        {
+            btnSkill.onClick.Invoke();
+        }
+    }
+
+    private void OnLongPress()
+    {
+        Debug.Log("Long Press Triggered!");
+        // 在这里添加长按事件处理逻辑
+        if (_skill == null) return;
+        PlayerModel.Instance.e.TriggerEvent(EGameEvent.LONG_CLICK_SKILL, _skill);
+    }
+
+    private void OnShortPressWrapper()
+    {
+        if (!isLongPress) // 确保事件只在短按时触发
+        {
+            OnShortPress();
+        }
+    }
+
+    private void OnShortPress()
+    {
+        Debug.Log("Short Press Triggered!");
+        // 在这里添加短按事件处理逻辑
+        if (_skill == null) return;
+        PlayerModel.Instance.e.TriggerEvent(EGameEvent.SHORT_CLICK_SKILL, _skill);
+    }
+    public void OnData(Skill skill)
+    {
+        _skill = skill;
         if (skill != null)
         {
             skillName.text = skill.name;

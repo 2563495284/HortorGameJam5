@@ -17,9 +17,13 @@ public class CardBagListMng : MonoBehaviour
     public GameObject Role;//选择的主角
     void Start()
     {
+        PlayerModel.Instance.e.StartListening<Skill>(EGameEvent.SHORT_CLICK_SKILL, onClickSkill);
         resetHero();
     }
-
+    void OnDestroy()
+    {
+        PlayerModel.Instance.e.StopListening<Skill>(EGameEvent.SHORT_CLICK_SKILL, onClickSkill);
+    }
     public void resetHero()
     {
         PopulateRoleList();
@@ -111,5 +115,8 @@ public class CardBagListMng : MonoBehaviour
         }
 
     }
-
+    private void onClickSkill(Skill skill)
+    {
+        SkillInfoView.Instance.ShowSkillInfoView(skill);
+    }
 }

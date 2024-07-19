@@ -43,8 +43,15 @@ public class BattleSystem : MonoBehaviour
         skill.SetActive(false);
         state = EBattleState.START;
         btnBattleFinish.onClick.AddListener(OnClickBtnBattleFinish);
+        PlayerModel.Instance.e.StartListening<Skill>(EGameEvent.SHORT_CLICK_SKILL, onClickSkill);
+
         battleFinish.SetActive(false);
         StartBattle();
+    }
+    void OnDestroy()
+    {
+        PlayerModel.Instance.e.StopListening<Skill>(EGameEvent.SHORT_CLICK_SKILL, onClickSkill);
+
     }
     private void OnClickBtnBattleFinish()
     {
@@ -257,4 +264,8 @@ public class BattleSystem : MonoBehaviour
         return result;
     }
     #endregion
+    private void onClickSkill(Skill skill)
+    {
+        SkillInfoView.Instance.ShowSkillInfoView(skill);
+    }
 }
