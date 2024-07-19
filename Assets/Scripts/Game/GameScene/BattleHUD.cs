@@ -30,8 +30,8 @@ public class BattleHUD : MonoBehaviour
     public void init(EBattleHeroType battleHeroType)
     {
         RoleRender roleRender = role.GetComponent<RoleRender>();
-        roleRender.OnData(HeroAdaptor.transformBattleHeroResp(battleHeroInfo.hero));
         _battleHeroType = battleHeroType;
+        roleRender.OnData(HeroAdaptor.transformBattleHeroResp(battleHeroInfo.hero));
         roleText.text = battleHeroInfo.heroName;
         hpText.text = $"hp:{battleHeroInfo.hp}/{battleHeroInfo.maxHp}";
         hpSlider.maxValue = battleHeroInfo.maxHp;
