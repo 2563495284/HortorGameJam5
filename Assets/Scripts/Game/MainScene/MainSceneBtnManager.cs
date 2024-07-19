@@ -38,6 +38,7 @@ public class MainSceneBtnManager : MonoBehaviour
     {
         MessageManager.Instance.ShowMessage("ShowMessage : OnClickStartBtn");
         Debug.Log("OnClickStartBtn");
+        PlayerModel.Instance.battleType = EBattleType.PVP;
         SceneSwitcher.LoadSceneByIndex(ESceneType.GAMEROLEPREPARESCENE);
     }
     private void OnClickCardBagBtn()
@@ -68,8 +69,8 @@ public class MainSceneBtnManager : MonoBehaviour
     #region PveBtn
     private void OnClickPevBtn()
     {
-        SceneSwitcher.LoadSceneByIndex(ESceneType.GAMEROLEPREPARESCENE);
         PlayerModel.Instance.battleType = EBattleType.PVE;
+        SceneSwitcher.LoadSceneByIndex(ESceneType.GAMEROLEPREPARESCENE);
     }
     #endregion
 }
