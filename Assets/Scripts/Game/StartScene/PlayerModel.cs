@@ -321,7 +321,7 @@ public class PlayerModel : Singleton<PlayerModel>
         Game_GetNextLevelR nextLevelR = resp.GetData();
         if (nextLevelR != null)
         {
-            _pveEnemy = nextLevelR.data.enemy;
+            _pveEnemy = nextLevelR?.data?.enemy;
             Debug.Log("获取下一个敌人信息成功");
             e.TriggerEvent(EGameEvent.NEXT_LEVEL_REFRESH, _pveEnemy);
         }
