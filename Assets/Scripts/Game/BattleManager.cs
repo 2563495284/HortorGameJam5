@@ -122,8 +122,7 @@ public class BattleManager : Singleton<BattleManager>
     }
     public void initHerosState()
     {
-        Debug.LogWarning("<<<<initHerosState<<<<" + playerBattleHeroInfo);
-        if (battleFinishData.player1.id == playerBattleHeroInfo.heroId)
+        if (battleFinishData.player1.id == PlayerModel.Instance.curtHero.id)
         {
             playerBattleHeroInfo.init(battleFinishData.player1);
             enemyBattleHeroInfo.init(battleFinishData.player2);
