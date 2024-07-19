@@ -38,8 +38,18 @@ public class PvpQueueingManager : MonoBehaviour
 
     private void Update()
     {
-        ticker.text = $"{60 - (DateTimeOffset.UtcNow.ToUnixTimeSeconds() - queueingTs)}s";
-        refreshQueueing();
+        var now = DateTimeOffset.UtcNow.ToUnixTimeSeconds() - queueingTs;
+        if (now - queueingTs >= 60)
+        {
+            dequeue();
+            ticker.text = "未能匹配到对手";
+            SceneSwitcher.LoadSceneByIndex(ESceneType.GAMESKILLPREPARESCENE);
+        }
+        else
+        {
+            ticker.text = $"{60 - now}s";
+            refreshQueueing(now);
+        }
     }
 
     private async void OnClickBtnCancel()
@@ -62,7 +72,7 @@ public class PvpQueueingManager : MonoBehaviour
         }
     }
 
-    private async Task refreshQueueing()
+    private async Task refreshQueueing(long now)
     {
         if (queueing == null)
         {
@@ -74,7 +84,6 @@ public class PvpQueueingManager : MonoBehaviour
             return;
         }
 
-        var now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         if (lastQueueResultTs != 0 && now - lastQueueResultTs < 3)
         {
             return;
@@ -140,13 +149,14 @@ public class PvpQueueingManager : MonoBehaviour
     {
         Debug.Log(queueing.battleId);
         // throw new NotImplementedException();
-        var respFinishBattle = await GameService.FinishBattle(new Game_FinishBattle { battleId = queueing.battleId});
+        var respFinishBattle = await GameService.FinishBattle(new Game_FinishBattle { battleId = queueing.battleId });
         Game_FinishBattleR finishBattleR = respFinishBattle.GetData();
         if (finishBattleR == null)
         {
             Debug.Log("so 遗憾...战斗发生了错误");
             return;
         }
+
         BattleManager.Instance.SetBattleManager(finishBattleR.data);
         SceneSwitcher.LoadSceneByIndex(ESceneType.GAMESCENE);
     }
