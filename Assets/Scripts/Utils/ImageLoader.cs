@@ -14,6 +14,11 @@ public class ImageLoader : Singleton<ImageLoader>
     public string skillAttrImagePath = "Images/SkillAttrImage/";
     public Sprite getSkillAttr(string attrName)
     {
+        if (attrName.Length <= 0)
+        {
+            Debug.LogWarning("Image not found at path: " + path);
+            return null;
+        }
         string path = skillAttrImagePath + attrName;
         if (resourceCache.TryGetValue(path, out Object obj))
         {
