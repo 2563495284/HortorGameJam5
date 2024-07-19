@@ -8,23 +8,15 @@ using UnityEngine.UI;
 public class GameRolePrepareSceneBtnManager : MonoBehaviour
 {
     public Button btnComfirm;
-    public Button btnBattleTest;
-
     public Button btnCancel;
 
     private void Start()
     {
-        btnBattleTest.onClick.AddListener(OnClickbtnBattleTest);
         btnComfirm.onClick.AddListener(OnClickBtnConfim);
         btnCancel.onClick.AddListener(OnClickBtnCancel);
     }
 
     private void OnClickBtnConfim()
-    {
-        SceneSwitcher.LoadSceneByIndex(ESceneType.GAMESKILLPREPARESCENE);
-    }
-
-    private void OnClickbtnBattleTest()
     {
         SceneSwitcher.LoadSceneByIndex(ESceneType.GAMESKILLPREPARESCENE);
     }
