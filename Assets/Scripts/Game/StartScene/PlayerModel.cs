@@ -15,6 +15,8 @@ public class EGameEvent
     public const string NEXT_LEVEL_REFRESH = "NEXT_LEVEL_REFRESH";
     public const string SHORT_CLICK_SKILL = "SHORT_CLICK_SKILL";
     public const string LONG_CLICK_SKILL = "LONG_CLICK_SKILL";
+    public const string SHORT_CLICK_ROLE = "SHORT_CLICK_ROLE";
+    public const string LONG_CLICK_ROLE = "LONG_CLICK_ROLE";
 }
 public enum EBattleType
 {

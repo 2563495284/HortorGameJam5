@@ -37,14 +37,13 @@ public class HeroInfoAttrListMng : MonoBehaviour
         btnClose.onClick.AddListener(OnClickBtnClose);
     }
 
-    public void PopulateHeroAttrList()
+    public void PopulateHeroAttrList(Hero hero)
     {
         // Clear existing items (optional)
         foreach (Transform child in heroAttrScrollContent)
         {
             listItemHeroAttrObjectPool.ReturnPooledObject(child.gameObject);
         }
-        Hero hero = PlayerModel.Instance.curtHero;
         if (hero == null) return;
         // Create new items
         List<SHeroAttr> heroAttrs = new List<SHeroAttr>();

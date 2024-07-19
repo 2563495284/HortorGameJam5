@@ -196,7 +196,7 @@ public class CardBagSceneBtnManager : MonoBehaviour
     {
         if (PlayerModel.Instance.curtHero != null)
         {
-            HeroInfoView.Instance.ShowHeroInfoView();
+            HeroInfoView.Instance.ShowHeroInfoView(PlayerModel.Instance.curtHero);
         }
         else
         {

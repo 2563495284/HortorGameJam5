@@ -140,10 +140,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: {fileID: 4318596155740563584}
   btnSkill: {fileID: 4647544124996207740}
-  skillRound: {fileID: 7338688311975587154}
-  skillMpCost: {fileID: 4516582201029201633}
+  skillRound: {fileID: 4516582201029201633}
+  skillMpCost: {fileID: 7338688311975587154}
   skillMainAttrImg: {fileID: 5164963116639864897}
   skillSubAttrImg: {fileID: 4450770734515213784}
+  requiredHoldTime: 1
 --- !u!1 &2691016159219434799
 GameObject:
   m_ObjectHideFlags: 0

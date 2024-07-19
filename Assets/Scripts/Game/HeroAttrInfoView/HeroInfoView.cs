@@ -29,10 +29,11 @@ public class HeroInfoView : Singleton<HeroInfoView>
 
 
 
-    public void ShowHeroInfoView()
+    public void ShowHeroInfoView(Hero hero)
     {
+        if (hero == null) return;
         HeroInfoAttrListMng heroInfoAttrListMng = heroInfoView.GetComponent<HeroInfoAttrListMng>();
-        heroInfoAttrListMng.PopulateHeroAttrList();
+        heroInfoAttrListMng.PopulateHeroAttrList(hero);
         heroInfoView.SetActive(true);
     }
     public void HideHeroInfoView()

@@ -16,10 +16,11 @@ public class MainSceneBtnManager : MonoBehaviour
         startBtn.onClick.AddListener(OnClickStartBtn);
         cardBagBtn.onClick.AddListener(OnClickCardBagBtn);
         PlayerModel.Instance.GetNextPveEnemyInfoAsync();
-        Button pveBtn = pveEnemy.GetComponent<Button>();
-        pveBtn.onClick.AddListener(OnClickPevBtn);
         RefreshPveEnemy(PlayerModel.Instance.pveEnemy);
         PlayerModel.Instance.e.StartListening<Hero>(EGameEvent.NEXT_LEVEL_REFRESH, RefreshPveEnemy);
+        PlayerModel.Instance.e.StartListening<Hero>(EGameEvent.SHORT_CLICK_ROLE, OnClickPevBtn);
+        PlayerModel.Instance.e.StartListening<Hero>(EGameEvent.LONG_CLICK_ROLE, ShowPveEnemyInfo);
+
     }
 
     // Update is called once per frame
@@ -62,12 +63,19 @@ public class MainSceneBtnManager : MonoBehaviour
             pveEnemyLoading.SetActive(true);
         }
     }
+    private void ShowPveEnemyInfo(Hero hero)
+    {
+        if (hero == null) return;
+        HeroInfoView.Instance.ShowHeroInfoView(hero);
+    }
     void OnDestroy()
     {
         PlayerModel.Instance.e.StopListening<Hero>(EGameEvent.NEXT_LEVEL_REFRESH, RefreshPveEnemy);
+        PlayerModel.Instance.e.StopListening<Hero>(EGameEvent.SHORT_CLICK_ROLE, OnClickPevBtn);
+        PlayerModel.Instance.e.StopListening<Hero>(EGameEvent.LONG_CLICK_ROLE, ShowPveEnemyInfo);
     }
     #region PveBtn
-    private void OnClickPevBtn()
+    private void OnClickPevBtn(Hero hero)
     {
         PlayerModel.Instance.battleType = EBattleType.PVE;
         SceneSwitcher.LoadSceneByIndex(ESceneType.GAMEROLEPREPARESCENE);
