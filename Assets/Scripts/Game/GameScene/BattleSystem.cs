@@ -43,14 +43,12 @@ public class BattleSystem : MonoBehaviour
         skill.SetActive(false);
         state = EBattleState.START;
         btnBattleFinish.onClick.AddListener(OnClickBtnBattleFinish);
-        PlayerModel.Instance.e.StartListening<Skill>(EGameEvent.SHORT_CLICK_SKILL, onClickSkill);
 
         battleFinish.SetActive(false);
         StartBattle();
     }
     void OnDestroy()
     {
-        PlayerModel.Instance.e.StopListening<Skill>(EGameEvent.SHORT_CLICK_SKILL, onClickSkill);
 
     }
     private void OnClickBtnBattleFinish()
@@ -166,7 +164,7 @@ public class BattleSystem : MonoBehaviour
         SkillRender skillRender = skill.GetComponent<SkillRender>();
         if (skillRender != null)
         {
-            skillRender.OnData(curtSkill);
+            skillRender.OnData(curtSkill, onClickSkill);
         }
         await PlayCardMove(battleHeroType);
         await UniTask.Delay(uiDelayMs);

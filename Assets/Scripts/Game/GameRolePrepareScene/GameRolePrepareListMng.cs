@@ -15,14 +15,9 @@ public class GameRolePrepareListMng : MonoBehaviour
     {
         PopulateRoleList();
         RefreshRole();
-        PlayerModel.Instance.e.StartListening<Hero>(EGameEvent.LONG_CLICK_ROLE, onShowRoleInfo);
-        PlayerModel.Instance.e.StartListening<Hero>(EGameEvent.SHORT_CLICK_ROLE, onClickRole);
-
     }
     void OnDestroy()
     {
-        PlayerModel.Instance.e.StopListening<Hero>(EGameEvent.LONG_CLICK_ROLE, onShowRoleInfo);
-        PlayerModel.Instance.e.StopListening<Hero>(EGameEvent.SHORT_CLICK_ROLE, onClickRole);
 
     }
     public void PopulateRoleList()
@@ -45,7 +40,7 @@ public class GameRolePrepareListMng : MonoBehaviour
             RoleRender roleRender = listItem.GetComponentInChildren<RoleRender>();
             if (roleRender != null)
             {
-                roleRender.OnData(hero);
+                roleRender.OnData(hero, onClickRole, onShowRoleInfo);
             }
 
         }
@@ -56,7 +51,7 @@ public class GameRolePrepareListMng : MonoBehaviour
         RoleRender roleRender = Role.GetComponentInChildren<RoleRender>();
         if (roleRender != null)
         {
-            roleRender.OnData(hero);
+            roleRender.OnData(hero, onClickRole, onShowRoleInfo);
         }
     }
     public void onClickRole(Hero hero)

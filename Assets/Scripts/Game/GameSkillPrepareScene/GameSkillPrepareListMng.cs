@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UI;
 using UnityEngine.Localization.Settings;
+using DG.Tweening;
 public class GameSkillPrepareListMng : MonoBehaviour
 {
     public Transform skillScrollContent; // 这个是Content对象的Transformm
@@ -12,20 +13,17 @@ public class GameSkillPrepareListMng : MonoBehaviour
 
     public ObjectPool listItemSkillObjectPool;
 
+    public ScrollRect scrollRect;
     void Start()
     {
         PlayerModel.Instance.initHeroAttrList();
         PopulateSkillList();
         PopulateSelectedSkillList();
-        PlayerModel.Instance.e.StartListening<Skill>(EGameEvent.LONG_CLICK_SKILL, onClickSkillShowInfo);
-        PlayerModel.Instance.e.StartListening<Skill>(EGameEvent.SHORT_CLICK_SKILL, onClickSkill);
+
     }
     private void OnDestroy()
     {
-        PlayerModel.Instance.e.StopListening<Skill>(EGameEvent.LONG_CLICK_SKILL, onClickSkillShowInfo);
-        PlayerModel.Instance.e.StopListening<Skill>(EGameEvent.SHORT_CLICK_SKILL, onClickSkill);
     }
-    private HashSet<long> hasSet = new HashSet<long>();
     public void PopulateSkillList()
     {
         // Clear existing items (optional)
@@ -46,7 +44,7 @@ public class GameSkillPrepareListMng : MonoBehaviour
             SkillRender skillRender = listItem.GetComponentInChildren<SkillRender>();
             if (skillRender != null)
             {
-                skillRender.OnData(skill);
+                skillRender.OnData(skill, onClickSkill, onClickSkillShowInfo);
             }
 
         }
@@ -59,11 +57,9 @@ public class GameSkillPrepareListMng : MonoBehaviour
             listItemSkillObjectPool.ReturnPooledObject(child.gameObject);
         }
         List<Skill> listSkills = PlayerModel.Instance.skillList;
-        hasSet.Clear();
         // Create new items
         for (int i = 0; i < listSkills.Count; i++)
         {
-            hasSet.Add(listSkills[i].id);
             Skill skill = listSkills[i];
             GameObject listItem = listItemSkillObjectPool.GetPooledObject();
             listItem.transform.SetParent(selectedSkillScrollContent);
@@ -74,7 +70,7 @@ public class GameSkillPrepareListMng : MonoBehaviour
             SkillRender skillRender = listItem.GetComponentInChildren<SkillRender>();
             if (skillRender != null)
             {
-                skillRender.OnData(skill);
+                skillRender.OnData(skill, onClickSeleCtedSkill);
             }
 
         }
@@ -82,15 +78,15 @@ public class GameSkillPrepareListMng : MonoBehaviour
 
     public void onClickSkill(Skill skill)
     {
-        if (hasSet.Contains(skill.id))
-        {
-            PlayerModel.Instance.removeSkill2List(skill);
-        }
-        else
-        {
-            PlayerModel.Instance.addSkill2List(skill);
-        }
+        PlayerModel.Instance.addSkill2List(skill);
         PopulateSelectedSkillList();
+        scrollRect.DOHorizontalNormalizedPos(1f, 0.5f);
+    }
+    public void onClickSeleCtedSkill(Skill skill)
+    {
+        PlayerModel.Instance.removeSkill2List(skill);
+        PopulateSelectedSkillList();
+
     }
     public void onClickSkillShowInfo(Skill skill)
     {

@@ -17,12 +17,10 @@ public class CardBagListMng : MonoBehaviour
     public GameObject Role;//选择的主角
     void Start()
     {
-        PlayerModel.Instance.e.StartListening<Skill>(EGameEvent.SHORT_CLICK_SKILL, onClickSkill);
         resetHero();
     }
     void OnDestroy()
     {
-        PlayerModel.Instance.e.StopListening<Skill>(EGameEvent.SHORT_CLICK_SKILL, onClickSkill);
     }
     public void resetHero()
     {
@@ -56,16 +54,10 @@ public class CardBagListMng : MonoBehaviour
             btn.onClick.AddListener(() => { onClickRole(hero); });
             // 设置按钮的文本（你可以根据具体需求进行各种设置）
             RoleRender roleRender = listItem.GetComponentInChildren<RoleRender>();
-            roleRender.OnData(hero);
+            roleRender.OnData(hero, onClickRole);
 
             // 你可以在这里添加任何其他的初始化代码，比如添加事件监听器等
         }
-    }
-    public void onClickRole(Hero hero)
-    {
-        PlayerModel.Instance.setCurtHero(hero);
-        RefreshRole();
-        PopulateSkillList();
     }
     #endregion
 
@@ -94,7 +86,7 @@ public class CardBagListMng : MonoBehaviour
             listItem.transform.localScale = new Vector3(0.8f, 0.8f, 1);
             listItem.SetActive(true); // 确保模板项是启用状态
             SkillRender skillRender = listItem.GetComponentInChildren<SkillRender>();
-            skillRender.OnData(skill);
+            skillRender.OnData(skill, onClickSkill);
 
             // 你可以在这里添加任何其他的初始化代码，比如添加事件监听器等
         }
@@ -106,7 +98,7 @@ public class CardBagListMng : MonoBehaviour
         if (hero != null)
         {
             RoleRender roleRender = Role.GetComponentInChildren<RoleRender>();
-            roleRender.OnData(hero);
+            roleRender.OnData(hero, onClickRole);
             Role.SetActive(true);
         }
         else
@@ -114,6 +106,12 @@ public class CardBagListMng : MonoBehaviour
             Role.SetActive(false);
         }
 
+    }
+    public void onClickRole(Hero hero)
+    {
+        PlayerModel.Instance.setCurtHero(hero);
+        RefreshRole();
+        PopulateSkillList();
     }
     private void onClickSkill(Skill skill)
     {

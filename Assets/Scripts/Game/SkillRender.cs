@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -26,8 +24,6 @@ public class SkillRender : MonoBehaviour
     private void Start()
     {
 
-        // 添加事件监听器
-        btnSkill.onClick.AddListener(OnShortPressWrapper);
 
         // 获取按钮的 EventTrigger 组件，如果不存在则添加它
         EventTrigger eventTrigger = btnSkill.gameObject.GetComponent<EventTrigger>();
@@ -44,9 +40,15 @@ public class SkillRender : MonoBehaviour
 
         // 创建 PointerUp 事件
         EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
-        pointerUpEntry.eventID = EventTriggerType.PointerUp;
+        pointerUpEntry.eventID = EventTriggerType.PointerClick;
         pointerUpEntry.callback.AddListener((eventData) => { OnPointerUp((PointerEventData)eventData); });
         eventTrigger.triggers.Add(pointerUpEntry);
+
+        EventTrigger.Entry pointerCancel = new EventTrigger.Entry();
+        pointerCancel.eventID = EventTriggerType.Cancel;
+        pointerCancel.callback.AddListener((eventData) => { OnPointerCancel((PointerEventData)eventData); });
+        eventTrigger.triggers.Add(pointerCancel);
+
     }
     void Update()
     {
@@ -75,35 +77,42 @@ public class SkillRender : MonoBehaviour
         isPointerDown = false;
         if (!isLongPress)
         {
-            btnSkill.onClick.Invoke();
+            OnShortPress();
         }
     }
+    private void OnPointerCancel(PointerEventData eventData)
+    {
+        isPointerDown = false;
+    }
+
 
     private void OnLongPress()
     {
         Debug.Log("Long Press Triggered!");
         // 在这里添加长按事件处理逻辑
         if (_skill == null) return;
-        PlayerModel.Instance.e.TriggerEvent(EGameEvent.LONG_CLICK_SKILL, _skill);
-    }
-
-    private void OnShortPressWrapper()
-    {
-        if (!isLongPress) // 确保事件只在短按时触发
+        if (_longClick != null)
         {
-            OnShortPress();
+            _longClick.Invoke(_skill);
         }
-    }
 
+    }
     private void OnShortPress()
     {
         Debug.Log("Short Press Triggered!");
         // 在这里添加短按事件处理逻辑
         if (_skill == null) return;
-        PlayerModel.Instance.e.TriggerEvent(EGameEvent.SHORT_CLICK_SKILL, _skill);
+        if (_shortClick != null)
+        {
+            _shortClick.Invoke(_skill);
+        }
     }
-    public void OnData(Skill skill)
+    private Action<Skill> _shortClick;
+    private Action<Skill> _longClick;
+    public void OnData(Skill skill, Action<Skill> shortClick = null, Action<Skill> longClick = null)
     {
+        _shortClick = shortClick;
+        _longClick = longClick;
         _skill = skill;
         if (skill != null)
         {

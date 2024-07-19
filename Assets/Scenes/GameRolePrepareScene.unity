@@ -153,7 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnComfirm: {fileID: 2011956224}
-  btnBattleTest: {fileID: 0}
   btnCancel: {fileID: 1436436977406766057}
 --- !u!4 &134847660
 Transform:
@@ -987,8 +986,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -342.0973}
-  m_SizeDelta: {x: 0, y: -684.1945}
+  m_AnchoredPosition: {x: 0, y: -235.02501}
+  m_SizeDelta: {x: 0, y: -470.04996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1975574245
 MonoBehaviour:

@@ -13,7 +13,7 @@ public class RoleRender : MonoBehaviour
     public Text nameText;
 
     public Image natureSkillImg;
-    public float requiredHoldTime = 0.6f; // 长按所需时间
+    public float requiredHoldTime = 0.3f; // 长按所需时间
 
     private bool isPointerDown = false;
     private bool isLongPress = false;
@@ -21,10 +21,6 @@ public class RoleRender : MonoBehaviour
     private Hero _hero;
     private void Start()
     {
-
-        // 添加事件监听器
-        btnRole.onClick.AddListener(OnShortPressWrapper);
-
         // 获取按钮的 EventTrigger 组件，如果不存在则添加它
         EventTrigger eventTrigger = btnRole.gameObject.GetComponent<EventTrigger>();
         if (eventTrigger == null)
@@ -40,9 +36,14 @@ public class RoleRender : MonoBehaviour
 
         // 创建 PointerUp 事件
         EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
-        pointerUpEntry.eventID = EventTriggerType.PointerUp;
+        pointerUpEntry.eventID = EventTriggerType.PointerClick;
         pointerUpEntry.callback.AddListener((eventData) => { OnPointerUp((PointerEventData)eventData); });
         eventTrigger.triggers.Add(pointerUpEntry);
+
+        EventTrigger.Entry pointerCancel = new EventTrigger.Entry();
+        pointerCancel.eventID = EventTriggerType.Cancel;
+        pointerCancel.callback.AddListener((eventData) => { OnPointerCancel((PointerEventData)eventData); });
+        eventTrigger.triggers.Add(pointerCancel);
     }
     void Update()
     {
@@ -71,8 +72,12 @@ public class RoleRender : MonoBehaviour
         isPointerDown = false;
         if (!isLongPress)
         {
-            btnRole.onClick.Invoke();
+            OnShortPress();
         }
+    }
+    private void OnPointerCancel(PointerEventData eventData)
+    {
+        isPointerDown = false;
     }
 
     private void OnLongPress()
@@ -80,14 +85,9 @@ public class RoleRender : MonoBehaviour
         // 在这里添加长按事件处理逻辑
         if (_hero == null) return;
         Debug.Log("Long Press Triggered!");
-        PlayerModel.Instance.e.TriggerEvent(EGameEvent.LONG_CLICK_ROLE, _hero);
-    }
-
-    private void OnShortPressWrapper()
-    {
-        if (!isLongPress) // 确保事件只在短按时触发
+        if (_longClick != null)
         {
-            OnShortPress();
+            _longClick.Invoke(_hero);
         }
     }
 
@@ -96,10 +96,17 @@ public class RoleRender : MonoBehaviour
         // 在这里添加短按事件处理逻辑
         if (_hero == null) return;
         Debug.Log("Short Press Triggered!");
-        PlayerModel.Instance.e.TriggerEvent(EGameEvent.SHORT_CLICK_ROLE, _hero);
+        if (_shortClick != null)
+        {
+            _shortClick.Invoke(_hero);
+        }
     }
-    public void OnData(Hero hero)
+    private Action<Hero> _shortClick;
+    private Action<Hero> _longClick;
+    public void OnData(Hero hero, Action<Hero> shortClick = null, Action<Hero> longClick = null)
     {
+        _shortClick = shortClick;
+        _longClick = longClick;
         _hero = hero;
         if (hero != null)
         {

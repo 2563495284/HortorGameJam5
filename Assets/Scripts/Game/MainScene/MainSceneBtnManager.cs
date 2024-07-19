@@ -20,8 +20,6 @@ public class MainSceneBtnManager : MonoBehaviour
         PlayerModel.Instance.GetNextPveEnemyInfoAsync();
         RefreshPveEnemy(PlayerModel.Instance.PveLevel);
         PlayerModel.Instance.e.StartListening<Level>(EGameEvent.NEXT_LEVEL_REFRESH, RefreshPveEnemy);
-        PlayerModel.Instance.e.StartListening<Hero>(EGameEvent.SHORT_CLICK_ROLE, OnClickPevBtn);
-        PlayerModel.Instance.e.StartListening<Hero>(EGameEvent.LONG_CLICK_ROLE, ShowPveEnemyInfo);
     }
 
     // Update is called once per frame
@@ -58,7 +56,7 @@ public class MainSceneBtnManager : MonoBehaviour
         {
             var hero = level.enemy;
             RoleRender roleRender = pveEnemy.GetComponent<RoleRender>();
-            roleRender.OnData(hero);
+            roleRender.OnData(hero, OnClickPevBtn, ShowPveEnemyInfo);
             levelText.text = $"第 {level.level} 关";
             pveEnemy.SetActive(true);
             pveEnemyLoading.SetActive(false);
@@ -79,8 +77,6 @@ public class MainSceneBtnManager : MonoBehaviour
     void OnDestroy()
     {
         PlayerModel.Instance.e.StopListening<Level>(EGameEvent.NEXT_LEVEL_REFRESH, RefreshPveEnemy);
-        PlayerModel.Instance.e.StopListening<Hero>(EGameEvent.SHORT_CLICK_ROLE, OnClickPevBtn);
-        PlayerModel.Instance.e.StopListening<Hero>(EGameEvent.LONG_CLICK_ROLE, ShowPveEnemyInfo);
     }
 
     #region PveBtn
