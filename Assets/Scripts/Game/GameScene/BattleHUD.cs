@@ -5,6 +5,7 @@ using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 public class BattleHUD : MonoBehaviour
 {
     public Slider hpSlider;
@@ -28,6 +29,8 @@ public class BattleHUD : MonoBehaviour
     }
     public void init(EBattleHeroType battleHeroType)
     {
+        RoleRender roleRender = role.GetComponent<RoleRender>();
+        roleRender.OnData(HeroAdaptor.transformBattleHeroResp(battleHeroInfo.hero));
         _battleHeroType = battleHeroType;
         roleText.text = battleHeroInfo.heroName;
         hpText.text = $"hp:{battleHeroInfo.hp}/{battleHeroInfo.maxHp}";

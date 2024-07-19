@@ -112,7 +112,7 @@ Material:
     - _SpecularHighlights: 1
     - _Speed: 1.04
     - _SrcBlend: 1
-    - _TimeDuration: -4.41
+    - _TimeDuration: -1
     - _TimeScale: 1
     - _UVSec: 0
     - _ZWrite: 1

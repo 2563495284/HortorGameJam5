@@ -45,6 +45,10 @@ public class BattleHeroInfo
     public long maxMp;
     public long mp;
     private BattleFinishHeroResp _hero;
+    public BattleFinishHeroResp hero
+    {
+        get { return _hero; }
+    }
     public RoundState roundState;
 
     public Skill getHeroSkillById(long skillId)
@@ -112,7 +116,7 @@ public class BattleManager : Singleton<BattleManager>
             enemyBattleHeroInfo.roundState = currentRoundSettlement.attackerRoundStates;
         }
         round++;
-        
+
         battleData.skill = skill;
         return battleData;
     }

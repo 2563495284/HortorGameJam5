@@ -2295,17 +2295,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6683721717222403886, guid: 97fb1baa30f694a42b9a48be4bfc1923, type: 3}
   m_PrefabInstance: {fileID: 985218032}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &985218034 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4318596155740563584, guid: 97fb1baa30f694a42b9a48be4bfc1923, type: 3}
-  m_PrefabInstance: {fileID: 985218032}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &989437475
 GameObject:
   m_ObjectHideFlags: 0
@@ -2455,7 +2444,6 @@ MonoBehaviour:
   playerHUD: {fileID: 1890509206}
   enemyHUD: {fileID: 687888159}
   skill: {fileID: 1017901444}
-  skillText: {fileID: 985218034}
   dissolveMaterial: {fileID: 2100000, guid: a19944c6e93054c57af5658c9af4380e, type: 2}
   battleFinish: {fileID: 474671482}
   btnBattleFinish: {fileID: 474671481}
