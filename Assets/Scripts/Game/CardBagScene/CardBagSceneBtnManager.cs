@@ -95,6 +95,11 @@ public class CardBagSceneBtnManager : MonoBehaviour
     private bool isCreateRoleing = false;
     private async void OnClickbtnCreateRole()
     {
+        if (inputFieldCreateRole.text == "")
+        {
+            MessageManager.Instance.ShowMessage("请输入角色名字");
+            return;
+        }
         if (isCreateRoleing) return;
         isCreateRoleing = true;
         bool success = await PlayerModel.Instance.createRole(inputFieldCreateRole.text);
@@ -108,6 +113,11 @@ public class CardBagSceneBtnManager : MonoBehaviour
 
     private async void OnClickDeleteHero()
     {
+        if (inputFieldCreateSkill.text == "")
+        {
+            MessageManager.Instance.ShowMessage("请输入技能名字");
+            return;
+        }
         if (PlayerModel.Instance.curtHero == null)
         {
             return;
