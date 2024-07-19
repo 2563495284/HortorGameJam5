@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnComfirm: {fileID: 2011956224}
   btnCancel: {fileID: 482426021}
+  textBtnComfirm: {fileID: 2011956225}
 --- !u!1 &168208558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,6 +1421,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2011956225 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4671487840131277678, guid: c8e568cd279e27a448eab1a66568625a, type: 3}
+  m_PrefabInstance: {fileID: 2011956222}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2044026164
