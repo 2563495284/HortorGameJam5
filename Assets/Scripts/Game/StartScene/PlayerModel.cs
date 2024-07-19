@@ -283,8 +283,7 @@ public class PlayerModel : Singleton<PlayerModel>
         {
             return false;
         }
-        // BattleManager.Instance.SetBattleManager(finishNextLevelBattleR.data);
-
+        BattleManager.Instance.SetBattleManager(finishNextLevelBattleR.data);
         return true;
     }
     public async UniTask<BattleFinishResp> startBattle(long heroId)
