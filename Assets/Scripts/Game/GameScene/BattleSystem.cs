@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public class BattleSystem : MonoBehaviour
@@ -18,8 +19,6 @@ public class BattleSystem : MonoBehaviour
     private EBattleState state;
 
     public GameObject skill;
-
-    public Text skillText;
     public Material dissolveMaterial;
 
     public GameObject battleFinish;
@@ -136,7 +135,7 @@ public class BattleSystem : MonoBehaviour
     }
     #region  使用技能
     private float _skillTweenHandle;
-    public async UniTask UseSkill(string textPlayer, string textTargetHolder,Skill curtSkill, EBattleHeroType battleHeroType)
+    public async UniTask UseSkill(string textPlayer, string textTargetHolder, Skill curtSkill, EBattleHeroType battleHeroType)
     {
         var uiDelayMs = 800;
         if (curtSkill == null)
@@ -157,8 +156,11 @@ public class BattleSystem : MonoBehaviour
                 dissolveMaterial.SetColor("_EdgeColor", new Color(1, 0.1f, 0, 1));
                 break;
         }
-        skillText.text = curtSkill.name;
-
+        SkillRender skillRender = skill.GetComponent<SkillRender>();
+        if (skillRender != null)
+        {
+            skillRender.OnData(curtSkill);
+        }
         float originalY = 0;
         float originalX = Screen.width;
         skill.transform.position.Set(originalX, originalY, 0f);
