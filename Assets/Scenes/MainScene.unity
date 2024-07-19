@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startBtn: {fileID: 2035053434}
   cardBagBtn: {fileID: 1049268348}
-  levelText: {fileID: 895017069}
+  levelText: {fileID: 719035621}
   pveEnemy: {fileID: 1246508805}
   pveEnemyLoading: {fileID: 27913355}
 --- !u!1 &151350700
@@ -680,17 +680,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &895017069 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4671487840131277678, guid: c8e568cd279e27a448eab1a66568625a, type: 3}
-  m_PrefabInstance: {fileID: 2035053432}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1049268346
 PrefabInstance:
   m_ObjectHideFlags: 0
