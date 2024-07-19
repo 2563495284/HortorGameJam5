@@ -161,13 +161,7 @@ public class BattleSystem : MonoBehaviour
         {
             skillRender.OnData(curtSkill);
         }
-        float originalY = 0;
-        float originalX = Screen.width;
-        skill.transform.position.Set(originalX, originalY, 0f);
-
-        dissolveMaterial.SetFloat("_TimeDuration", 1.3f);
-        skill.SetActive(true);
-        await PlayCardMove();
+        await PlayCardMove(battleHeroType);
         await UniTask.Delay(uiDelayMs);
         await PlayCardDissolve();
         _skillTweenHandle = 0f;
@@ -192,12 +186,31 @@ public class BattleSystem : MonoBehaviour
             });
         return tcs.Task;
     }
-    private UniTask PlayCardMove()
+    private UniTask PlayCardMove(EBattleHeroType battleHeroType)
     {
         float originalY = 0;
         float originalX = Screen.width;
+        float offsetH = 300f;
+        switch (battleHeroType)
+        {
+            case EBattleHeroType.PLAYER:
+                originalY = 0;
+                originalX = Screen.width;
+                skill.transform.position.Set(originalX, originalY, 0f);
+                offsetH = 300f;
+                break;
+            case EBattleHeroType.ENEMY:
+                originalY = 0;
+                originalX = -Screen.width;
+                skill.transform.position.Set(originalX, originalY, 0f);
+                offsetH = -300f;
+                break;
+        }
+
+        dissolveMaterial.SetFloat("_TimeDuration", 1.3f);
+        skill.SetActive(true);
         Vector2 startPos = skill.transform.TransformPoint(new Vector2(originalX, originalY));
-        Vector2 midPos = skill.transform.TransformPoint(new Vector2(originalX / 2, originalY + 300f));
+        Vector2 midPos = skill.transform.TransformPoint(new Vector2(originalX / 2, originalY + offsetH));
         Vector2 endPos = skill.transform.TransformPoint(new Vector2(0f, 0f));
         List<Vector2> cp = new List<Vector2>
         {
