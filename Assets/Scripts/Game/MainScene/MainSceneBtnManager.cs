@@ -37,7 +37,6 @@ public class MainSceneBtnManager : MonoBehaviour
 
     private void OnClickStartBtn()
     {
-        MessageManager.Instance.ShowMessage("ShowMessage : OnClickStartBtn");
         Debug.Log("OnClickStartBtn");
         PlayerModel.Instance.battleType = EBattleType.PVP;
         SceneSwitcher.LoadSceneByIndex(ESceneType.GAMEROLEPREPARESCENE);
@@ -45,7 +44,6 @@ public class MainSceneBtnManager : MonoBehaviour
 
     private void OnClickCardBagBtn()
     {
-        MessageManager.Instance.ShowMessage("ShowMessage : OnClickCardBagBtn");
         Debug.Log("OnClickCardBagBtn");
         SceneSwitcher.LoadSceneByIndex(ESceneType.CARDBAGSCENE);
     }

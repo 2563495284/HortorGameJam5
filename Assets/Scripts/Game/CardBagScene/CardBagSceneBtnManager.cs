@@ -92,7 +92,6 @@ public class CardBagSceneBtnManager : MonoBehaviour
 
     private void OnClickCardBagBackBtn()
     {
-        MessageManager.Instance.ShowMessage("ShowMessage : OnClickStartBtn");
         Debug.Log("OnClickStartBtn");
         SceneSwitcher.LoadSceneByIndex(ESceneType.MAINSCENE);
     }
@@ -132,15 +131,16 @@ public class CardBagSceneBtnManager : MonoBehaviour
 
     private async void OnClickbtnCreateRole()
     {
+        string input = inputFieldCreateRole.text;
         if (inputFieldCreateRole.text == "")
         {
-            MessageManager.Instance.ShowMessage("请输入角色名字");
-            return;
+            var playceholder = createRolePanel.GetComponentInChildren<InputField>().placeholder.GetComponentInChildren<Text>();
+            input = playceholder.text;
         }
 
         if (isCreateRoleing) return;
         isCreateRoleing = true;
-        bool success = await PlayerModel.Instance.createRole(inputFieldCreateRole.text);
+        bool success = await PlayerModel.Instance.createRole(input);
         if (success)
         {
             cardBagListMng.PopulateRoleList();
