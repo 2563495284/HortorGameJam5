@@ -7,99 +7,87 @@ using System.Threading.Tasks;
 using Hortor.O4e.Rpc;
 using Cysharp.Threading.Tasks;
 using System;
+using System.Linq;
 using Unity.VisualScripting;
 using TMPro.Examples;
 using Unity.Burst.Intrinsics;
+
 public class EGameEvent
 {
     public const string NEXT_LEVEL_REFRESH = "NEXT_LEVEL_REFRESH";
 }
+
 public enum EBattleType
 {
     EMPTY,
     PVE,
     PVP,
     SELF,
-
 }
+
 public class PlayerModel : Singleton<PlayerModel>
 {
     GDUser _user;
+
     public GDUser user
     {
-        get
-        {
-            return _user;
-        }
-        set
-        {
-            _user = value;
-        }
+        get { return _user; }
+        set { _user = value; }
     }
+
     GDRole _role;
+
     public GDRole role
     {
-        get
-        {
-            return _role;
-        }
-        set
-        {
-            _role = value;
-        }
+        get { return _role; }
+        set { _role = value; }
     }
+
     private Level _pveLevel;
+
     public Level PveLevel
     {
-        get
-        {
-            return _pveLevel;
-        }
-        private set
-        {
-            _pveLevel = value;
-        }
+        get { return _pveLevel; }
+        private set { _pveLevel = value; }
     }
+
     Hero _curtSelectedHero;
+
     public Hero curtHero
     {
         get { return _curtSelectedHero; }
         set { _curtSelectedHero = value; }
     }
+
     private EBattleType _battleType = EBattleType.EMPTY;
+
     public EBattleType battleType
     {
-        set
-        {
-            _battleType = value;
-        }
-        get
-        {
-            return _battleType;
-        }
+        set { _battleType = value; }
+        get { return _battleType; }
     }
+
     public List<Skill> _skills;
+
     public List<Skill> skillList
     {
         get { return _skills; }
     }
+
     CustomDelegateDispatcher _e = new CustomDelegateDispatcher();
+
     public CustomDelegateDispatcher e
     {
-        get
-        {
-            return _e;
-        }
-        private set
-        {
-            _e = value;
-        }
+        get { return _e; }
+        private set { _e = value; }
     }
+
     private void Awake()
     {
         user = new GDUser();
         DontDestroyOnLoad(this.gameObject);
     }
+
     // Use this for initialization
     void Start()
     {
@@ -108,13 +96,14 @@ public class PlayerModel : Singleton<PlayerModel>
     // Update is called once per frame
     void Update()
     {
-
     }
+
     protected override void OnDestroy()
     {
         // dispatcher.des
         base.OnDestroy();
     }
+
     public void setCurtHero(Hero hero)
     {
         curtHero = hero;
@@ -137,29 +126,36 @@ public class PlayerModel : Singleton<PlayerModel>
             uid = await fetchNewUid();
             PlayerPrefs.SetString(UidPrefKey, uid);
         }
-        ReceiveMsg<Login_AuthUserR> resp1 = await LoginService.AuthUser(new Login_AuthUser { platform = "debug", info = "{\"id\":\"" + uid + "\"}" });
+
+        ReceiveMsg<Login_AuthUserR> resp1 = await LoginService.AuthUser(new Login_AuthUser
+            { platform = "debug", info = "{\"id\":\"" + uid + "\"}" });
         if (resp1.code != 0)
         {
             Debug.LogError(resp1.error);
             return;
         }
-        var ok = await Sender.Default.Connect(new ConnectOptions { token = resp1.GetData().roleToken, encoding = Encoding.X });
+
+        var ok = await Sender.Default.Connect(new ConnectOptions
+            { token = resp1.GetData().roleToken, encoding = Encoding.X });
         if (!ok)
         {
             Debug.LogError("连接失败");
             return;
         }
+
         ReceiveMsg<RespSync> resp2 = await GameService.RoleLogin(new Game_RoleLogin { });
         if (resp2.code != 0)
         {
             Debug.LogError(resp2.error);
             return;
         }
+
         Debug.Log("登录成功");
 
         role = resp2.GetData().role;
         this.init();
     }
+
     public async UniTask<string> fetchNewUid()
     {
         ReceiveMsg<Login_CreateNewUidR> resp = await LoginService.CreateNewUid(new Login_CreateNewUid() { });
@@ -167,9 +163,11 @@ public class PlayerModel : Singleton<PlayerModel>
         {
             return "111";
         }
+
         Debug.Log(resp.GetData().data);
         return resp.GetData().data;
     }
+
     public void init()
     {
         _skills = new List<Skill>();
@@ -178,8 +176,8 @@ public class PlayerModel : Singleton<PlayerModel>
             curtHero = role.heros[0];
             GetNextPveEnemyInfoAsync();
         }
-        
     }
+
     public async UniTask<bool> createRole(string roleName)
     {
         var resp = await GameService.CreateHero(new Game_CreateHero { name = roleName });
@@ -197,6 +195,7 @@ public class PlayerModel : Singleton<PlayerModel>
             return false;
         }
     }
+
     public async UniTask<bool> deleteHero(long heroId)
     {
         var resp = await GameService.DeleteHero(new Game_DeleteHero() { heroId = heroId });
@@ -220,6 +219,7 @@ public class PlayerModel : Singleton<PlayerModel>
                 roleHeros.RemoveAt(removeI);
                 role.heros = roleHeros;
             }
+
             return true;
         }
         else
@@ -228,11 +228,15 @@ public class PlayerModel : Singleton<PlayerModel>
             return false;
         }
     }
+
     public void initHeroAttrList()
     {
         _skills.Clear();
-        _skills = curtHero.battleSkills;
+        Skill[] tmp = new Skill[curtHero.battleSkills.Count];
+        curtHero.battleSkills.CopyTo(tmp);
+        _skills = tmp.ToList();
     }
+
     public async UniTask<bool> createSkill(string skillName)
     {
         if (curtHero.skills == null)
@@ -240,6 +244,7 @@ public class PlayerModel : Singleton<PlayerModel>
             MessageManager.Instance.ShowMessage("没有角色，请先创建角色");
             return false;
         }
+
         var resp = await GameService.CreateSkill(new Game_CreateSkill { heroId = curtHero.id, desc = skillName });
         Game_CreateSkillR roleData = resp.GetData();
         if (roleData != null)
@@ -255,14 +260,17 @@ public class PlayerModel : Singleton<PlayerModel>
             return false;
         }
     }
+
     public void addSkill2List(Skill skill)
     {
         _skills.Add(skill);
     }
+
     public void removeSkill2List(Skill skill)
     {
         _skills.Remove(skill);
     }
+
     public async UniTask<bool> setRoleBattleSkills(long heroId, List<long> skillIds)
     {
         var resp = await GameService.SetBattleSkills(new Game_SetBattleSkills { heroId = heroId, skillIds = skillIds });
@@ -276,6 +284,7 @@ public class PlayerModel : Singleton<PlayerModel>
             return false;
         }
     }
+
     public async UniTask<bool> StartPevBattleAsync(long roleId)
     {
         var resp = await GameService.FinishNextLevelBattle(new Game_FinishNextLevelBattle { heroId = roleId });
@@ -284,13 +293,14 @@ public class PlayerModel : Singleton<PlayerModel>
         {
             return false;
         }
+
         BattleManager.Instance.SetBattleManager(finishNextLevelBattleR.data);
         _pveLevel = null;
         return true;
     }
+
     public async UniTask<BattleFinishResp> startBattle(long heroId)
     {
-
         var respStartBattle = await GameService.StartBattle(new Game_StartBattle
         {
             roleId1 = role.id,
@@ -304,12 +314,14 @@ public class PlayerModel : Singleton<PlayerModel>
             return null;
         }
 
-        var respFinishBattle = await GameService.FinishBattle(new Game_FinishBattle { battleId = battleSkillsR.data.id });
+        var respFinishBattle =
+            await GameService.FinishBattle(new Game_FinishBattle { battleId = battleSkillsR.data.id });
         Game_FinishBattleR finishBattleR = respFinishBattle.GetData();
         if (finishBattleR == null)
         {
             return null;
         }
+
         BattleManager.Instance.SetBattleManager(finishBattleR.data);
         return finishBattleR.data;
     }
@@ -328,4 +340,3 @@ public class PlayerModel : Singleton<PlayerModel>
         }
     }
 }
-
