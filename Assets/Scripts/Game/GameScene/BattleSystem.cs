@@ -142,10 +142,11 @@ public class BattleSystem : MonoBehaviour
     private float _skillTweenHandle;
     public async UniTask UseSkill(string textPlayer, string textTargetHolder, Skill curtSkill, EBattleHeroType battleHeroType)
     {
+        var round = $"回合 {battleData.round}";
         var uiDelayMs = 800;
         if (curtSkill == null)
         {
-            dialogueText.text = $"{textPlayer}说 : 我魔法值不足";
+            dialogueText.text = $"{round} {textPlayer}说 : 我魔法值不足";
             Debug.Log(dialogueText.text);
             await UniTask.Delay(uiDelayMs);
             return;
@@ -153,11 +154,11 @@ public class BattleSystem : MonoBehaviour
         switch (battleHeroType)
         {
             case EBattleHeroType.PLAYER:
-                dialogueText.text = $"{curtSkill.text.Replace("%s", textTargetHolder)}";
+                dialogueText.text = $"{round} {curtSkill.text.Replace("%s", textTargetHolder)}";
                 dissolveMaterial.SetColor("_EdgeColor", new Color(0, 0.1f, 1, 1));
                 break;
             case EBattleHeroType.ENEMY:
-                dialogueText.text = $"{curtSkill.text.Replace("%s", textTargetHolder)}";
+                dialogueText.text = $"{round} {curtSkill.text.Replace("%s", textTargetHolder)}";
                 dissolveMaterial.SetColor("_EdgeColor", new Color(1, 0.1f, 0, 1));
                 break;
         }

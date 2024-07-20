@@ -1,33 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public enum EBattleHeroType
 {
     PLAYER,
     ENEMY
 }
+
 public struct SBattleData
 {
     public EBattleState battleState;
+    public int round;
     public Skill skill;
     public string skillHeroName;
     public string textTargetHolder;
-
 }
+
 public class BattleHeroInfo
 {
     private EBattleHeroType _battleHeroType;
+
     public EBattleHeroType battleHeroType
     {
-        get
-        {
-            return _battleHeroType;
-        }
+        get { return _battleHeroType; }
     }
+
     public BattleHeroInfo(EBattleHeroType eBattleHeroType)
     {
         _battleHeroType = eBattleHeroType;
     }
+
     public void init(BattleFinishHeroResp hero)
     {
         _hero = hero;
@@ -38,6 +41,7 @@ public class BattleHeroInfo
         heroName = hero.name;
         heroId = hero.id;
     }
+
     public string heroName;
     public long heroId;
     public long maxHp;
@@ -45,18 +49,20 @@ public class BattleHeroInfo
     public long maxMp;
     public long mp;
     private BattleFinishHeroResp _hero;
+
     public BattleFinishHeroResp hero
     {
         get { return _hero; }
     }
+
     public RoundState roundState;
 
     public Skill getHeroSkillById(long skillId)
     {
         return _hero.battleSkills.Find(skill => skill.id == skillId);
     }
-
 }
+
 public class BattleManager : Singleton<BattleManager>
 {
     public BattleFinishResp battleFinishData;
@@ -66,23 +72,27 @@ public class BattleManager : Singleton<BattleManager>
     public BattleHeroInfo enemyBattleHeroInfo = new BattleHeroInfo(EBattleHeroType.ENEMY);
 
     public int round;
+
     protected override void OnDestroy()
     {
         base.OnDestroy();
     }
+
     public void SetBattleManager(BattleFinishResp data)
     {
         battleFinishData = data;
     }
+
     public void InitGame()
     {
         round = 0;
         initHerosState();
-
     }
+
     public SBattleData getNextRoundState()
     {
         SBattleData battleData = new SBattleData();
+        battleData.round = round + 1;
         Skill skill;
         if (round >= battleFinishData.roundSettlements.Count)
         {
@@ -94,8 +104,10 @@ public class BattleManager : Singleton<BattleManager>
             {
                 battleData.battleState = EBattleState.LOST;
             }
+
             return battleData;
         }
+
         currentRoundSettlement = battleFinishData.roundSettlements[round];
         if (currentRoundSettlement.attackerRoundStates.heroId == playerBattleHeroInfo.heroId)
         {
@@ -115,11 +127,13 @@ public class BattleManager : Singleton<BattleManager>
             playerBattleHeroInfo.roundState = currentRoundSettlement.defenderRoundStates;
             enemyBattleHeroInfo.roundState = currentRoundSettlement.attackerRoundStates;
         }
+
         round++;
 
         battleData.skill = skill;
         return battleData;
     }
+
     public void initHerosState()
     {
         if (battleFinishData.player1.id == PlayerModel.Instance.curtHero.id)
@@ -133,6 +147,7 @@ public class BattleManager : Singleton<BattleManager>
             enemyBattleHeroInfo.init(battleFinishData.player1);
         }
     }
+
     public BattleHeroInfo getBattleHeroInfo(EBattleHeroType battleHeroType)
     {
         if (battleHeroType == EBattleHeroType.PLAYER)
@@ -145,4 +160,3 @@ public class BattleManager : Singleton<BattleManager>
         }
     }
 }
-
