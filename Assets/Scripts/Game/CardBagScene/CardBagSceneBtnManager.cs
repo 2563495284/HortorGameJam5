@@ -11,7 +11,6 @@ using UnityEngine.UI;
 
 public class CardBagSceneBtnManager : MonoBehaviour
 {
-
     public Button btnCardBagBack;
 
     public Button btnShowCreateRole;
@@ -20,21 +19,27 @@ public class CardBagSceneBtnManager : MonoBehaviour
     public Button btnDeleteHero;
 
     #region 角色创建界面
+
     public Button btnCreateRoleClose;
     public Button btnCreateRole;
     public InputField inputFieldCreateRole;
     public GameObject createRolePanel;
+
     #endregion
 
     #region 技能创建界面
+
     public Button btnCreateSkillClose;
     public Button btnCreateSkill;
     public InputField inputFieldCreateSkill;
     public GameObject createSkillPanel;
+
     #endregion
 
     public GameObject skillScrollView;
+
     public GameObject roleScrollView;
+
     // Start is called before the first frame update
     public CardBagListMng cardBagListMng;
 
@@ -65,6 +70,11 @@ public class CardBagSceneBtnManager : MonoBehaviour
         createSkillPanel.SetActive(false);
         InitSkillScrollView();
 
+        // 新玩家直接创建英雄
+        if (PlayerModel.Instance.curtHero == null)
+        {
+            OnClickBtnCreateRole();
+        }
     }
 
     // Update is called once per frame
@@ -77,26 +87,49 @@ public class CardBagSceneBtnManager : MonoBehaviour
         }
         Loading.SetActive(isCreateSkilling || isCreateRoleing);
     }
+
     #region 卡牌库
+
     private void OnClickCardBagBackBtn()
     {
         MessageManager.Instance.ShowMessage("ShowMessage : OnClickStartBtn");
         Debug.Log("OnClickStartBtn");
         SceneSwitcher.LoadSceneByIndex(ESceneType.MAINSCENE);
     }
+
     #endregion
 
     #region 创建角色
+
+    private void modifyCreateRolePanelPlaceholder(string text)
+    {
+        var playceholder = createRolePanel.GetComponentInChildren<InputField>().placeholder
+            .GetComponentInChildren<Text>();
+        Debug.Log(playceholder.text);
+        playceholder.text = text;
+    }
+
     private void OnClickBtnCreateRole()
     {
+        if (PlayerModel.Instance.curtHero != null)
+        {
+            modifyCreateRolePanelPlaceholder("英雄名");
+        }
+        else
+        {
+            modifyCreateRolePanelPlaceholder("两年白嫖吕布、只练手的肥鹅、only you 唐僧、我那天天打游戏的男朋友...");
+        }
         createRolePanel.SetActive(true);
     }
+
     private void OnClickbtnCreateRoleClose()
     {
         if (isCreateRoleing) return;
         createRolePanel.SetActive(false);
     }
+
     private bool isCreateRoleing = false;
+
     private async void OnClickbtnCreateRole()
     {
         if (inputFieldCreateRole.text == "")
@@ -104,6 +137,7 @@ public class CardBagSceneBtnManager : MonoBehaviour
             MessageManager.Instance.ShowMessage("请输入角色名字");
             return;
         }
+
         if (isCreateRoleing) return;
         isCreateRoleing = true;
         bool success = await PlayerModel.Instance.createRole(inputFieldCreateRole.text);
@@ -111,6 +145,7 @@ public class CardBagSceneBtnManager : MonoBehaviour
         {
             cardBagListMng.PopulateRoleList();
         }
+
         createRolePanel.SetActive(false);
         isCreateRoleing = false;
     }
@@ -121,25 +156,31 @@ public class CardBagSceneBtnManager : MonoBehaviour
         {
             return;
         }
+
         var curHeroId = PlayerModel.Instance.curtHero.id;
         if (await PlayerModel.Instance.deleteHero(curHeroId))
         {
             cardBagListMng.resetHero();
         }
     }
+
     #endregion
 
     #region 创建技能
+
     private void OnClickBtnCreateSkill()
     {
         createSkillPanel.SetActive(true);
     }
+
     private void OnClickbtnCreateSkillClose()
     {
         if (isCreateSkilling) return;
         createSkillPanel.SetActive(false);
     }
+
     private bool isCreateSkilling = false;
+
     private async void OnClickbtnCreateSkill()
     {
         if (inputFieldCreateSkill.text == "")
@@ -147,6 +188,7 @@ public class CardBagSceneBtnManager : MonoBehaviour
             MessageManager.Instance.ShowMessage("请输入技能名字");
             return;
         }
+
         if (isCreateSkilling) return;
         isCreateSkilling = true;
 
@@ -155,18 +197,22 @@ public class CardBagSceneBtnManager : MonoBehaviour
         {
             cardBagListMng.PopulateSkillList();
         }
+
         createSkillPanel.SetActive(false);
         isCreateSkilling = false;
     }
+
     #endregion
 
     #region 技能列表
+
     private RectTransform _skillScrollViewRectTransform;
     private float _skillScrollViewHeight;
     private RectTransform _btnShowSkillRectTransform;
     private float _btnSkillScrollViewHeight;
     private RectTransform _roleScrollViewRectTransform;
     private bool _btnSkillScrollViewIsShow;
+
     void InitSkillScrollView()
     {
         _skillScrollViewRectTransform = skillScrollView.GetComponent<RectTransform>();
@@ -182,8 +228,8 @@ public class CardBagSceneBtnManager : MonoBehaviour
 
         roleScrollView.SetActive(true);
         skillScrollView.SetActive(false);
-
     }
+
     void OnClickShowSkillScrollView()
     {
         if (_btnSkillScrollViewIsShow)
@@ -201,6 +247,7 @@ public class CardBagSceneBtnManager : MonoBehaviour
             btnText.text = "展示技能";
         }
     }
+
     void OnClickShowHerAttrView()
     {
         if (PlayerModel.Instance.curtHero != null)
@@ -212,6 +259,7 @@ public class CardBagSceneBtnManager : MonoBehaviour
             MessageManager.Instance.ShowMessage("请选择角色！");
         }
     }
+
     private void ShowSkillScrollView()
     {
         _btnShowSkillRectTransform.DOAnchorPosY(_btnSkillScrollViewHeight - _skillScrollViewHeight, 0.3f, false);
@@ -220,13 +268,10 @@ public class CardBagSceneBtnManager : MonoBehaviour
             vec2 => _skillScrollViewRectTransform.offsetMin = vec2,
             new Vector2(0.0f, _btnSkillScrollViewHeight),
             0.3f
-            ).OnComplete(() =>
-    {
-        roleScrollView.SetActive(false);
-    });
+        ).OnComplete(() => { roleScrollView.SetActive(false); });
         skillScrollView.SetActive(true);
-
     }
+
     private void HideSkillScrollView()
     {
         _btnShowSkillRectTransform.DOAnchorPosY(0.0f, 0.3f, false);
@@ -236,11 +281,9 @@ public class CardBagSceneBtnManager : MonoBehaviour
             vec2 => _skillScrollViewRectTransform.offsetMin = vec2,
             new Vector2(0.0f, _skillScrollViewHeight - _btnSkillScrollViewHeight),
             0.3f
-            ).OnComplete(() =>
-        {
-            skillScrollView.SetActive(false);
-        });
+        ).OnComplete(() => { skillScrollView.SetActive(false); });
         roleScrollView.SetActive(true);
     }
+
     #endregion
 }

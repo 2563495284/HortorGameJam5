@@ -37,6 +37,7 @@ public class MessageManager : Singleton<MessageManager>
 
     public void ShowMessage(string message)
     {
+        return;
         if (messageText && messagePanel)
         {
             messageText.text = message;
