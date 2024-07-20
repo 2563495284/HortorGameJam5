@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class RoleRender : MonoBehaviour
+public class RoleRender : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 {
     public Button btnRole;
 
@@ -19,7 +19,6 @@ public class RoleRender : MonoBehaviour
     public float dragThreshold = 10f;     // 拖动阈值（像素）
 
     private bool isPointerDown = false;
-    private bool isLongPress = false;
     private float pointerDownTimer = 0;
     private Hero _hero;
     private void Start()
