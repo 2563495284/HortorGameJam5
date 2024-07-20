@@ -110,11 +110,11 @@ public class CardBagSceneBtnManager : MonoBehaviour
     {
         if (PlayerModel.Instance.curtHero != null)
         {
-            modifyCreateRolePanelPlaceholder("请输入英雄名");
+            modifyCreateRolePanelPlaceholder("英雄名");
         }
         else
         {
-            modifyCreateRolePanelPlaceholder("请创建你的第一名英雄：两年白嫖吕布、只练手的肥鹅、碎碎念李清照、我那天天打游戏的男朋友...");
+            modifyCreateRolePanelPlaceholder("两年白嫖吕布、只练手的肥鹅、only you 唐僧、我那天天打游戏的男朋友...");
         }
         createRolePanel.SetActive(true);
     }
