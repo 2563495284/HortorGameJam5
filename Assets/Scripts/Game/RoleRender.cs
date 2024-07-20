@@ -13,7 +13,10 @@ public class RoleRender : MonoBehaviour
     public Text nameText;
 
     public Image natureSkillImg;
-    public float requiredHoldTime = 0.3f; // 长按所需时间
+    public float longPressThreshold = 0.1f; // 时间阈值（秒）
+
+    private Vector2 initialPointerPosition;
+    public float dragThreshold = 10f;     // 拖动阈值（像素）
 
     private bool isPointerDown = false;
     private bool isLongPress = false;
@@ -21,88 +24,80 @@ public class RoleRender : MonoBehaviour
     private Hero _hero;
     private void Start()
     {
-        // 获取按钮的 EventTrigger 组件，如果不存在则添加它
-        EventTrigger eventTrigger = btnRole.gameObject.GetComponent<EventTrigger>();
-        if (eventTrigger == null)
-        {
-            eventTrigger = btnRole.gameObject.AddComponent<EventTrigger>();
-        }
+        // // 获取按钮的 EventTrigger 组件，如果不存在则添加它
+        // EventTrigger eventTrigger = btnRole.gameObject.GetComponent<EventTrigger>();
+        // if (eventTrigger == null)
+        // {
+        //     eventTrigger = btnRole.gameObject.AddComponent<EventTrigger>();
+        // }
 
-        // 创建 PointerDown 事件
-        EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
-        pointerDownEntry.eventID = EventTriggerType.PointerDown;
-        pointerDownEntry.callback.AddListener((eventData) => { OnPointerDown((PointerEventData)eventData); });
-        eventTrigger.triggers.Add(pointerDownEntry);
+        // // 创建 PointerDown 事件
+        // EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
+        // pointerDownEntry.eventID = EventTriggerType.PointerDown;
+        // pointerDownEntry.callback.AddListener((eventData) => { OnPointerDown((PointerEventData)eventData); });
+        // eventTrigger.triggers.Add(pointerDownEntry);
 
-        // 创建 PointerUp 事件
-        EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
-        pointerUpEntry.eventID = EventTriggerType.PointerClick;
-        pointerUpEntry.callback.AddListener((eventData) => { OnPointerUp((PointerEventData)eventData); });
-        eventTrigger.triggers.Add(pointerUpEntry);
+        // // 创建 PointerUp 事件
+        // EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
+        // pointerUpEntry.eventID = EventTriggerType.PointerClick;
+        // pointerUpEntry.callback.AddListener((eventData) => { OnPointerUp((PointerEventData)eventData); });
+        // eventTrigger.triggers.Add(pointerUpEntry);
 
-        EventTrigger.Entry pointerCancel = new EventTrigger.Entry();
-        pointerCancel.eventID = EventTriggerType.Cancel;
-        pointerCancel.callback.AddListener((eventData) => { OnPointerCancel((PointerEventData)eventData); });
-        eventTrigger.triggers.Add(pointerCancel);
+        // EventTrigger.Entry pointerCancel = new EventTrigger.Entry();
+        // pointerCancel.eventID = EventTriggerType.Cancel;
+        // pointerCancel.callback.AddListener((eventData) => { OnPointerCancel((PointerEventData)eventData); });
+        // eventTrigger.triggers.Add(pointerCancel);
     }
-    void Update()
+    private void Update()
     {
         if (isPointerDown)
         {
             pointerDownTimer += Time.deltaTime;
-            if (pointerDownTimer >= requiredHoldTime)
+            if (pointerDownTimer >= longPressThreshold)
             {
-                if (!isLongPress)
+                // 成功触发长按
+                if (_longClick != null)
                 {
-                    isLongPress = true;
-                    OnLongPress();
+                    _longClick.Invoke(_hero);
                 }
+                Reset();
             }
         }
     }
-    private void OnPointerDown(PointerEventData eventData)
+
+    public void OnPointerDown(PointerEventData eventData)
     {
         isPointerDown = true;
-        pointerDownTimer = 0;
-        isLongPress = false;
+        pointerDownTimer = 0f;
+        initialPointerPosition = eventData.position;
     }
 
-    private void OnPointerUp(PointerEventData eventData)
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (isPointerDown)
+        {
+            float distance = Vector2.Distance(initialPointerPosition, eventData.position);
+            if (pointerDownTimer < longPressThreshold && distance < dragThreshold)
+            {
+                // 成功触发短按
+                if (_shortClick != null)
+                {
+                    _shortClick.Invoke(_hero);
+                }
+            }
+        }
+        Reset();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Reset();
+    }
+
+    private void Reset()
     {
         isPointerDown = false;
-        if (!isLongPress)
-        {
-            OnShortPress();
-        }
-    }
-    private void OnPointerCancel(PointerEventData eventData)
-    {
-        isPointerDown = false;
-        pointerDownTimer = 0;
-        isLongPress = false;
-    }
-
-
-    private void OnLongPress()
-    {
-        // 在这里添加长按事件处理逻辑
-        if (_hero == null) return;
-        Debug.Log("Long Press Triggered!");
-        if (_longClick != null)
-        {
-            _longClick.Invoke(_hero);
-        }
-    }
-
-    private void OnShortPress()
-    {
-        // 在这里添加短按事件处理逻辑
-        if (_hero == null) return;
-        Debug.Log("Short Press Triggered!");
-        if (_shortClick != null)
-        {
-            _shortClick.Invoke(_hero);
-        }
+        pointerDownTimer = 0f;
     }
     private Action<Hero> _shortClick;
     private Action<Hero> _longClick;
