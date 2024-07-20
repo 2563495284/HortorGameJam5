@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -109,6 +110,7 @@ public class SkillRender : MonoBehaviour
     }
     private Action<Skill> _shortClick;
     private Action<Skill> _longClick;
+
     public void OnData(Skill skill, Action<Skill> shortClick = null, Action<Skill> longClick = null)
     {
         _shortClick = shortClick;
@@ -119,7 +121,13 @@ public class SkillRender : MonoBehaviour
             skillName.text = skill.name;
             skillMpCost.text = $"{skill.mp}";
             long maxRound = 0;
-            skill.mechanics.ForEach(mechanic => { if (mechanic.round > maxRound) { maxRound = mechanic.round; } });
+            skill.mechanics.ForEach(mechanic =>
+            {
+                if (mechanic.round > maxRound)
+                {
+                    maxRound = mechanic.round;
+                }
+            });
             if (maxRound > 0)
             {
                 skillRound.text = $"{maxRound}";
@@ -129,18 +137,27 @@ public class SkillRender : MonoBehaviour
                 skillRound.text = "0";
             }
         }
-        if (skill.attrSummary.Count >= 2)
+
+        if (skill.attrSummary.Count > 0)
         {
             Sprite mainSprite = ImageLoader.Instance.getSkillAttr(skill.attrSummary[0]);
-            Sprite subSprite = ImageLoader.Instance.getSkillAttr(skill.attrSummary[1]);
             if (mainSprite)
             {
 
                 skillMainAttrImg.sprite = mainSprite;
             }
+        }
+
+        if (skill.attrSummary.Count > 1)
+        {
+            Sprite subSprite = ImageLoader.Instance.getSkillAttr(skill.attrSummary[1]);
             if (subSprite)
             {
                 skillSubAttrImg.sprite = subSprite;
+                var tmpColor = skillSubAttrImg.color;
+                tmpColor.a = 255f;
+                Debug.Log(tmpColor);
+                skillSubAttrImg.color = tmpColor;
             }
         }
     }
