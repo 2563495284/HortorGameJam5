@@ -176,8 +176,9 @@ public class PlayerModel : Singleton<PlayerModel>
         if (role.heros.Count > 0)
         {
             curtHero = role.heros[0];
+            GetNextPveEnemyInfoAsync();
         }
-
+        
     }
     public async UniTask<bool> createRole(string roleName)
     {
@@ -244,7 +245,7 @@ public class PlayerModel : Singleton<PlayerModel>
         if (roleData != null)
         {
             Skill skill = roleData.data;
-            curtHero.skills.Add(skill);
+            curtHero.skills.Insert(0, skill);
             MessageManager.Instance.ShowMessage("创建技能成功");
             return true;
         }

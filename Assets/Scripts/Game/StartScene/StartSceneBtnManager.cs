@@ -32,7 +32,14 @@ public class StartSceneBtnManager : MonoBehaviour
     #region startBtn
     private void OnClickStartBtn()
     {
-        SceneSwitcher.LoadSceneByIndex(ESceneType.MAINSCENE);
+        if (PlayerModel.Instance.curtHero == null)
+        {
+            SceneSwitcher.LoadSceneByIndex(ESceneType.CARDBAGSCENE);
+        }
+        else
+        {
+            SceneSwitcher.LoadSceneByIndex(ESceneType.MAINSCENE);
+        }
     }
     #endregion
     #region language
