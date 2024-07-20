@@ -42,7 +42,7 @@ public class PvpQueueingManager : MonoBehaviour
         var pass = DateTimeOffset.UtcNow.ToUnixTimeSeconds() - queueingTs;
         if (pass >= 60)
         {
-            dequeue();
+            _ = dequeue();
             ticker.text = "未能匹配到对手";
             Thread.Sleep(1000);
             SceneSwitcher.LoadSceneByIndex(ESceneType.GAMESKILLPREPARESCENE);
@@ -60,7 +60,7 @@ public class PvpQueueingManager : MonoBehaviour
         SceneSwitcher.LoadSceneByIndex(ESceneType.GAMEROLEPREPARESCENE);
     }
 
-    private async Task inQueue()
+    private async void inQueue()
     {
         var result = await GameService.PvpMatch(new Game_PvpMatch { heroId = PlayerModel.Instance.curtHero.id });
         if (result.GetData() != null)
@@ -74,7 +74,7 @@ public class PvpQueueingManager : MonoBehaviour
         }
     }
 
-    private async Task refreshQueueing(long now)
+    private async void refreshQueueing(long now)
     {
         if (queueing == null)
         {
