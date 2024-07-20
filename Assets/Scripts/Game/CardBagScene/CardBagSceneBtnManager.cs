@@ -185,11 +185,15 @@ public class CardBagSceneBtnManager : MonoBehaviour
         {
             ShowSkillScrollView();
             _btnSkillScrollViewIsShow = false;
+            var btnText = btnSkillScrollView.GetComponentInChildren<Text>();
+            btnText.text = "收起技能";
         }
         else
         {
             HideSkillScrollView();
             _btnSkillScrollViewIsShow = true;
+            var btnText = btnSkillScrollView.GetComponentInChildren<Text>();
+            btnText.text = "展示技能";
         }
     }
     void OnClickShowHerAttrView()
