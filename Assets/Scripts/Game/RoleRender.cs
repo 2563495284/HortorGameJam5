@@ -78,7 +78,10 @@ public class RoleRender : MonoBehaviour
     private void OnPointerCancel(PointerEventData eventData)
     {
         isPointerDown = false;
+        pointerDownTimer = 0;
+        isLongPress = false;
     }
+
 
     private void OnLongPress()
     {

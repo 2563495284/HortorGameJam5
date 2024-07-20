@@ -47,7 +47,7 @@ public class CardBagListMng : MonoBehaviour
             Hero hero = listHeros[i];
             GameObject listItem = listItemRoleObjectPool.GetPooledObject();
             listItem.transform.SetParent(roleScrollContent);
-            listItem.transform.localScale = new Vector3(0.8f, 0.8f, 1);
+            listItem.transform.localScale = new Vector3(0.7f, 0.7f, 1);
             listItem.SetActive(true); // 确保模板项是启用状态
             Button btn = listItem.GetComponent<Button>();
             btn.onClick.RemoveAllListeners();
@@ -83,7 +83,7 @@ public class CardBagListMng : MonoBehaviour
             Skill skill = listSkills[i];
             GameObject listItem = listItemSkillObjectPool.GetPooledObject();
             listItem.transform.SetParent(skillScrollContent);
-            listItem.transform.localScale = new Vector3(0.8f, 0.8f, 1);
+            listItem.transform.localScale = new Vector3(0.6f, 0.6f, 1);
             listItem.SetActive(true); // 确保模板项是启用状态
             SkillRender skillRender = listItem.GetComponentInChildren<SkillRender>();
             skillRender.OnData(skill, onClickSkill);

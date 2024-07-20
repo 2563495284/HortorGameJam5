@@ -18,7 +18,6 @@ public class SkillRender : MonoBehaviour
     public float requiredHoldTime = 0.6f; // 长按所需时间
 
     private bool isPointerDown = false;
-    private bool isLongPress = false;
     private float pointerDownTimer = 0;
     private Skill _skill;
 
@@ -56,34 +55,28 @@ public class SkillRender : MonoBehaviour
         if (isPointerDown)
         {
             pointerDownTimer += Time.deltaTime;
-            if (pointerDownTimer >= requiredHoldTime)
-            {
-                if (!isLongPress)
-                {
-                    isLongPress = true;
-                    OnLongPress();
-                }
-            }
         }
     }
     private void OnPointerDown(PointerEventData eventData)
     {
         isPointerDown = true;
         pointerDownTimer = 0;
-        isLongPress = false;
     }
 
     private void OnPointerUp(PointerEventData eventData)
     {
         isPointerDown = false;
-        if (!isLongPress)
+        if (pointerDownTimer >= requiredHoldTime)
         {
-            OnShortPress();
+            OnLongPress();
+            return;
         }
+        OnShortPress();
     }
     private void OnPointerCancel(PointerEventData eventData)
     {
         isPointerDown = false;
+        pointerDownTimer = 0;
     }
 
 

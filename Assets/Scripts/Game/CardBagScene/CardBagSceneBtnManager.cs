@@ -41,6 +41,9 @@ public class CardBagSceneBtnManager : MonoBehaviour
     public GameObject mask;
 
     public Button BtnShowHerAttrView;
+
+    public GameObject Loading;
+
     void Start()
     {
         btnCardBagBack.onClick.AddListener(OnClickCardBagBackBtn);
@@ -72,6 +75,7 @@ public class CardBagSceneBtnManager : MonoBehaviour
         {
             mask.SetActive(maskActive);
         }
+        Loading.SetActive(isCreateSkilling || isCreateRoleing);
     }
     #region 卡牌库
     private void OnClickCardBagBackBtn()
@@ -145,6 +149,7 @@ public class CardBagSceneBtnManager : MonoBehaviour
         }
         if (isCreateSkilling) return;
         isCreateSkilling = true;
+
         bool success = await PlayerModel.Instance.createSkill(inputFieldCreateSkill.text);
         if (success)
         {
