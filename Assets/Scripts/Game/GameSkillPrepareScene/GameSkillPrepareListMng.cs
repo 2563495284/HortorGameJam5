@@ -38,7 +38,7 @@ public class GameSkillPrepareListMng : MonoBehaviour
             Skill skill = listSkills[i];
             GameObject listItem = listItemSkillObjectPool.GetPooledObject();
             listItem.transform.SetParent(skillScrollContent);
-            listItem.transform.localScale = new Vector3(0.6f, 0.6f, 1);
+            listItem.transform.localScale = new Vector3(0.7f, 0.7f, 1);
             listItem.SetActive(true); // 确保模板项是启用状态
             // 设置按钮的文本（你可以根据具体需求进行各种设置）
             SkillRender skillRender = listItem.GetComponentInChildren<SkillRender>();
@@ -63,7 +63,7 @@ public class GameSkillPrepareListMng : MonoBehaviour
             Skill skill = listSkills[i];
             GameObject listItem = listItemSkillObjectPool.GetPooledObject();
             listItem.transform.SetParent(selectedSkillScrollContent);
-            listItem.transform.localScale = new Vector3(0.6f, 0.6f, 1);
+            listItem.transform.localScale = new Vector3(0.7f, 0.7f, 1);
 
             listItem.SetActive(true); // 确保模板项是启用状态
             // 设置按钮的文本（你可以根据具体需求进行各种设置）
