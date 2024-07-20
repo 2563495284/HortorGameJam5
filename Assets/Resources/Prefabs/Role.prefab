@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2265806833945967257}
   - component: {fileID: 3229853907766823037}
   - component: {fileID: 3313878877907892670}
-  - component: {fileID: 1823603859203248780}
   m_Layer: 0
   m_Name: Role
   m_TagString: Untagged
@@ -68,7 +67,8 @@ MonoBehaviour:
   headImg: {fileID: 4962992344213390786}
   nameText: {fileID: 1613934189487303650}
   natureSkillImg: {fileID: 2755820240372545581}
-  requiredHoldTime: 0.3
+  longPressThreshold: 0.4
+  dragThreshold: 10
 --- !u!114 &3313878877907892670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,18 +113,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1823603859203248780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302152162197006183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d14e1bc3fe86543538d76b65f8acfb39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1068378241412898703
 GameObject:
   m_ObjectHideFlags: 0
