@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -38,17 +39,18 @@ public class PvpQueueingManager : MonoBehaviour
 
     private void Update()
     {
-        var now = DateTimeOffset.UtcNow.ToUnixTimeSeconds() - queueingTs;
-        if (now - queueingTs >= 60)
+        var pass = DateTimeOffset.UtcNow.ToUnixTimeSeconds() - queueingTs;
+        if (pass >= 60)
         {
             dequeue();
             ticker.text = "未能匹配到对手";
+            Thread.Sleep(1000);
             SceneSwitcher.LoadSceneByIndex(ESceneType.GAMESKILLPREPARESCENE);
         }
         else
         {
-            ticker.text = $"{60 - now}s";
-            refreshQueueing(now);
+            ticker.text = $"{60 - pass}s";
+            refreshQueueing(pass);
         }
     }
 
