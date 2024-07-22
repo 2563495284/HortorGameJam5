@@ -85,14 +85,14 @@ public class BattleManager : Singleton<BattleManager>
 
     public void InitGame()
     {
-        round = 0;
+        round = 1;
         initHerosState();
     }
 
     public SBattleData getNextRoundState()
     {
         SBattleData battleData = new SBattleData();
-        battleData.round = round + 1;
+        battleData.round = round;
         Skill skill;
         if (round >= battleFinishData.roundSettlements.Count)
         {
@@ -108,7 +108,7 @@ public class BattleManager : Singleton<BattleManager>
             return battleData;
         }
 
-        currentRoundSettlement = battleFinishData.roundSettlements[round];
+        currentRoundSettlement = battleFinishData.roundSettlements[round-1];
         if (currentRoundSettlement.attackerRoundStates.heroId == playerBattleHeroInfo.heroId)
         {
             battleData.battleState = EBattleState.PLAYERTURN;
