@@ -99,21 +99,21 @@ public class BattleHUD : MonoBehaviour
     {
         battleSkillEffectTypeList.Clear();
 
-        if (roundState.hp != 0)
-        {
-            battleSkillEffectTypeList.Add(EBattleSkillEffectType.hp);
-        }
         if (roundState.maxHp != 0)
         {
             battleSkillEffectTypeList.Add(EBattleSkillEffectType.maxHp);
         }
-        if (roundState.mp != 0)
+        if (roundState.hp != 0)
         {
-            battleSkillEffectTypeList.Add(EBattleSkillEffectType.mp);
+            battleSkillEffectTypeList.Add(EBattleSkillEffectType.hp);
         }
         if (roundState.maxMp != 0)
         {
             battleSkillEffectTypeList.Add(EBattleSkillEffectType.maxMp);
+        }
+        if (roundState.mp != 0)
+        {
+            battleSkillEffectTypeList.Add(EBattleSkillEffectType.mp);
         }
         if (roundState.weaponDamage != 0)
         {
@@ -164,7 +164,9 @@ public class BattleHUD : MonoBehaviour
                 case EBattleSkillEffectType.maxHp:
                     if (roundState.maxHp != 0)
                     {
-                        hpSlider.maxValue += roundState.maxHp;
+                        battleHeroInfo.maxHp += roundState.maxHp;
+                        hpSlider.maxValue = battleHeroInfo.maxHp;
+                        UpdateHpText();
                     }
                     break;
                 case EBattleSkillEffectType.hp:
@@ -185,7 +187,9 @@ public class BattleHUD : MonoBehaviour
                 case EBattleSkillEffectType.maxMp:
                     if (roundState.maxMp != 0)
                     {
-                        mpSlider.maxValue += roundState.maxMp;
+                        battleHeroInfo.maxMp += roundState.maxMp;
+                        mpSlider.maxValue = battleHeroInfo.maxMp;
+                        UpdateMpText();
                     }
                     break;
                 case EBattleSkillEffectType.mp:
