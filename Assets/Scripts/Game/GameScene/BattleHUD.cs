@@ -205,7 +205,9 @@ public class BattleHUD : MonoBehaviour
                     break;
                 case EBattleSkillEffectType.critRate: break;
                 case EBattleSkillEffectType.dodge: break;
-                case EBattleSkillEffectType.stun: break;
+                case EBattleSkillEffectType.stun:
+                    stunEffect.Play();
+                    break;
                 case EBattleSkillEffectType.comb: break;
                 case EBattleSkillEffectType.fireCrit: break;
                 case EBattleSkillEffectType.fireDodge: break;
