@@ -123,31 +123,19 @@ public class BattleHUD : MonoBehaviour
         {
             battleSkillEffectTypeList.Add(EBattleSkillEffectType.armor);
         }
-        if (roundState.dodge != 0)
-        {
-            battleSkillEffectTypeList.Add(EBattleSkillEffectType.dodge);
-        }
-        if (roundState.stun != 0)
-        {
-            battleSkillEffectTypeList.Add(EBattleSkillEffectType.stun);
-        }
-        if (roundState.comb != 0)
-        {
-            battleSkillEffectTypeList.Add(EBattleSkillEffectType.comb);
-        }
-        if (roundState.comb != 0)
+        if (roundState.fireCrit)
         {
             battleSkillEffectTypeList.Add(EBattleSkillEffectType.fireCrit);
         }
-        if (roundState.comb != 0)
+        if (roundState.fireDodge)
         {
             battleSkillEffectTypeList.Add(EBattleSkillEffectType.fireDodge);
         }
-        if (roundState.comb != 0)
+        if (roundState.fireStun)
         {
             battleSkillEffectTypeList.Add(EBattleSkillEffectType.fireStun);
         }
-        if (roundState.comb != 0)
+        if (roundState.fireComb)
         {
             battleSkillEffectTypeList.Add(EBattleSkillEffectType.fireComb);
         }
