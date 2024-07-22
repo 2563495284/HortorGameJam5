@@ -136,7 +136,7 @@ public class CardBagSceneBtnManager : MonoBehaviour
         if (inputFieldCreateRole.text == "")
         {
             var playceholder = createRolePanel.GetComponentInChildren<InputField>().placeholder.GetComponentInChildren<Text>();
-            string[] parts = playceholder.text.Split(',');
+            string[] parts = playceholder.text.Split('、');
             // Random random = new Random();
             int randomInt = UnityEngine.Random.Range(0, parts.Length);
             // Get a random index

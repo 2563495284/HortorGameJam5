@@ -48,7 +48,9 @@ public class BattleHUD : MonoBehaviour
     public ParticleSystem mpEffect;
     public ParticleSystem stunEffect;
 
+    public ParticleSystem weaponDamageEffect;
 
+    public ParticleSystem armorEffect;
     private BattleHeroInfo battleHeroInfo
     {
         get
@@ -77,6 +79,8 @@ public class BattleHUD : MonoBehaviour
         healthEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         mpEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         stunEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        weaponDamageEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        armorEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
     public void init(EBattleHeroType battleHeroType)
     {
@@ -195,8 +199,18 @@ public class BattleHUD : MonoBehaviour
                         mpEffect.Play();
                     }
                     break;
-                case EBattleSkillEffectType.weaponDamage: break;
-                case EBattleSkillEffectType.armor: break;
+                case EBattleSkillEffectType.weaponDamage:
+                    if (roundState.weaponDamage > 0)
+                    {
+                        weaponDamageEffect.Play();
+                    }
+                    break;
+                case EBattleSkillEffectType.armor:
+                    if (roundState.armor > 0)
+                    {
+                        armorEffect.Play();
+                    }
+                    break;
                 case EBattleSkillEffectType.critRate: break;
                 case EBattleSkillEffectType.dodge: break;
                 case EBattleSkillEffectType.stun: break;
