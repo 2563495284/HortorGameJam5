@@ -1,11 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 using UnityEngine.UI;
-using UnityEngine.Localization.Settings;
 using DG.Tweening;
-using UnityEditor.VersionControl;
 public class GameSkillPrepareListMng : MonoBehaviour
 {
     public Transform skillScrollContent; // 这个是Content对象的Transformm
