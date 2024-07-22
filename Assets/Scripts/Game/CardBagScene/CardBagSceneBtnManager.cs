@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Hortor.O4e.Rpc;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -135,7 +136,13 @@ public class CardBagSceneBtnManager : MonoBehaviour
         if (inputFieldCreateRole.text == "")
         {
             var playceholder = createRolePanel.GetComponentInChildren<InputField>().placeholder.GetComponentInChildren<Text>();
-            input = playceholder.text;
+            string[] parts = playceholder.text.Split(',');
+            // Random random = new Random();
+            int randomInt = UnityEngine.Random.Range(0, parts.Length);
+            // Get a random index
+
+            // Return the random element
+            input = parts[randomInt];
         }
 
         if (isCreateRoleing) return;
