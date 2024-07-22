@@ -260,7 +260,10 @@ public class PlayerModel : Singleton<PlayerModel>
             return false;
         }
     }
-
+    public int getSkillCount()
+    {
+        return _skills.Count;
+    }
     public void addSkill2List(Skill skill)
     {
         _skills.Add(skill);

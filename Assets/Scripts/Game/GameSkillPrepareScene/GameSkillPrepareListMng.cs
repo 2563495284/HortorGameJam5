@@ -5,6 +5,7 @@ using UnityEngine.Pool;
 using UnityEngine.UI;
 using UnityEngine.Localization.Settings;
 using DG.Tweening;
+using UnityEditor.VersionControl;
 public class GameSkillPrepareListMng : MonoBehaviour
 {
     public Transform skillScrollContent; // 这个是Content对象的Transformm
@@ -78,6 +79,11 @@ public class GameSkillPrepareListMng : MonoBehaviour
 
     public void onClickSkill(Skill skill)
     {
+        if (PlayerModel.Instance.getSkillCount() >= 8)
+        {
+            MessageManager.Instance.ShowMessage("上阵技能数量已满，无法再添加技能");
+            return;
+        }
         PlayerModel.Instance.addSkill2List(skill);
         PopulateSelectedSkillList();
         scrollRect.DOHorizontalNormalizedPos(1f, 0.5f);

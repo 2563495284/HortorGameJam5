@@ -49,9 +49,6 @@ public class CardBagListMng : MonoBehaviour
             listItem.transform.SetParent(roleScrollContent);
             listItem.transform.localScale = new Vector3(0.8f, 0.8f, 1);
             listItem.SetActive(true); // 确保模板项是启用状态
-            Button btn = listItem.GetComponent<Button>();
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() => { onClickRole(hero); });
             // 设置按钮的文本（你可以根据具体需求进行各种设置）
             RoleRender roleRender = listItem.GetComponentInChildren<RoleRender>();
             roleRender.OnData(hero, onClickRole);
