@@ -6,6 +6,23 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
+public enum EBattleSkillEffectType
+{
+    maxHp,
+    hp,
+    maxMp,
+    mp,
+    weaponDamage,
+    armor,
+    critRate,
+    dodge,
+    stun,
+    comb,
+    fireCrit,
+    fireDodge,
+    fireStun,
+    fireComb,
+}
 public class BattleHUD : MonoBehaviour
 {
     public Slider hpSlider;
@@ -20,12 +37,46 @@ public class BattleHUD : MonoBehaviour
     public Text roleText;
 
     private EBattleHeroType _battleHeroType;
+
+    public List<EBattleSkillEffectType> battleSkillEffectTypeList = new List<EBattleSkillEffectType>();
+
+    private bool _isStun;
+    public ParticleSystem hpLoseEffect;
+
+    public ParticleSystem healthEffect;
+
+    public ParticleSystem mpEffect;
+    public ParticleSystem stunEffect;
+
+
     private BattleHeroInfo battleHeroInfo
     {
         get
         {
             return BattleManager.Instance.getBattleHeroInfo(_battleHeroType);
         }
+    }
+    public Vector3 GetHeroPos()
+    {
+        return role.transform.position;
+    }
+    public RectTransform GetHeroRectTransform()
+    {
+
+        RectTransform rectTransform = role.GetComponent<RectTransform>();
+        return rectTransform;
+    }
+    public float GetHeroHeight()
+    {
+        RectTransform rectTransform = role.GetComponent<RectTransform>();
+        return rectTransform.rect.height * role.transform.localScale.y;
+    }
+    private void Start()
+    {
+        hpLoseEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        healthEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        mpEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        stunEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
     public void init(EBattleHeroType battleHeroType)
     {
@@ -42,35 +93,129 @@ public class BattleHUD : MonoBehaviour
     }
     public void CheckHeroStateChange(RoundState roundState)
     {
-        // if (roundState.hp > 0)
-        // {
-        // }
-        // else if (roundState.hp < 0)
-        // {
-        // }
+        battleSkillEffectTypeList.Clear();
+
         if (roundState.hp != 0)
         {
-            hpSlider.DOValue(battleHeroInfo.hp + roundState.hp, 0.5f, true).OnUpdate(UpdateHpText);
-            battleHeroInfo.hp += roundState.hp;
+            battleSkillEffectTypeList.Add(EBattleSkillEffectType.hp);
         }
-
-
-        // if (roundState.mp > 0)
-        // {
-        //     mpSlider.DOValue(roundState.mp + battleHeroInfo.mp, 0.5f, true);
-        // }
-        // else if (roundState.mp < 0)
-        // {
-        // }
+        if (roundState.maxHp != 0)
+        {
+            battleSkillEffectTypeList.Add(EBattleSkillEffectType.maxHp);
+        }
         if (roundState.mp != 0)
         {
-            mpSlider.DOValue(battleHeroInfo.mp + roundState.mp, 0.5f, true).OnComplete(UpdateMpText);
-            battleHeroInfo.mp += roundState.mp;
+            battleSkillEffectTypeList.Add(EBattleSkillEffectType.mp);
         }
-    }
-    public async UniTask playHeroStateChange()
-    {
+        if (roundState.maxMp != 0)
+        {
+            battleSkillEffectTypeList.Add(EBattleSkillEffectType.maxMp);
+        }
+        if (roundState.weaponDamage != 0)
+        {
+            battleSkillEffectTypeList.Add(EBattleSkillEffectType.weaponDamage);
+        }
+        if (roundState.armor != 0)
+        {
+            battleSkillEffectTypeList.Add(EBattleSkillEffectType.armor);
+        }
+        if (roundState.dodge != 0)
+        {
+            battleSkillEffectTypeList.Add(EBattleSkillEffectType.dodge);
+        }
+        if (roundState.stun != 0)
+        {
+            battleSkillEffectTypeList.Add(EBattleSkillEffectType.stun);
+        }
+        if (roundState.comb != 0)
+        {
+            battleSkillEffectTypeList.Add(EBattleSkillEffectType.comb);
+        }
+        if (roundState.comb != 0)
+        {
+            battleSkillEffectTypeList.Add(EBattleSkillEffectType.fireCrit);
+        }
+        if (roundState.comb != 0)
+        {
+            battleSkillEffectTypeList.Add(EBattleSkillEffectType.fireDodge);
+        }
+        if (roundState.comb != 0)
+        {
+            battleSkillEffectTypeList.Add(EBattleSkillEffectType.fireStun);
+        }
+        if (roundState.comb != 0)
+        {
+            battleSkillEffectTypeList.Add(EBattleSkillEffectType.fireComb);
+        }
 
+
+    }
+    public async UniTask playHeroStateChange(RoundState roundState)
+    {
+        _isStun = false;
+        battleSkillEffectTypeList.ForEach(battleSkillEffectType =>
+        {
+            switch (battleSkillEffectType)
+            {
+                case EBattleSkillEffectType.maxHp:
+                    if (roundState.maxHp != 0)
+                    {
+                        hpSlider.maxValue += roundState.maxHp;
+                    }
+                    break;
+                case EBattleSkillEffectType.hp:
+                    if (roundState.hp != 0)
+                    {
+                        hpSlider.DOValue(battleHeroInfo.hp + roundState.hp, 0.5f, true).OnUpdate(UpdateHpText);
+                        battleHeroInfo.hp += roundState.hp;
+                    }
+                    if (roundState.hp < 0)
+                    {
+                        hpLoseEffect.Play();
+                    }
+                    else if (roundState.hp > 0)
+                    {
+                        healthEffect.Play();
+                    }
+                    break;
+                case EBattleSkillEffectType.maxMp:
+                    if (roundState.maxMp != 0)
+                    {
+                        mpSlider.maxValue += roundState.maxMp;
+                    }
+                    break;
+                case EBattleSkillEffectType.mp:
+                    if (roundState.mp != 0)
+                    {
+                        mpSlider.DOValue(battleHeroInfo.mp + roundState.mp, 0.5f, true).OnComplete(UpdateMpText);
+                        battleHeroInfo.mp += roundState.mp;
+                    }
+                    if (roundState.mp > 0)
+                    {
+                        mpEffect.Play();
+                    }
+                    break;
+                case EBattleSkillEffectType.weaponDamage: break;
+                case EBattleSkillEffectType.armor: break;
+                case EBattleSkillEffectType.critRate: break;
+                case EBattleSkillEffectType.dodge: break;
+                case EBattleSkillEffectType.stun: break;
+                case EBattleSkillEffectType.comb: break;
+                case EBattleSkillEffectType.fireCrit: break;
+                case EBattleSkillEffectType.fireDodge: break;
+                case EBattleSkillEffectType.fireStun: break;
+                case EBattleSkillEffectType.fireComb: break;
+
+            }
+        });
+        if (_isStun)
+        {
+            stunEffect.Play();
+        }
+        else
+        {
+            stunEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
         await UniTask.Delay(500);
     }
     void UpdateHpText()

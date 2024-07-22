@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Localization.Settings;
-using System.Threading.Tasks;
 
 public class StartSceneBtnManager : MonoBehaviour
 {
@@ -23,7 +19,6 @@ public class StartSceneBtnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
     private void OnDestroy()
     {
@@ -32,6 +27,11 @@ public class StartSceneBtnManager : MonoBehaviour
     #region startBtn
     private void OnClickStartBtn()
     {
+        if (!PlayerModel.Instance.finishLogin)
+        {
+            MessageManager.Instance.ShowMessage("登陆中～");
+            return;
+        }
         if (PlayerModel.Instance.curtHero == null)
         {
             SceneSwitcher.LoadSceneByIndex(ESceneType.CARDBAGSCENE);

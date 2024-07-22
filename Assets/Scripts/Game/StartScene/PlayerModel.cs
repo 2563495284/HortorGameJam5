@@ -110,7 +110,7 @@ public class PlayerModel : Singleton<PlayerModel>
         _skills.Clear();
     }
 
-
+    public bool finishLogin = false;
     public async Task login()
     {
         SyncData.Default.root = user;
@@ -128,7 +128,7 @@ public class PlayerModel : Singleton<PlayerModel>
         }
 
         ReceiveMsg<Login_AuthUserR> resp1 = await LoginService.AuthUser(new Login_AuthUser
-            { platform = "debug", info = "{\"id\":\"" + uid + "\"}" });
+        { platform = "debug", info = "{\"id\":\"" + uid + "\"}" });
         if (resp1.code != 0)
         {
             Debug.LogError(resp1.error);
@@ -136,7 +136,7 @@ public class PlayerModel : Singleton<PlayerModel>
         }
 
         var ok = await Sender.Default.Connect(new ConnectOptions
-            { token = resp1.GetData().roleToken, encoding = Encoding.X });
+        { token = resp1.GetData().roleToken, encoding = Encoding.X });
         if (!ok)
         {
             Debug.LogError("连接失败");
@@ -151,7 +151,7 @@ public class PlayerModel : Singleton<PlayerModel>
         }
 
         Debug.Log("登录成功");
-
+        finishLogin = true;
         role = resp2.GetData().role;
         this.init();
     }

@@ -43,7 +43,7 @@ public class BattleSystem : MonoBehaviour
         skill.SetActive(false);
         state = EBattleState.START;
         btnBattleFinish.onClick.AddListener(OnClickBtnBattleFinish);
-
+        dialogueText.text = "";
         battleFinish.SetActive(false);
         StartBattle();
     }
@@ -87,8 +87,8 @@ public class BattleSystem : MonoBehaviour
 
     public async UniTask PlayerTurnAsync()
     {
-        await UseSkill(battleData.skillHeroName, battleData.textTargetHolder, battleData.skill, EBattleHeroType.PLAYER);
         CheckHeroStateChange();
+        await UseSkill(battleData.skillHeroName, battleData.textTargetHolder, battleData.skill, EBattleHeroType.PLAYER);
         await showHeroStateChange();
         nextRound();
     }
@@ -134,8 +134,8 @@ public class BattleSystem : MonoBehaviour
     public async UniTask showHeroStateChange()
     {
         dialogueText.text = "假装在状态同步";
-        await playerHUD.playHeroStateChange();
-        await enemyHUD.playHeroStateChange();
+        await playerHUD.playHeroStateChange(playerBattleInfo.roundState);
+        await enemyHUD.playHeroStateChange(enemyBattleInfo.roundState);
         await UniTask.Delay(500);
     }
     #region  使用技能
@@ -169,6 +169,7 @@ public class BattleSystem : MonoBehaviour
         }
         await PlayCardMove(battleHeroType);
         await UniTask.Delay(uiDelayMs);
+        // await PlaySkillEffect(curtSkill, battleHeroType);
         await PlayCardDissolve();
         _skillTweenHandle = 0f;
 
@@ -237,6 +238,58 @@ public class BattleSystem : MonoBehaviour
             1f,
             1f
             ).OnComplete(() => tcs.TrySetResult());
+        return tcs.Task;
+    }
+    public async UniTask PlaySkillEffect(Skill skill, EBattleHeroType battleHeroType)
+    {
+        // var tcs = new UniTaskCompletionSource();
+
+        // skill.attrSummary.ForEach(effect =>
+        // {
+        //     switch (effect)
+        //     {
+        //         case "Armor": break;
+        //         case "Comb": break;
+        //         case "CritRate": break;
+        //         case "Dodge": break;
+        //         case "Hp": break;
+        //         case "Mp": break;
+        //         case "Stun": break;
+        //         case "WeaponDamage":
+
+        //             break;
+        //     }
+
+        // });
+        await PlayAttackAnim(battleHeroType);
+        // return tcs.Task;
+    }
+    public UniTask PlayAttackAnim(EBattleHeroType battleHeroType)
+    {
+        var tcs = new UniTaskCompletionSource();
+        RectTransform skillrect = skill.GetComponent<RectTransform>();
+        Vector3 targetPos = new Vector3();
+        switch (battleHeroType)
+        {
+            case EBattleHeroType.ENEMY:
+                targetPos = playerHUD.GetHeroPos();
+                targetPos.y += playerHUD.GetHeroHeight() + skillrect.rect.height;
+                Debug.LogWarning(targetPos.y);
+                break;
+            case EBattleHeroType.PLAYER:
+                targetPos = enemyHUD.GetHeroPos();
+                targetPos.y -= enemyHUD.GetHeroHeight() + skillrect.rect.height;
+                break;
+        }
+
+        Vector3 originalPos = skill.transform.position;
+        skill.transform.DOJump(targetPos, 1, 1, 0.4f, true).OnComplete(() =>
+        {
+            skill.transform.DOJump(originalPos, 1, 1, 0.6f).OnComplete(() =>
+            {
+                tcs.TrySetResult();
+            });
+        });
         return tcs.Task;
     }
     public Vector2 PointOnCubicBezier(List<Vector2> cp, float t)
