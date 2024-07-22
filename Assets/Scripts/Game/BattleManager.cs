@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum EBattleHeroType
@@ -94,7 +95,8 @@ public class BattleManager : Singleton<BattleManager>
         SBattleData battleData = new SBattleData();
         battleData.round = round;
         Skill skill;
-        if (round >= battleFinishData.roundSettlements.Count)
+        Debug.Log($"{round}, {battleFinishData.roundSettlements.Count()}");
+        if (round > battleFinishData.roundSettlements.Count)
         {
             if (battleFinishData.winnerHero == playerBattleHeroInfo.heroId)
             {
