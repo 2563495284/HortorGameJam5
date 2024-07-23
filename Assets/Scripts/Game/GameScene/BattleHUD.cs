@@ -218,7 +218,10 @@ public class BattleHUD : MonoBehaviour
         });
         if (_isStun)
         {
-            stunEffect.Play();
+            if (!stunEffect.isPlaying)
+            {
+                stunEffect.Play();
+            }
         }
         else
         {
